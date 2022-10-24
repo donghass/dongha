@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberns">
+	<!-- 관리자 회원 수 확인 -->
+	<select id="getMbTotal" parameterType="member" resultType="integer">
+		select count(*) from member	<!-- member 행 갯수 -->
+		<!-- 회원 검색 기능 추가 -->
+	</select>
+	
+	<!-- 관리자 회원 목록 -->
+	<select id="mbList" parameterType="member" resultType="member">
+		select * from (select a.*, rowNum rn from (select * from member
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						${search} like '%' || #{keyword} || '%'
+				</if>
+			</where>
+			order by MB_num desc) a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 관리자 회원 정보 수정 -->
+	<update id="adminMbUpdate" parameterType="member">
+		update member set MB_pw=#{MB_pw}, MB_name=#{MB_name},
+			MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel}
+		where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 관리자 회원 정보 삭제 -->
+	<update id="adminMbDelete" parameterType="string">
+		update member set MB_del='Y' where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 관리자 회원 정보 복구 -->
+	<update id="adminMbRollback" parameterType="string">
+		update member set MB_del='N' where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 관리자 드라이버 신청 승인 -->
+	<update id="adminPermit" parameterType="integer">
+		update member set MB_driverConfirm='Y' where MB_num=#{MB_num}
+	</update>
+	
+	<!-- 관리자 드라이버 신청 거절 -->
+	<update id="adminReject" parameterType="integer">
+		update member set MB_driverConfirm='N' where MB_num=#{MB_num}
+ 	</update>
+ 	
+	 <!-- 아이디로 검색 -->
+	<select id="select" parameterType="string" resultType="member">
+		select * from member where MB_id=#{MB_id}
+	</select>
+
+	<!-- 닉네임 중복체크 -->
+	<select id="selectNick" parameterType="string" resultType="member">
+		select * from member where MB_nickName=#{MB_nickName}
+	</select>
+	
+	<!-- 마이페이지에서 닉네임 중복체크 -->
+	<select id="selectNickMy" parameterType="member" resultType="member">
+		select * from member where MB_nickName=#{MB_nickName} and MB_num=#{MB_num}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="member">
+		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate, MB_img,MB_del)
+					values((select nvl(max(MB_num), 0)+1 from member), #{MB_id}, #{MB_pw}, #{MB_name}, #{MB_regNum}, #{MB_gender}, #{MB_nickName}, #{MB_tel}, sysdate, 'profile.png','N')
+	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="selectFindId" parameterType="member" resultType="member">
+		select * from member where MB_name=#{MB_name} and MB_tel=#{MB_tel}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectFindPw" parameterType="member" resultType="member">
+		select * from member where MB_name=#{MB_name} and MB_id=#{MB_id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel}
+		<if test="MB_img != null and MB_img != ''">
+			,MB_img=#{MB_img}
+		</if>
+		where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePw" parameterType="member">
+		update member set MB_pw=#{MB_pw} where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="delete" parameterType="string">
+		update member set MB_del='Y' where MB_id=#{MB_id}
+	</update>
+	
+	<!-- 프로필 상세 -->
+	<select id="selectNum" parameterType="integer" resultType="member">
+		select * from member where MB_num=#{MB_num}
+	</select>
+	
+	<!-- apply 컨트롤러에서 신청했을 때 driverConfirm 컬럼의 값을 바꿔주는 로직 -->
+	<update id="updateDriverConfirm" parameterType="integer">
+		update member set MB_driverConfirm='I' where MB_num=#{MB_num}
+	</update>
+
+</mapper> 
