@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+ "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+ "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- 레이아웃 적용 -->
+	<definition name="tilesbase" template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" /> 
+	</definition>
+	
+	<definition name="admin" template="/WEB-INF/views/layout_admin.jsp">
+		<put-attribute name="admin_header" value="/WEB-INF/views/admin_header.jsp" />
+		<put-attribute name="admin_menu" value="/WEB-INF/views/admin_menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+	
+	<definition name="main" template="/WEB-INF/views/layout_main.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" /> 
+	</definition>
+	
+		<!-- (1) admin 폴더 안에 {1}에 jsp이름 -->
+	<definition name="admin/*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
+	</definition>
+	
+	<definition name="nolayout" template="/WEB-INF/views/nolayout.jsp">
+		<!-- 레이아웃 적용하지 않음 -->
+		<put-attribute name="header" value="" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+		<!-- (1) nolay 폴더 안에 {1}에 jsp이름 -->
+	<definition name="nolayout/*" extends="nolayout">
+		<put-attribute name="body" value="/WEB-INF/views/nolayout/{1}.jsp" />
+	</definition>
+	
+	<definition name="main/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" />
+	</definition>
+	
+		<!-- (2) 폴더 안에 {1}에 폴더명 {2}에 jsp이름 -->
+	<definition name="*/*" extends="tilesbase">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+</tiles-definitions>
