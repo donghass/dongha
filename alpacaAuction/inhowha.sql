@@ -12,6 +12,9 @@ CREATE TABLE member (
 	age	varchar(10) DEFAULT '20대'	NOT NULL,
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
+select * from member;
+insert into member values ('master', '1234', 'IH', '010-9454-5763', 'inhowha9195@naver.com', '분당', sysdate, 'n', 'n', '20대', 'n');
+
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
