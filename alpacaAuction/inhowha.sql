@@ -1,6 +1,6 @@
 --회원
 CREATE TABLE member (
-	id	varchar(40)	NOT NULL primary key,
+	id	varchar(40) primary key NOT NULL,
 	password	varchar(100)	NOT NULL,
 	name	varchar(20)	NOT NULL,
 	nick_name	varchar(40)	NOT NULL,
@@ -9,10 +9,14 @@ CREATE TABLE member (
 	address	varchar(60)	NOT NULL,
 	created_date	date	NOT NULL,
 	del	char(1)	NOT NULL	DEFAULT 'n',
-	authority	char(1)	NOT NULL	DEFAULT 'n',
-	age	varchar(10)	NOT NULL	DEFAULT '20대',
-	gender	char(1)	NOT NULL	DEFAULT 'm'
+	authority	char(1)	DEFAULT 'n' NOT NULL,
+	age	varchar(10)	DEFAULT '20대' NOT NULL,
+	gender	char(1)	DEFAULT 'm' NOT NULL
 );
+select * from member;
+drop table member;
+
+
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
