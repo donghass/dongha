@@ -5,7 +5,6 @@
 <configuration>
 	<typeAliases>
 		<!-- 			별명                                         실제 객체 -->
-		<typeAlias alias="member" type="com.ch.tiger.model.Member"/>
 	</typeAliases>
 	
 	<mappers>
