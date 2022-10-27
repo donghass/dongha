@@ -24,7 +24,7 @@
 		<tr><th>작성자(구매자)</th><td>${review_board.id }</td></tr>
 		<tr><th>작성일</th><td>${review_board.reg_date }</td></tr>
 	</table>
-<a class="btn btn-primary" href="reply.do?review_no=${review_no }">댓글</a>
+<a class="btn btn-primary" href="rbReply.do?review_no=${review_no }">댓글</a>
 </div>
 <div id="rbDisp"></div>
 </body>
