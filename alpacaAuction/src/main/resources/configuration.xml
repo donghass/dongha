@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<!-- 			별명                                         실제 객체 -->
+		<typeAlias alias="review_board" type="com.alpaca.alpacaAuction.model.ReviewBoard"/>
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="review_board.xml"/>
 	</mappers>
 </configuration>

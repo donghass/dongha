@@ -50,7 +50,7 @@
 <link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="${path}/resources/summernote-lite.js"></script>
-  <script src="${path}/resources/lang/summernote-ko-KR.js"></script>
-  <link rel="stylesheet" href="${path}/resources/summernote-lite.css">
+<script src="${path}/resources/summernote/summernote-lite.js"></script>
+  <script src="${path}/resources/summernote/lang/summernote-ko-KR.js"></script>
+  <link rel="stylesheet" href="${path}/resources/summernote/summernote-lite.css">
   
