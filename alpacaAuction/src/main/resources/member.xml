@@ -52,16 +52,6 @@
 		select * from member where MB_id=#{MB_id}
 	</select>
 
-	<!-- 닉네임 중복체크 -->
-	<select id="selectNick" parameterType="string" resultType="member">
-		select * from member where MB_nickName=#{MB_nickName}
-	</select>
-	
-	<!-- 마이페이지에서 닉네임 중복체크 -->
-	<select id="selectNickMy" parameterType="member" resultType="member">
-		select * from member where MB_nickName=#{MB_nickName} and MB_num=#{MB_num}
-	</select>
-	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
 		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate, MB_img,MB_del)

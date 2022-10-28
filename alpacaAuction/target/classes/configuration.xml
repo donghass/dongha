@@ -5,7 +5,7 @@
 <configuration>
 	<typeAliases>
 		<!-- 			별명                                         실제 객체 -->
-		<typeAlias alias="member" type="com.ch.tiger.model.Member"/>
+		<typeAlias alias="member" type="com.alpaca.alpacaAuction.model.Member"/>
 	</typeAliases>
 	
 	<mappers>

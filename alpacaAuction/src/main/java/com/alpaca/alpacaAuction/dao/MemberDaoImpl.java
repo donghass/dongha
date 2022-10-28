@@ -14,4 +14,16 @@ public class MemberDaoImpl implements MemberDao{
 	public Member select(String id) {
 		return sst.selectOne("memberns.select", id);
 	}
+
+	public int insert(Member member) {
+		return sst.insert("memberns.insert", member);
+	}
+
+	public int update(Member member) {
+		return sst.update("memberns.update", member);
+	}
+
+	public int delete(String id) {
+		return sst.update("memberns.delete", id);
+	}
 }
