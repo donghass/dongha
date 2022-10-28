@@ -3,7 +3,6 @@ CREATE TABLE member (
 	id	varchar(40)	NOT NULL primary key,
 	password	varchar(100)	NOT NULL,
 	name	varchar(20)	NOT NULL,
-	nick_name	varchar(40)	NOT NULL,
 	call	varchar(20)	NOT NULL,
 	email	varchar(50)	NOT NULL,
 	address	varchar(60)	NOT NULL,

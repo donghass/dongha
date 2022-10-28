@@ -11,8 +11,7 @@
 	<bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
-	<context:property-placeholder
-		location="classpath:db.properties" />
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<!-- 그림파일 업로드 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

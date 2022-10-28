@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
- 	location.href="auctionList.do";
-/* 	location.href="insertItemBot.do"; */
-</script>
+입력성공
 </body>
 </html>

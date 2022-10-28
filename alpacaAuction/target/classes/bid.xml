@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bidns">
+	<select id="selectMax" parameterType="integer" resultType="bid">
+		select * from bidding where auction_no=#{auction_no} and
+		 bid_price=(select max(bid_price) from bidding where auction_no=#{auction_no})
+	</select>
+</mapper> 
