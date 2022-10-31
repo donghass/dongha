@@ -20,8 +20,8 @@ public class BidServiceImpl implements BidService{
 	}
 
 	@Override
-	public void insert(Bid bid) {
-		bd.insert(bid);
+	public int insert(Bid bid) {
+		return bd.insert(bid);
 		
 	}
 

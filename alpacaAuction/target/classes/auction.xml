@@ -13,10 +13,11 @@
 	<select id="getTotal" parameterType="auction" resultType="integer">
 		select count(*) from auction_item
 		<where>
+			sysdate between start_date and end_Date
 			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
 				<if test="keyword!=null and keyword!=''">  
 				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
-						${search} like '%'||#{keyword}||'%'
+					and	${search} like '%'||#{keyword}||'%'
 				</if>
 		</where>
 	</select>
@@ -29,7 +30,7 @@
 			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
 				<if test="keyword!=null and keyword!=''">  
 				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
-						${search} like '%'||#{keyword}||'%'
+					and	${search} like '%'||#{keyword}||'%'
 				</if>
 			</where>
 			order by auction_no)a)

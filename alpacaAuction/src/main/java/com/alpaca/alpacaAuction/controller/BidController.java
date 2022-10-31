@@ -15,11 +15,17 @@ public class BidController {
 	@Autowired
 	private BidService bs;
 	@RequestMapping("bidInsert")
-	public String bidInsert(Bid bid) {
-		int bid_no=bs.getMaxNum();
-		bid.setBid_no(bid_no);
-		bs.insert(bid);
-		return "redirect:bidList.do?auction_no="+bid.getAuction_no();
+	public String bidInsert(Bid bid,Model model) {
+		int bid_price = bs.selectMax(bid.getAuction_no());
+		if(bid_price >= bid.getBid_price()) {
+			model.addAttribute("auction_no",bid.getAuction_no());
+			return "/auction/bidChk";
+		}else {
+			int bid_no=bs.getMaxNum();
+			bid.setBid_no(bid_no);
+			int result = bs.insert(bid);
+			return "redirect:bidList.do?auction_no="+bid.getAuction_no();
+		}
 	}
 	@RequestMapping("bidList")
 	public String bidList(int auction_no,Model model) {

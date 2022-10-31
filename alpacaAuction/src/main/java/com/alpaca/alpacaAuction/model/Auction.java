@@ -35,4 +35,8 @@ public class Auction {
 //	datetime-local시간 받아오기
 	private String sDate;
 	private String eDate;
+//	남은 시간
+	private long min;
+	private long hour;
+	private long day;
 }

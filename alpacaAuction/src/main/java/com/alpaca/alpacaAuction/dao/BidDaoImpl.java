@@ -19,9 +19,9 @@ public class BidDaoImpl implements BidDao {
 	}
 
 	@Override
-	public void insert(Bid bid) {
+	public int insert(Bid bid) {
 		// TODO Auto-generated method stub
-		sst.insert("bidns.insert",bid);
+		return sst.insert("bidns.insert",bid);
 	}
 
 	@Override

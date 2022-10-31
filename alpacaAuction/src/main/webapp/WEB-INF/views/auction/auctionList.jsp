@@ -13,10 +13,11 @@
     text-align: center;
     vertical-align: middle;
     display: table !important;
-    width: 100%;
+    width: 180px;
     max-width: 100%;
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .thum img {
     max-width: 100% !important;
@@ -24,11 +25,51 @@
     width: auto !important;
     -ms-interpolation-mode: bicubic;
     border: 0;
-    height: auto !important;
+    height: 100% !important;
     display: block;
     margin: 0 auto;
+    
+}
+.price {
+	padding: 5px 10px;
+}
+.cover {
+  object-fit: cover;
+}
+.hit{
+border-top: 1px solid #e0e0e0;
+    background: #f9f9f9;
+    font-size: 13px;
+    display: table;
+    width: 100%;
 }
 </style>
+<script type="text/javascript">
+function timer(end_date){
+   /*  var currentDate = end_date;
+    var timer = document.getElementById('timer');
+    var msg = "남은 경매시간 : ";
+     if(currentDate.getHours()>12){      //시간이 12보다 크다면 오후 아니면 오전
+      msg += "오후 ";
+      msg += currentDate.getHours()-12+"시 ";
+   }
+   else {
+     msg += "오전 "; 
+     msg += currentDate.getHours()+"시 ";
+   }
+
+    msg += currentDate.getMinutes()+"분 ";
+    msg += currentDate.getSeconds()+"초";
+
+    timer.innerText = msg;
+
+    if (currentDate.getMinutes()<5) {    //정각 1분전부터 빨강색으로 출력
+      timer.style.color="red";
+    }
+    setTimeout(showClock,1000);  //1초마다 갱신
+  } */
+  timer.innerText = end_date;
+</script>
 </head>
 <body>
 <div class="container" align="center">
@@ -57,25 +98,22 @@
 <c:if test="${not empty list}">
 	<c:forEach var="auction" items="${list }">
 <div class="col-xs-6 col-sm-4">
-			<a href="auctionDetail.do?auction_no=${auction.auction_no }" >
+			<a href="auctionDetail.do?auction_no=${auction.auction_no }&result=-1" >
 			<span class="thum">
-					<i><img  class="imgTypeH imgTypeW lazyload" src="${path }/resources/auction_images/${auction.item_img}" onerror="this.src='/admin/images/noimg.gif';" alt='작은이미지'></i>
+					<i><img  class="imgTypeH imgTypeW lazyload cover" src="${path }/resources/auction_images/${auction.item_img}" onerror="this.src='/admin/images/noimg.gif';" alt='작은이미지'></i>
 			</span>
 		<span class="price">
-			<span class="desc" style="height:40px">${auction.item_name }</span>
+			<span class="text-primary" style="height:40px">${auction.item_name }</span>
 			<span class="won">${auction.start_price }원</span>
 		</span>
 		<span class="hit">
 			<span>입찰 <i>52</i></span>
-			<span>조회 <i>108</i></span>
+			<span>조회 <i>${auction.view_cnt }</i></span>
 		</span>
 		<span class="time">
-		판매&nbsp;&nbsp;kdw1009&nbsp;<img src="/kobay/images/rank_img_17_02.png">
-		<br /><i class="fa fa-clock-o"></i> 1일 04시간 
-		<!-- 연장경매진행여부 표시 2022.05.17 START -->
-		
-		<!-- 연장경매진행여부 표시 2022.05.17 END   -->
-	</span>
+			판매자아이디:${auction.id }
+		<br /><i class="glyphicon glyphicon-time"></i>남은시간:${auction.day }일 ${auction.hour }시 ${auction.min }분
+		</span>
 	</a>
 </div>
 </c:forEach>

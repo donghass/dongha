@@ -19,7 +19,6 @@ public class PagingBean {
 		totalPage = (int)Math.ceil((double)(total) / rowPerPage);
 		startPage = currentPage - (currentPage-1) % pagePerBlock;
 		endPage = startPage + pagePerBlock - 1;
-		// 27 startPage 21, endPage 30 / endPage totalPage ���� Ŭ �� ����.
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}

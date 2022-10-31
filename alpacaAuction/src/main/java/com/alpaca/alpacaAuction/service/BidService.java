@@ -8,7 +8,7 @@ public interface BidService {
 
 	int selectMax(int auction_no);
 
-	void insert(Bid bid);
+	int insert(Bid bid);
 
 	int getMaxNum();
 

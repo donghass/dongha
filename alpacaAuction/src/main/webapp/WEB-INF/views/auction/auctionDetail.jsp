@@ -10,6 +10,15 @@
 	.img {width:100%;};
 </style>
 <script type="text/javascript">
+	function bid_priceChk(bid_price,min_bid){
+		if(frm1.bid_price.value <= bid_price+min_bid){
+			alert("현재가 보다 높게 설정해 주십시오"); frm1.bid_price.focus();
+			frm1.bid_price.value=bid_price+min_bid;
+		}else if((frm1.bid_price.value-bid_price) % min_bid != 0){
+			alert("입찰 단위에 맞게 설정해주세요");frm1.bid_price.focus();
+			frm1.bid_price.value=bid_price+min_bid;
+		}
+	}
 	$(function() {
 		$('#bidListDisp').load('bidList.do?auction_no=${auction.auction_no}');
 		$('#bidInsert').click(function() {
@@ -18,7 +27,6 @@
 					"&bid_price="+frm1.bid_price.value; */
 			var sendData = $('#frm1').serialize();
 			$.post('bidInsert.do', sendData, function(data) {
-				alert('입찰을 등록하셨습니다');
 				$('#bidListDisp').html(data);
 			});
 		});
@@ -27,9 +35,6 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<header>
-			<h2>그리드 시스템을 이용한 레이아웃</h2>
-		</header>
 		<div class="row">
 			<div class="col-md-5">
 				<i><img class="img"
@@ -93,18 +98,18 @@
 					<th>입찰단위</th>
 					<td>${auction.min_bid }</td>
 					<th>현재가</th>
-					<c:if test="${null == bid_price }">
+					<c:if test="${0 == bid_price }">
 					<td>${auction.start_price }원</td>
 					</c:if>
-					<c:if test="${null != bid_price }">
+					<c:if test="${0 != bid_price }">
 					<td>${bid_price }원</td>
 					</c:if>
 					<th>입찰가 입력</th>
-					<c:if test="${null == bid_price }">
-					<td><input type="number" value="${auction.start_price+auction.min_bid }" name="bid_price">원</td>
+					<c:if test="${0 == bid_price }">
+					<td><input type="number" value="${auction.start_price+auction.min_bid }" name="bid_price" min="${auction.start_price+auction.min_bid }" step="${auction.min_bid }" onchange="bid_priceChk(${auction.start_price},${auction.min_bid })">원</td>
 					</c:if>
-					<c:if test="${null != bid_price }">
-					<td><input type="number" value="${bid_price+auction.min_bid }" name="bid_price">원</td>
+					<c:if test="${0 != bid_price }">
+					<td><input type="number" value="${bid_price+auction.min_bid }" name="bid_price" min="${bid_price+auction.min_bid }" step="${auction.min_bid }" onchange="bid_priceChk(${bid_price},${auction.min_bid })">원</td>
 					</c:if>
 					<td><input type="button" value="입찰하기" id="bidInsert"></td>
 				</tr>

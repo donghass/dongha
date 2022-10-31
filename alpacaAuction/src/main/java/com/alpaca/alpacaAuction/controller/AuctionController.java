@@ -68,6 +68,16 @@ public class AuctionController {
 		List<Auction> list = as.list(auction);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"판매자","물품명","내용"};
+		//경매 남은시간 계산
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+		for(Auction a:list) {
+			long day = (a.getEnd_date().getTime() - now.getTime()) / (3600000*24); // 일
+			long hour = ((a.getEnd_date().getTime() - now.getTime()) % (3600000*24)) / 3600000; // 시
+			long min = (((a.getEnd_date().getTime() - now.getTime()) % (3600000*24)) % 3600000) / 60000; // 분
+			a.setMin(min);
+			a.setHour(hour);
+			a.setDay(day);
+		}
 		
 		model.addAttribute("title", title);
 //		매개변수로 넘어온 데이터 데이터를 다시 같은 jsp로 전달할 때는 model.addAttribute생략 가능
