@@ -1,5 +1,7 @@
 package com.alpaca.alpacaAuction.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,26 @@ public class BidServiceImpl implements BidService{
 	private BidDao bd;
 
 	@Override
-	public Bid selectMax(int auction_no) {
+	public int selectMax(int auction_no) {
 		// TODO Auto-generated method stub
 		return bd.selectMax(auction_no);
+	}
+
+	@Override
+	public void insert(Bid bid) {
+		bd.insert(bid);
+		
+	}
+
+	@Override
+	public int getMaxNum() {
+		// TODO Auto-generated method stub
+		return bd.getMaxNum();
+	}
+
+	@Override
+	public List<Bid> list(int auction_no) {
+		// TODO Auto-generated method stub
+		return bd.list(auction_no);
 	}
 }

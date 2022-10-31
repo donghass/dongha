@@ -34,8 +34,12 @@ public class AuctionController {
 		return "/auction/insertItemForm";
 	}
 	@RequestMapping("insertItem")
-	public String insertItem(Auction auction ,Model model,HttpSession session) throws IOException {
+	public String insertItem(Auction auction ,Model model,HttpSession session) throws IOException, ParseException {
 		int auction_no = as.getMaxNum();
+		//datetime-local을 받기위해 날짜 시간포맷하기
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Timestamp start_date = new Timestamp(transFormat.parse(auction.getSDate().replace("T", " ")+":00").getTime());
+		Timestamp end_date = new Timestamp(transFormat.parse(auction.getEDate().replace("T", " ")+":00").getTime());
 		String fileName = auction.getFile().getOriginalFilename();
 //		파일명을 변경하고 싶으면 UUID또는 long형으로 날짜 데이터
 		auction.setItem_img(fileName);
@@ -44,6 +48,8 @@ public class AuctionController {
 		fos.write(auction.getFile().getBytes());
 		fos.close();
 		auction.setAuction_no(auction_no);
+		auction.setStart_date(start_date);
+		auction.setEnd_date(end_date);
 		int result = as.insert(auction);
 		model.addAttribute("result",result);
 		return "/auction/insertItem";
@@ -75,10 +81,10 @@ public class AuctionController {
 	public String auctionDetail(int auction_no,String pageNum,Model model) {
 		as.increaseViewCount(auction_no);
 		Auction auction = as.select(auction_no);
-//		Bid bid = bs.selectMax(auction_no);
+		int bid_price = bs.selectMax(auction_no);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("auction",auction);
-//		model.addAttribute("bid",bid);
+		model.addAttribute("bid_price",bid_price);
 		return "/auction/auctionDetail";
 	}
 	@RequestMapping("insertItemBot")

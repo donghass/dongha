@@ -94,8 +94,8 @@
           <option value="50000">50000원</option>
         </select></td></tr>
 	<tr><th>경매 기간 <span class="glyphicon glyphicon-pencil"></span></th>
-		<td>시작일<input type="date" class="form-control" name="start_date" ><p>
-			마감일<input type="date" class="form-control" name="end_date" > 
+		<td>시작일<input type="datetime-local" class="form-control" name="sDate" ><p>
+			마감일<input type="datetime-local" class="form-control" name="eDate" > 
 		</td></tr>	
 		<tr><td colspan="2" align="center"><input type="submit" value="경매등록" 
 		class="btn btn-success">&nbsp;&nbsp;&nbsp;<a href=".do" class="btn btn-info">취소</a></td></tr>

@@ -32,4 +32,7 @@ public class Auction {
 	private int endRow;
 //	upload용
 	private MultipartFile file;
+//	datetime-local시간 받아오기
+	private String sDate;
+	private String eDate;
 }
