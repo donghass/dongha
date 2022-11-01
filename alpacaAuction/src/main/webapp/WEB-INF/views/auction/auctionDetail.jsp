@@ -42,52 +42,48 @@
 					 alt='작은이미지'></i>
 			</div>
 			<div class="col-md-7">
-					<h2 class="text-primary">현재가:</h2>
-					<table class="table table-hover">
+					<h2 class="text-primary bg-warning">현재가:${auction.bid_price }</h2>
+					<table class="table table-dark">
 						<tr class="warning">
 							<th>경매물품명</th>
 							<td>${auction.item_name }</td>
 						</tr>
-						<tr class="danger">
+						<tr class="warning">
 							<th>판매자아이디</th>
 							<td>${auction.id }</td>
 						</tr>
-						<tr class="info">
+						<tr class="warning">
 							<td>조회수</td>
 							<td>${auction.view_cnt }</td>
 						</tr>
-						<tr class="success">
+						<tr class="warning">
 							<td>경매기간</td>
 							<td>${auction.start_date }~${auction.end_date }</td>
 						</tr>
-						<tr class="active">
+						<tr class="warning">
 							<td>시작가</td>
 							<td>${auction.start_price}</td>
 						</tr>
-						<tr class="active">
+						<tr class="warning">
 							<td>입찰단위</td>
 							<td>${auction.min_bid}</td>
 						</tr>
-						<tr class="active">
-							<td>현재 최고 입찰자</td>
-							<td><pre></pre></td>
-						</tr>
-						<tr class="active">
+						<tr class="warning">
 							<td>입찰수</td>
-							<td><pre></pre></td>
-						</tr>
-						<tr class="active">
-							<td>물품 설명</td>
-							<td><pre>${auction.item_contents}</pre></td>
+							<td>${auction.bid_cnt }</td>
 						</tr>
 						<tr class="default">
-							<td colspan="2" align="center"><a
-								href="auctionList.do?pageNum=${pageNum }" class="btn btn-success">게시글
-									목록</a>  </td>
+							<td colspan="2" align="center"><a href="#bidListDisp" class="btn btn-success">입찰
+									목록</a>
+							<button class="btn btn-success" onclick="">관심 등록</button>  </td></tr>
 					</table>
 			</div>
+			<div class="col-md-12">
+				<h2>물품설명</h2>
+				<pre style="font-size: 20px;">${auction.item_contents}</pre>
+			</div>
 		</div>
-		<h2 class="text-primary">입찰</h2>
+		<h2 class="text-primary bg-warning">입찰</h2>
 		<!-- submit할 때 action에 없으면 자신(view)을 한번 더 수행 여기서는 ajax사용 예정이므로 submit하지 않음 -->
 		<form action="" name="frm1" id="frm1">
 			<input type="hidden" name="id" value="1">
@@ -98,24 +94,17 @@
 					<th>입찰단위</th>
 					<td>${auction.min_bid }</td>
 					<th>현재가</th>
-					<c:if test="${0 == bid_price }">
-					<td>${auction.start_price }원</td>
-					</c:if>
-					<c:if test="${0 != bid_price }">
-					<td>${bid_price }원</td>
-					</c:if>
+					<td>${auction.bid_price }원</td>
 					<th>입찰가 입력</th>
-					<c:if test="${0 == bid_price }">
-					<td><input type="number" value="${auction.start_price+auction.min_bid }" name="bid_price" min="${auction.start_price+auction.min_bid }" step="${auction.min_bid }" onchange="bid_priceChk(${auction.start_price},${auction.min_bid })">원</td>
-					</c:if>
-					<c:if test="${0 != bid_price }">
-					<td><input type="number" value="${bid_price+auction.min_bid }" name="bid_price" min="${bid_price+auction.min_bid }" step="${auction.min_bid }" onchange="bid_priceChk(${bid_price},${auction.min_bid })">원</td>
-					</c:if>
+					<td><input type="number" value="${auction.bid_price+auction.min_bid }" name="bid_price" min="${auction.bid_price+auction.min_bid }" step="${auction.min_bid }" onchange="bid_priceChk(${auction.bid_price},${auction.min_bid })">원</td>
 					<td><input type="button" value="입찰하기" id="bidInsert"></td>
 				</tr>
 			</table>
 		</form>
 		<div id="bidListDisp" style="overflow: scroll; width: 100%; height:500px"></div>
+		<a href="auctionList.do?pageNum=${pageNum }" class="btn btn-success">게시글
+									목록</a>
+		<div id="insert"></div>
 	</div>
 </body>
 </html>

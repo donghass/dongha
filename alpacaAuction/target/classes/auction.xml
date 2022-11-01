@@ -33,8 +33,22 @@
 					and	${search} like '%'||#{keyword}||'%'
 				</if>
 			</where>
-			order by auction_no)a)
-				where rn between #{startRow} and #{endRow}
+			order by 
+			<if test="filter==null or filter==''">  
+				auction_no desc
+			</if>
+			<if test="filter!=null and filter!=''">  
+					<if test='filter.equals("a")'>
+						view_cnt desc	
+					</if>
+					<!-- <if test='filter.equals("a")'>
+						bid_cnt desc	
+					</if> -->
+					<if test='filter.equals("c")'>
+						end_date desc	
+					</if>
+			</if>
+			)a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="select" parameterType="integer" resultType="auction">
 		select * from auction_item where auction_no=#{auction_no}

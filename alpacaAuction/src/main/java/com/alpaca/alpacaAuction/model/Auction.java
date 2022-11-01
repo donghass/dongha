@@ -39,4 +39,10 @@ public class Auction {
 	private long min;
 	private long hour;
 	private long day;
+//	최고입찰가
+	private int bid_price;
+//	입찰 수
+	private int bid_cnt;
+//	필터
+	private String filter;
 }

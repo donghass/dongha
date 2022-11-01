@@ -11,6 +11,9 @@
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(bid_no), 0) + 1 from bidding
 	</select>
+	<select id="getTotal" resultType="integer">
+		select count(*) from bidding where auction_no=#{auction_no}
+	</select>
 	<select id="list" parameterType="integer" resultType="bid">
 		select * from bidding where auction_no=#{auction_no} order by bid_date desc
 	</select>

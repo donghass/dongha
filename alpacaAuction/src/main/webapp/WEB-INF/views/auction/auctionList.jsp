@@ -14,7 +14,6 @@
     vertical-align: middle;
     display: table !important;
     width: 180px;
-    max-width: 100%;
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
     overflow: hidden;
@@ -25,12 +24,13 @@
     width: auto !important;
     -ms-interpolation-mode: bicubic;
     border: 0;
-    height: 100% !important;
+    height: 200px !important;
     display: block;
     margin: 0 auto;
     
 }
 .price {
+    display: table;
 	padding: 5px 10px;
 }
 .cover {
@@ -43,32 +43,21 @@ border-top: 1px solid #e0e0e0;
     display: table;
     width: 100%;
 }
+.quickmenu {position:absolute;width:120px;top:50%;margin-top:-50px;right:10px;background:#fff;}
+.quickmenu ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
+.quickmenu ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
+.quickmenu ul li a {position:relative;float:left;width:100%;height:30px;line-height:30px;text-align:center;color:#999;font-size:9.5pt;}
+.quickmenu ul li a:hover {color:#000;}
+.quickmenu ul li:last-child {border-bottom:0;}
 </style>
 <script type="text/javascript">
-function timer(end_date){
-   /*  var currentDate = end_date;
-    var timer = document.getElementById('timer');
-    var msg = "남은 경매시간 : ";
-     if(currentDate.getHours()>12){      //시간이 12보다 크다면 오후 아니면 오전
-      msg += "오후 ";
-      msg += currentDate.getHours()-12+"시 ";
-   }
-   else {
-     msg += "오전 "; 
-     msg += currentDate.getHours()+"시 ";
-   }
-
-    msg += currentDate.getMinutes()+"분 ";
-    msg += currentDate.getSeconds()+"초";
-
-    timer.innerText = msg;
-
-    if (currentDate.getMinutes()<5) {    //정각 1분전부터 빨강색으로 출력
-      timer.style.color="red";
-    }
-    setTimeout(showClock,1000);  //1초마다 갱신
-  } */
-  timer.innerText = end_date;
+$(document).ready(function(){
+	  var currentPosition = parseInt($(".quickmenu").css("top"));
+	  $(window).scroll(function() {
+	    var position = $(window).scrollTop(); 
+	    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+	  });
+	});
 </script>
 </head>
 <body>
@@ -90,7 +79,18 @@ function timer(end_date){
 	<input type="text" name="keyword" value="${auction.keyword }">
 	<input type="submit" value="확인">
 </form>
-<a href="insertItemForm.do" class="btn btn-success">게시글 입력</a>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown">
+				필터 <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="auctionList.do?filter=a">조회순</a></li>
+				<!-- <li><a href="auctionList.do?filter=b">인기경매순</a></li> -->
+				<li><a href="auctionList.do?filter=c">마감임박순</a></li>
+			</ul>
+		</div>
+		<a href="insertItemForm.do" class="btn btn-success">게시글 입력</a>
 <div class="row">
 <c:if test="${empty list}">
 	<tr class="warning"><td colspan="5">게시글이 없습니다</td></tr>
@@ -100,14 +100,14 @@ function timer(end_date){
 <div class="col-xs-6 col-sm-4">
 			<a href="auctionDetail.do?auction_no=${auction.auction_no }&result=-1" >
 			<span class="thum">
-					<i><img  class="imgTypeH imgTypeW lazyload cover" src="${path }/resources/auction_images/${auction.item_img}" onerror="this.src='/admin/images/noimg.gif';" alt='작은이미지'></i>
+					<i><img  class="imgTypeH imgTypeW lazyload" style="height: 200px; width: 180px;" src="${path }/resources/auction_images/${auction.item_img}" onerror="this.src='/admin/images/noimg.gif';" alt='작은이미지'></i>
 			</span>
 		<span class="price">
-			<span class="text-primary" style="height:40px">${auction.item_name }</span>
-			<span class="won">${auction.start_price }원</span>
+			<span class="text-danger" style="height:40px">${auction.item_name }</span><br>
+			<span class="won bg-danger">현재가:${auction.bid_price }원</span>
 		</span>
 		<span class="hit">
-			<span>입찰 <i>52</i></span>
+			<span>입찰 <i>${auction.bid_cnt }</i>   </span>
 			<span>조회 <i>${auction.view_cnt }</i></span>
 		</span>
 		<span class="time">
@@ -137,6 +137,7 @@ function timer(end_date){
 				<li><a href="auctionList.do?pageNum=${i }&search=${auction.search}&keyword=${auction.keyword}">${i }</a></li>
 			</c:if>		
 		</c:forEach>
+		
 		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
 		<c:if test="${pb.endPage < pb.totalPage}">
 			<li><a href="auctionList.do?pageNum=${pb.endPage+1 }&search=${auction.search}&keyword=${auction.keyword}">
@@ -147,5 +148,39 @@ function timer(end_date){
 	</ul>
 </div>
 </div>
+<div class="quickmenu bg-warning">
+  <ul>
+    <li><a href="#">도서</a></li>
+    <li><a href="#">미술품</a></li>
+    <li><a href="#">취미/수집</a></li>
+    <li><a href="#">중고</a></li>
+  </ul>
+</div>
+<h1 class="display-4">display-4</h1>
+         <h1 class="display-3">display-3</h1>
+         <h1 class="display-2">display-2</h1>
+         <h1 class="display-1">display-1</h1>
+         <h1 class="display-4 font-weight-bold">display-4 font-weifht-bold</h1>
+         <h1 class="display-4 font-italic">display-4 font-italic</h1>
+         <h1 class="display-4 font-left">display-4 font-left</h1>
+         <h1 class="display-4 font-center">display-4 font-center</h1>
+         <h1 class="display-4 font-right">display-4 font-right</h1>
+         <h1 class="display-4 text-primary">display-4 text-primary</h1>
+         <h1 class="display-4 text-seconday">display-4 text-secondary</h1>
+         <h1 class="display-4 text-success">display-4 text-success</h1>
+         <h1 class="display-4 text-danger">display-4 text-danger</h1>
+         <h1 class="display-4 text-warning">display-4 text-warning</h1>
+         <h1 class="display-4 text-info">display-4 text-info</h1>
+         <h1 class="display-4 text-light">display-4 text-light</h1>
+         <h1 class="display-4 text-dark">display-4 text-dark</h1>
+         <h1 class="display-4 text-muted">display-4 text-muted</h1>
+         <h1 class="display-4 text-white">display-4 text-white</h1>
+         <h1 class="display-4 text-white bg-primary">display-4 text-white bg-primary</h1>
+         <h1 class="display-4 text-white bg-secondary">display-4 text-white bg-secondary</h1>
+         <h1 class="display-4 text-white bg-danger">display-4 text-white bg-danger</h1>
+         <h1 class="display-4 bg-warning">display-4 bg-warning</h1>
+         <h1 class="display-4 text-white bg-info">display-4 text-white bg-info</h1>
+         <h1 class="display-4 bg-light">display-4 bg-light</h1>
+         <h1 class="display-4 text-white bg-darky">display-4 text-white bg-dark</h1>
 </body>
 </html>

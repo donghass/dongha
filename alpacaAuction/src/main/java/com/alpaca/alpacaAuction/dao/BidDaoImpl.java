@@ -35,4 +35,10 @@ public class BidDaoImpl implements BidDao {
 		// TODO Auto-generated method stub
 		return sst.selectList("bidns.list",auction_no);
 	}
+
+	@Override
+	public int getTotal(int i) {
+		// TODO Auto-generated method stub
+		return sst.selectOne("bidns.getTotal",i);
+	}
 }

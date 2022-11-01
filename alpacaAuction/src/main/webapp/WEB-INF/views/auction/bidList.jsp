@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:if test="${not empty bidList}">
-	<h3 class="text-primary">입찰기록</h3>
+	<h3 class="text-primary bg-warning">입찰기록</h3>
 <table class="table table-striped">
 	<tr class="success"><td>입찰자</td><td>입찰가</td><td>입찰일시</td><td></td></tr>
 <c:forEach var="bid" items="${bidList }">

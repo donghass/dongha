@@ -77,7 +77,16 @@ public class AuctionController {
 			a.setMin(min);
 			a.setHour(hour);
 			a.setDay(day);
+//			최고입찰가 추가
+			if(bs.selectMax(a.getAuction_no())==0) {
+				a.setBid_price(a.getStart_price());
+			}else {
+				a.setBid_price(bs.selectMax(a.getAuction_no()));
+			}
+//			입찰수 추가
+			a.setBid_cnt(bs.getTotal(a.getAuction_no()));
 		}
+		
 		
 		model.addAttribute("title", title);
 //		매개변수로 넘어온 데이터 데이터를 다시 같은 jsp로 전달할 때는 model.addAttribute생략 가능
@@ -91,10 +100,16 @@ public class AuctionController {
 	public String auctionDetail(int auction_no,String pageNum,Model model) {
 		as.increaseViewCount(auction_no);
 		Auction auction = as.select(auction_no);
-		int bid_price = bs.selectMax(auction_no);
+		//			최고입찰가 추가
+		if(bs.selectMax(auction.getAuction_no())==0) {
+			auction.setBid_price(auction.getStart_price());
+		}else {
+			auction.setBid_price(bs.selectMax(auction.getAuction_no()));
+		}
+//		입찰수 추가
+		auction.setBid_cnt(bs.getTotal(auction.getAuction_no()));
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("auction",auction);
-		model.addAttribute("bid_price",bid_price);
 		return "/auction/auctionDetail";
 	}
 	@RequestMapping("insertItemBot")

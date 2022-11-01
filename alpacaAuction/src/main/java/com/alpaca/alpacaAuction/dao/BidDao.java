@@ -14,4 +14,6 @@ public interface BidDao {
 
 	List<Bid> list(int auction_no);
 
+	int getTotal(int i);
+
 }

@@ -36,4 +36,10 @@ public class BidServiceImpl implements BidService{
 		// TODO Auto-generated method stub
 		return bd.list(auction_no);
 	}
+
+	@Override
+	public int getTotal(int i) {
+		// TODO Auto-generated method stub
+		return bd.getTotal(i);
+	}
 }
