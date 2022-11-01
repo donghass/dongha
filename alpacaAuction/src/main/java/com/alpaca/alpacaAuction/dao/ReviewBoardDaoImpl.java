@@ -33,4 +33,12 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao{
 		return sst.selectOne("rvBoardns.select",review_no);
 	}
 
+	public int update(ReviewBoard review_board) {
+		return sst.update("rvBoardns.update",review_board);
+	}
+
+	public int delete(int review_no) {
+		return sst.update("rvBoardns.delete",review_no);
+	}
+
 }

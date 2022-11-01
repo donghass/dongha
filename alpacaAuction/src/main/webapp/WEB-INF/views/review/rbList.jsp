@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-	<h2 class="text-primary">리뷰 게시판</h2>
+	<h2 class="text-primary"><a href="rbList.do">리뷰 게시판</a></h2>
 	<table class="table table-bordered">
 		<tr><th>상품명</th><th>제목</th><th>사진</th><th>별점</th><th>작성자</th><th>작성일</th></tr>
 		<c:if test="${empty list }">
@@ -23,7 +23,7 @@
 				</c:if>
 				<c:if test="${review_board.del != 'y'}">
 					<td><a href="view.do?review_no=${review_board.review_no }&pageNum=${pageNum }" class="btn btn-primary">${review_board.title }</a></td>
-					<td><img alt="" src="/resources/upload/${review_board.review_img }" width="100" id="a1"></td>
+					<td><img alt="" src="${path}/resources/upload/${review_board.review_img }" width="100" id="a1"></td>
 					<td>${review_board.rating }</td>
 					<td>${review_board.id }</td> 
 					<td>${review_board.reg_date }</td>
@@ -56,7 +56,7 @@
 <form action="rbList.do">
 	<input type="hidden" name="pageNum" value="1">
 	<select name="search">
-		<c:forTokens var="sh" items="id,item_name,contents,subcon" delims="," varStatus="i">
+		<c:forTokens var="sh" items="id,title,contents,subcon" delims="," varStatus="i">
 			<c:if test="${sh == review_board.search }">
 				<option value="${sh }" selected="selected">${title[i.index] }</option>
 			</c:if>

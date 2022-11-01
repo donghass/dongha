@@ -16,4 +16,8 @@ public interface ReviewBoardDao {
 
 	ReviewBoard select(int review_no);
 
+	int update(ReviewBoard review_board);
+
+	int delete(int review_no);
+
 }

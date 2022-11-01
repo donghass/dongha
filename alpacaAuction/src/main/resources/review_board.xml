@@ -16,14 +16,15 @@
 			<if test="keyword != null and keyword != '' ">
 				<if test="search == 'subcon'">
 				<!-- #은 값 $는 변수를 의미한다 / #은 작은따옴표 사용 -->
-					subject like '%'||#{keyword}||'%' or
-					content list '%'||#{content}||'%'
+					title like '%'||#{keyword}||'%' or
+					contents like '%'||#{keyword}||'%'
 				</if>
 				<if test="search != 'subcon'">
 					${search} like '%'||#{keyword}||'%'
 				</if>
 			</if>
 		</where>
+		order by review_no desc
 	</select>
 	<select id="list" parameterType="review_board" resultType="review_board">
 		select * from(select a.*,rowNum rn from(
@@ -33,15 +34,15 @@
 			<if test="keyword != null and keyword != '' ">
 				<if test="search == 'subcon'">
 				<!-- #은 값 $는 변수를 의미한다 / #은 작은따옴표 사용 -->
-					subject like '%'||#{keyword}||'%' or
-					content list '%'||#{content}||'%'
+					title like '%'||#{keyword}||'%' or
+					contents like '%'||#{keyword}||'%'
 				</if>
 				<if test="search != 'subcon'">
 					${search} like '%'||#{keyword}||'%'
 				</if>
 			</if>
 		</where>
-			order by review_no)a)where rn between #{startRow} and #{endRow}
+			order by review_no desc)a)where rn between #{startRow} and #{endRow}
 	</select>
 	<update id="updateReadcount" parameterType="integer">
 		update review_board set read_cnt = read_cnt + 1 where review_no=#{review_no}
@@ -49,4 +50,10 @@
 	<select id="select" parameterType="integer" resultType="review_board">
 		select * from review_board where review_no=#{review_no}
 	</select>
+	<update id="update" parameterType="review_board">
+		update review_board set title=#{title},contents=#{contents},rating=#{rating} where review_no=#{review_no}
+	</update>
+	<update id="delete" parameterType="integer">
+		update review_board set del = 'y' where review_no=#{review_no}
+	</update>
 </mapper> 

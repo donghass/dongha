@@ -51,7 +51,8 @@ CREATE TABLE review_reply (
 	replier	varchar(40)	NOT NULL,
 	reg_date	date	NOT NULL,
 	updatedate	date	NOT NULL,
-	del	char(1)	NOT NULL
+	del	char(1)	NOT NULL,
+	id	varchar(40)	NOT NULL
 );
 drop table review_board;
 select * from REVIEW_reply;

@@ -38,7 +38,17 @@
 	}
 </script>
 </head>
-<body>		<!-- rrList는 컨트롤러의 rrList와 같아야한다 -->
+<body>
+<%-- <form action="" name="frm1" id="frm1">
+	<input type="hidden" name="re_no" value="${review_board.review_no }">
+	<input type="hidden" name="replier" value="${review_board.id }">
+	<table class="table table-hover">
+		<tr><th>작성자</th><td>${review_board.id }</td>
+			<th>댓글</th><td><pre><textarea rows="3" class="form-control" name="replytext"></textarea></pre></td>
+			<td><input type="button" value="댓글 입력" id="rInsert" class="btn btn-primary"></td></tr>
+	</table>
+</form> --%>
+		<!-- rrList는 컨트롤러의 rrList와 같아야한다 -->
 <c:if test="${not empty rrList}">
 	<h2 class="text-primary">댓글</h2>
 	<table class="table table-hover">
@@ -49,7 +59,7 @@
 			</c:if>
 			<c:if test="${review_reply.del != 'y' }">
 				<tr><td>${review_reply.replier}</td><td id="td_${review_reply.rno }"><pre>${review_reply.replytext }</pre></td><td>${review_reply.updatedate }</td>
-				<c:if test="${review_reply.replier == review_board.id }">
+				<c:if test="${review_reply.replier == id }">
 					<td id="btn_${review_reply.rno }">
 					<input type="button" class="btn btn-info btn-sm" id="btn_${review_reply.rno }"
 					value="수정" onclick="rUpdate(${review_reply.re_no},${review_reply.rno })">

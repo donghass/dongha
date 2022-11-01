@@ -2,6 +2,8 @@ package com.alpaca.alpacaAuction.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +22,13 @@ public class RrController {
 	private ReviewReplyService rrs;
 	
 	@RequestMapping("replyList")
-	private String replyList(int re_no, Model model) {
+	private String replyList(int re_no, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		ReviewBoard review_board = rbs.select(re_no);
 		List<ReviewReply> rrList = rrs.list(re_no);
-		System.out.println("size = "+rrList.size());
 		model.addAttribute("review_board",review_board);
 		model.addAttribute("rrList",rrList);
+		model.addAttribute("id",id);
 		return "/review/replyList";
 	}
 	@RequestMapping("rInsert")

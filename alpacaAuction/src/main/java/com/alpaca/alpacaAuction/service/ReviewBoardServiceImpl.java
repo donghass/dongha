@@ -34,4 +34,12 @@ public class ReviewBoardServiceImpl implements ReviewBoardService{
 		return rbd.select(review_no);
 	}
 
+	public int update(ReviewBoard review_board) {
+		return rbd.update(review_board);
+	}
+
+	public int delete(int review_no) {
+		return rbd.delete(review_no);
+	}
+
 }
