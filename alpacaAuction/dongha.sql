@@ -44,12 +44,17 @@ CREATE TABLE review_board (
 	auction_no	number(10)	NOT NULL
 );
 --경매 후기 댓글
-CREATE TABLE review_board (
-	review_no	number(10)	NOT NULL references review_board(review_no),
-	contents	varchar(300)	NOT NULL,
-	reg_date	date	NOT NULL
+CREATE TABLE review_reply (
+	re_no	number(10)	NOT NULL references review_board(review_no),
+	rno	number(10)	NOT NULL,
+	replytext	varchar(300)	NOT NULL,
+	replier	varchar(40)	NOT NULL,
+	reg_date	date	NOT NULL,
+	updatedate	date	NOT NULL,
+	del	char(1)	NOT NULL
 );
 drop table review_board;
+select * from REVIEW_reply;
 --관심물품
 CREATE TABLE interest (
 	interest_no	number(10)	NOT NULL primary key,

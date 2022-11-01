@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ public class RvController {
 	
 	@RequestMapping("rbInsertForm")
 	public String rbInsertForm() {
+		
 		return "/review/rbInsertForm";
 	}
 	@RequestMapping("rbInsert")
@@ -37,6 +39,20 @@ public class RvController {
 		fos.close();
 		result = rbs.insert(review_board);
 		model.addAttribute("result",result);
+//		for(int i=0; i<230; i++) {
+//			review_board.setAuction_no(0);
+//			review_board.setContents("d"+i);
+//			review_board.setReview_no(30+i);
+//			review_board.setTitle("tt");
+//			review_board.setRead_cnt(i);
+//			review_board.setDel("n");
+//			review_board.setReg_date(null);
+//			review_board.setRating(i);
+//			review_board.setId("dd");
+//			review_board.setReview_img(review_img);
+//			rbs.insert(review_board);
+//		}
+			
 		return "/review/rbInsert";
 	}
 	@RequestMapping("rbList")

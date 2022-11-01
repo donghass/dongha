@@ -23,7 +23,7 @@
 				</c:if>
 				<c:if test="${review_board.del != 'y'}">
 					<td><a href="view.do?review_no=${review_board.review_no }&pageNum=${pageNum }" class="btn btn-primary">${review_board.title }</a></td>
-					<td>${review_board.review_img }</td>
+					<td><img alt="" src="/resources/upload/${review_board.review_img }" width="100" id="a1"></td>
 					<td>${review_board.rating }</td>
 					<td>${review_board.id }</td> 
 					<td>${review_board.reg_date }</td>
@@ -35,21 +35,21 @@
 	<ul class="pagination">
 		<!-- 시작페이지가 pagePerBlock보다 크면 앞에 보여줄것이 없다 -->
 		<c:if test="${pb.startPage > pb.pagePerBlock }">
-			<li><a href="rbList.do?pageNum=1&search=${review_board.search }&keyword=${review_board.keyword }"><span class="glyphicon plyphicon-fast-backward"></span></a></li>
-			<li><a href="rbList.do?pageNum=${pd.startPage-1 }&search=${review_board.search }&keyword=${review_board.keyword }"><span class="glyphicon plyphicon-triangle-left"></span></a></li>
+			<li><a href="rbList.do?pageNum=1&search=${review_board.search }&keyword=${review_board.keyword }"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
+			<li><a href="rbList.do?pageNum=${pd.startPage-1 }&search=${review_board.search }&keyword=${review_board.keyword }"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 		<c:if test="${pb.currentPage == i }">
 			<li class="active"><a href="rbList.do?pageNum=${i }&search=${review_board.search}&keyword=${review_board.keyword}">${i }</a></li>
 		</c:if>
 		<c:if test="${pb.currentPage != i }">
-			<li class="active"><a href="rbList.do?pageNum=${i }&search=${review_board.search}&keyword=${review_board.keyword}">${i }</a></li>
+			<li><a href="rbList.do?pageNum=${i }&search=${review_board.search}&keyword=${review_board.keyword}">${i }</a></li>
 		</c:if>
 		</c:forEach>
 		<!-- engPage보다 totalPage가 크면 뒤에 보여줄것이 있다 -->
 		<c:if test="${pb.endPage < pb.totalPage }">
-			<li><a href="rbList.do?pageNum=${pb.endPage+1 }&search=${review_board.search}&keyword=${review_board.keyword}"><span class="glyphicon plyphicon-fast-backward"></span></a></li>
-			<li><a href="rbList.do?pageNum=${pb.totalPage }&search=${review_board.search}&keyword=${review_board.keyword}"><span class="glyphicon plyphicon-triangle-left"></span></a></li>
+			<li><a href="rbList.do?pageNum=${pb.endPage+1 }&search=${review_board.search}&keyword=${review_board.keyword}"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+			<li><a href="rbList.do?pageNum=${pb.totalPage }&search=${review_board.search}&keyword=${review_board.keyword}"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
 		</c:if>
 	</ul>
 </div>

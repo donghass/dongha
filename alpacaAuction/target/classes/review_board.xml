@@ -26,7 +26,8 @@
 		</where>
 	</select>
 	<select id="list" parameterType="review_board" resultType="review_board">
-		select * from review_board
+		select * from(select a.*,rowNum rn from(
+			select * from review_board
 		<where>
 			<!-- keyword에 값이 있으면 검색 / 값이 있을 경우에 where가 필요하다 -->
 			<if test="keyword != null and keyword != '' ">
@@ -40,6 +41,7 @@
 				</if>
 			</if>
 		</where>
+			order by review_no)a)where rn between #{startRow} and #{endRow}
 	</select>
 	<update id="updateReadcount" parameterType="integer">
 		update review_board set read_cnt = read_cnt + 1 where review_no=#{review_no}
