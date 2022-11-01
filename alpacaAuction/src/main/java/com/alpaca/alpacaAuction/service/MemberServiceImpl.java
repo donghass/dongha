@@ -1,9 +1,12 @@
 package com.alpaca.alpacaAuction.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alpaca.alpacaAuction.dao.MemberDao;
 import com.alpaca.alpacaAuction.model.Member;
+import com.alpaca.alpacaAuction.model.MemberPhoto;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -25,4 +28,11 @@ public class MemberServiceImpl implements MemberService{
 	public int delete(String id) {
 		return md.delete(id);
 	}
+
+	/*
+	 * public void insertPhoto(List<MemberPhoto> photos) { for (MemberPhoto mp :
+	 * photos) { md.insertPh(mp); } }
+	 * 
+	 * public List<MemberPhoto> listPhoto(String id) { return md.listPhoto(id); }
+	 */
 }

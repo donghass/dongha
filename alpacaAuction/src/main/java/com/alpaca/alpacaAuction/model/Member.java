@@ -11,20 +11,25 @@ public class Member {
 	private String id;
 	private String password;
 	private String name;
+	//private String fileName;
 	private String call;
 	private String email;
 	private String address;
+	private String age;
+	private String gender;
 	private Date created_date;
 	private String del;
 	private String authority;
-	private String age;
-	private String gender;
+	// 업로드
+	private MultipartFile file;
+
+	
 	// paging용
     private int startRow;
     private int endRow;
-	// 검색용
+	
+    
+    // 검색용
     private String search;
     private String keyword;
-    // 업로드
-    private MultipartFile file;
 }

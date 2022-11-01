@@ -1,8 +1,9 @@
 package com.alpaca.alpacaAuction.controller;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,81 +13,133 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alpaca.alpacaAuction.model.Member;
+import com.alpaca.alpacaAuction.model.MemberPhoto;
 import com.alpaca.alpacaAuction.service.MemberService;
-
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder bpe; // 비밀번호를 암호화
-	
+
 	@RequestMapping("joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "member/joinForm";
 	}
-	
 	@RequestMapping("join")
 	public String join(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
+		// member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크
 		Member member2 = ms.select(member.getId());
 		if (member2 == null) {
+			//String fileName = member.getFile().getOriginalFilename();
+			// 파일명을 변경하고 싶으면 UUID 또는 long으로 날자 데이터
+		//	member.setFileName("h");
+			//String real = session.getServletContext().getRealPath("/resources/upload");
+			//FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+			/*
+			 * fos.write(member.getFile().getBytes()); fos.close();
+			 */
 			String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 			member.setPassword(encPass);
 			result = ms.insert(member);
-		}
-	model.addAttribute("result", result);
-	return "join";
+		} else result = -1;  // 이미 있으니 입력하지마
+		model.addAttribute("result", result);
+		return "member/join";
 	}
-	
+
+	/*
+	 * @RequestMapping("join2") public String join2(Member member, Model model,
+	 * HttpSession session, MultipartHttpServletRequest mhr) throws IOException {
+	 * int result = 0; // member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크 Member
+	 * member2 = ms.select(member.getId()); if (member2 == null) { // 한번에 여러개의 파일이
+	 * 들어온다 List<MultipartFile> list = mhr.getFiles("file"); List<MemberPhoto>
+	 * photos = new ArrayList<MemberPhoto>(); String real =
+	 * session.getServletContext().getRealPath("/resources/upload"); // list의 사진을
+	 * 하나씩 뽑아서 photos에 저장 for(MultipartFile mf : list) { MemberPhoto mp = new
+	 * MemberPhoto(); String fileName = mf.getOriginalFilename();
+	 * mp.setFileName(fileName); mp.setId(member.getId()); photos.add(mp); //
+	 * memberphotos의 갯수는 사진갯수 만큼 // 그림파일 저장 FileOutputStream fos = new
+	 * FileOutputStream(new File(real+"/"+fileName)); fos.write(mf.getBytes());
+	 * fos.close(); member.setFileName(fileName); } String encPass =
+	 * bpe.encode(member.getPassword()); // 비밀번호 암호화 member.setPassword(encPass);
+	 * result = ms.insert(member); if (result > 0) ms.insertPhoto(photos); } else
+	 * result = -1; // 이미 있으니 입력하지마 model.addAttribute("result", result); return
+	 * "join"; }
+	 */
+	@RequestMapping("loginForm")
+	public String loginForm() {
+		return "member/loginForm";
+	}
 	@RequestMapping("login")
 	public String login(Member member, Model model, HttpSession session) {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
-		if (member2 == null || member2.getDel().equals("y")) result = -1;
+		if (member2 == null || member2.getDel().equals("y")) result = -1; // 없는 id
+//		bpe.matches 두개다 암호화 한 상태로 같은 데이터인가 
 		else if (bpe.matches(member.getPassword(), member2.getPassword())) {
 			result = 1; // 성공 id와 password가 일치
 			session.setAttribute("id", member.getId());
 		}
 		model.addAttribute("result", result);
-		return "login";
+		return "member/login";
 	}
 	
+	/*
+	 * @RequestMapping("view2") public String view2(Model model, HttpSession
+	 * session) { String id = (String)session.getAttribute("id"); Member member =
+	 * ms.select(id); List<MemberPhoto> list = ms.listPhoto(id);
+	 * model.addAttribute("member", member); model.addAttribute("list", list);
+	 * return "view2"; }
+	 */
+	@RequestMapping("view")
+	public String view(Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");		
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		return "member/view";
+	}
 	@RequestMapping("updateForm")
 	public String updateForm(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");		
 		Member member = ms.select(id);
 		model.addAttribute("member", member);
-		return "/member/updateForm";
+		return "member/updateForm";
 	}
-	
 	@RequestMapping("update")
 	public String update(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
+		// 사진을 수정할 수도 안할 수도 있다(안하면 fileName이 null 또는 공란)
+		/*
+		 * String fileName = member.getFile().getOriginalFilename(); if (fileName !=
+		 * null && !fileName.equals("")) { member.setFileName(fileName); String real =
+		 * session.getServletContext().getRealPath("/resources/upload");
+		 * FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		 * fos.write(member.getFile().getBytes()); fos.close(); }
+		 */
 		String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 		member.setPassword(encPass);
 		result = ms.update(member);
 		model.addAttribute("result", result);
-		return "update";
+		return "member/update";
 	}
-	
 	@RequestMapping("delete")
 	public String delete(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		int result = ms.delete(id);
 		if (result > 0) session.invalidate();
 		model.addAttribute("result", result);
-		return "delete";
+		return "member/delete";
 	}
-	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "logout";
+		return "member/logout";
 	}
-	
 	@RequestMapping("main")
 	public String main(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");		
@@ -94,16 +147,24 @@ public class MemberController {
 			Member member = ms.select(id);
 			model.addAttribute("member", member);
 		}
-		return "main";
+		return "member/main";
 	}
-	
-	@RequestMapping("idChk")
+	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
+	@ResponseBody   // jsp로 가지말고 바로 본문을 전달
 	public String idChk(String id, Model model) {
 		String msg = "";
 		Member member = ms.select(id);
 		if (member == null) msg = "사용 가능한 아이디 입니다";
-		else msg = "이미 사용중이니 다른 아이디를 사용하세요";
-		model.addAttribute("msg", msg);
-		return "/member/idChk";
+		else msg = "이미 등록된 아이디 입니다";
+		return msg;
 	}
+//	@RequestMapping("idChk")
+//	public String idChk(String id, Model model) {
+//		String msg = "";
+//		Member member = ms.select(id);
+//		if (member == null) msg = "사용 가능한 아이디 입니다";
+//		else msg = "이미 사용중이니 다른 아이디를 사용하세요";
+//		model.addAttribute("msg", msg);
+//		return "idChk";
+//	}
 }

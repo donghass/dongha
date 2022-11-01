@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>loginForm</title></head><body>
+<title>Insert title here</title></head><body>
 <div class="container" align="center">
 	<h2 class="text-primary">로그인</h2>
 <form action="login.do">

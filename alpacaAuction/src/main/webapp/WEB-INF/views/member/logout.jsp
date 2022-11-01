@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>logout</title></head><body>
+<title>Insert title here</title></head><body>
 <script type="text/javascript">
 	alert("로그아웃 되었습니다");
 	location.href="loginForm.do";

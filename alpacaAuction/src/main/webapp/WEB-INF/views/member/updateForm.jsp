@@ -20,7 +20,7 @@
 		}
 	}
 	// drag & drop
-	$(document).on("drop", function(e) {
+/* 	$(document).on("drop", function(e) {
 		// 태그에 파일 넣기
 		$('input[type="file"]').prop("files", e.originalEvent.dataTransfer.files); 
 	});
@@ -64,7 +64,7 @@
 		})(file);
 		reader.readAsDataURL(file);
 		// readAsDataURL: 컨텐츠의 특정 Blob이나 File에서 읽어노는 역할 수행
-	}
+	} */
 </script>
 </head><body>
 <div class="container" align="center">
@@ -87,11 +87,11 @@
 	<tr><th>이메일 <span class="glyphicon glyphicon-envelope"></span></th>
 		<td><input type="email" name="email" required="required"
 		class="form-control" value="${member.email }"></td></tr>	
-	<tr><th>사진 <span class="glyphicon glyphicon-picture"></span></th>
+	<%-- <tr><th>사진 <span class="glyphicon glyphicon-picture"></span></th>
 		<td><input type="file" name="file">${member.fileName }</td></tr>
 	<!-- drag & drop -->
 	<tr><th>사진  <span class="glyphicon glyphicon-picture"></span></th> 
-		<td><div id="drop"><div id="thumbnails">그림을 올려 놓으세요</div></div></td></tr>
+		<td><div id="drop"><div id="thumbnails">그림을 올려 놓으세요</div></div></td></tr> --%>
 	<tr><td colspan="2" align="center"><input type="submit" value="확인" 
 		class="btn btn-success" class="form-control"></td></tr>	
 </table>

@@ -9,5 +9,7 @@
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="member.xml" />
+	
 	</mappers>
 </configuration>
