@@ -26,6 +26,7 @@ CREATE TABLE auction_item (
 	del	char(1) DEFAULT 'n'	NOT NULL,
 	delivery	varchar(10)	NULL,
 	reg_date	date	NOT NULL,
+	pay	char(1) default 'n' NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no	number(10)	NOT NULL
 );
@@ -72,11 +73,10 @@ CREATE TABLE review_reply (
 	re_no	number(10)	NOT NULL references review_board(review_no),
 	rno	number(10)	NOT NULL,
 	replytext	varchar(300)	NOT NULL,
-	replier	varchar(40)	NOT NULL,
+	replier	varchar(40)	NOT NULL references member(id),
 	reg_date	date	NOT NULL,
 	updatedate	date	NOT NULL,
 	del	char(1)	NOT NULL
-	id	varchar(40)	NOT NULL references member(id)
 );
 --문의 게시판
 CREATE TABLE qna_board (
