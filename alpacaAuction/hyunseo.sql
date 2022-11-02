@@ -75,7 +75,7 @@ CREATE TABLE review_reply (
 	reply_contents	varchar(100)	NOT NULL,
 	del	char(1) 	DEFAULT 'n'	NOT NULL,
 	reg_date	date	NOT NULL,
-	up char(1) default'n' not null,--수정여부
+	up	char(1)	DEFAULT 'n'	NOT NULL,--수정여부
 	id	varchar(40)	NOT NULL references member(id),
 	review_no	number(10)	NOT NULL
 );

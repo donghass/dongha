@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rReplyns">
+	<select id="list" parameterType="integer" resultType="review_reply">
+		select * from review_reply where re_no=#{re_no} order by rno desc
+	</select>
+	<insert id="insert" parameterType="review_reply">
+		<selectKey keyProperty="rno" order="BEFORE" resultType="integer">
+			select nvl(max(rno),0)+1 rno from review_reply
+		</selectKey>
+		insert into review_reply values(#{re_no},#{rno},#{replytext},#{replier},sysdate,sysdate,'n')
+	</insert>
+	<update id="update" parameterType="review_reply">
+		update review_reply set replytext=#{replytext}, updatedate=sysdate where rno=#{rno}
+	</update>
+	<update id="delete" parameterType="review_reply">
+		update review_reply set del='y' where rno=#{rno}
+	</update>
+</mapper> 

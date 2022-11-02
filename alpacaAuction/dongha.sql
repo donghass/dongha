@@ -30,7 +30,7 @@ CREATE TABLE auction_item (
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no	number(10)	NOT NULL
 );
---경매 후기 게시판
+--경매 후기 게시판 -- 수정함
 CREATE TABLE review_board (
 	review_no	number(10)	NOT NULL primary key,
 	title	varchar(40)	NOT NULL,
@@ -40,9 +40,22 @@ CREATE TABLE review_board (
 	del	char(1) DEFAULT 'n'	NOT NULL,
 	reg_date	date	NOT NULL,
 	rating	number(5)	NOT NULL,
-	id	varchar(40)	NOT NULL references member(id),
-	auction_no	number(10)	NOT NULL references auction_item(auction_no)
+	id	varchar(40)	NOT NULL,
+	auction_no	number(10)	NOT NULL
 );
+--경매 후기 댓글
+CREATE TABLE review_reply (
+	re_no	number(10)	NOT NULL references review_board(review_no),
+	rno	number(10)	NOT NULL,
+	replytext	varchar(300)	NOT NULL,
+	replier	varchar(40)	NOT NULL,
+	reg_date	date	NOT NULL,
+	updatedate	date	NOT NULL,
+	del	char(1)	NOT NULL,
+	id	varchar(40)	NOT NULL
+);
+drop table review_board;
+select * from REVIEW_reply;
 --관심물품
 CREATE TABLE interest (
 	interest_no	number(10)	NOT NULL primary key,
@@ -68,7 +81,7 @@ CREATE TABLE tag (
 	tag_no	number(10)	NOT NULL primary key,
 	tag_name	varchar(20)	NOT NULL
 );
---후기게시판 댓글
+--후기게시판 댓글 수정함
 CREATE TABLE review_reply (
 	re_reply_no	number(10)	NOT NULL primary key,
 	reply_contents	varchar(100)	NOT NULL,
@@ -76,7 +89,10 @@ CREATE TABLE review_reply (
 	reg_date	date	NOT NULL,
 	up	char(1)	DEFAULT 'n'	NOT NULL,--수정여부
 	id	varchar(40)	NOT NULL references member(id),
-	review_no	number(10)	NOT NULL
+	review_no	number(10)	NOT NULL,
+	ref number not null,
+	re_step number not null,
+	re_level number not null
 );
 --문의 게시판
 CREATE TABLE qna_board (
@@ -88,4 +104,4 @@ CREATE TABLE qna_board (
 	id	varchar(40)	NOT NULL references member(id)
 );
 
-
+select * from review_board;
