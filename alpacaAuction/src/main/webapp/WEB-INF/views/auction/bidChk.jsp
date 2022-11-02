@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
- 	location.href="auctionList.do";
-/* 	location.href="insertItemBot.do"; */
-</script>
+	<script type="text/javascript">
+		alert("입찰 실패하셨습니다, 입찰금액을 확인하세요");
+		location.href="auctionDetail.do?auction_no="+${auction_no};
+	</script>
 </body>
 </html>

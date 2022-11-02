@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bidns">
+	<select id="selectMax" parameterType="integer" resultType="integer">
+		select nvl(max(bid_price),0) from bidding where auction_no=#{auction_no}
+	</select>
+	<insert id="insert" parameterType="bid">
+		insert into bidding values(#{bid_no},#{bid_price},sysdate,#{id},#{auction_no})
+	</insert>
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(bid_no), 0) + 1 from bidding
+	</select>
+	<select id="getTotal" resultType="integer">
+		select count(*) from bidding where auction_no=#{auction_no}
+	</select>
+	<select id="list" parameterType="integer" resultType="bid">
+		select * from bidding where auction_no=#{auction_no} order by bid_date desc
+	</select>
+</mapper> 

@@ -1,0 +1,554 @@
+/* 폰트 적용 */
+body {
+	font-family: 'Pretendard-Regular';
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.narrowWidth{
+	width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 화면 크기 */
+
+.narrowWidth60{
+	width: 60%;
+}
+
+.narrowWidth80{
+	width: 80%;
+}
+
+.narrowWidth1 {
+   	width: 60%;
+   	margin-left: auto;
+    margin-right: auto;
+}
+
+.row{
+	margin-top: 60px;
+}
+
+/* 텍스트 생략 */
+.ellip{
+	text-overflow:ellipsis; 
+	overflow:hidden; 
+	white-space:nowrap;
+}
+
+.ellip a{
+	color : #000000;
+}
+
+/* 타세요 신청현황 테이블 간격 임시 수정 --병우 */
+.narrowWidth40{
+	width: 40%;
+}
+
+th.width {
+	width: 10%;
+}
+
+th.width2 {
+	width: 100px;
+}
+
+.contents{
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+.contents_main{
+	margin-bottom: 30px;
+}
+
+/* header  */
+
+.header{
+	position: fixed;
+	top:0;
+	width:100%;
+	height: 100px;
+	
+}
+.logo{
+	height: 100px;
+	margin-left:200px;
+	margin-top: 30px;
+ 	margin-bottom: 30px;
+}
+
+.header_login {
+    position: absolute;
+    top: 50%; 
+	right: 30px;
+	transform: translateY(-50%);
+
+}
+
+.header_login a{
+	color: #000000;
+	padding-left: 15px;
+}
+
+
+/* title */
+
+.title {
+/* 	margin: 50px 0 50px 0; */
+	margin: 0 0 50px 0;
+	text-align: center;
+	font-size: 24px; 
+}
+
+/* body */
+
+body{
+	padding-top:100px;
+	margin: 0;
+}
+	
+/* input 입력창 */
+
+.inputLine {
+	border: none;
+	outline: 0;
+	width: 80%;
+}
+
+.inputLine2 {
+	border: none;
+	outline: 0;
+}
+	
+.inputUnderLine{
+	height: 23px;
+	border: none;
+    border-bottom: 1px solid black;
+    outline: 0;
+}
+
+.menuTitle {
+	color: #000000;
+	margin-left: 30px;
+}
+
+.menuTitle:hover {
+	color: #3243A8;
+	margin-left: 30px;
+	text-decoration: none;
+}
+
+/* pre 창 */
+
+.textBox{
+    padding: 0;
+    margin: 0 0 10px;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+}
+
+/* a태그 */
+
+.inputLineA{
+	color: #000000;
+}
+
+.inputLineA:hover{
+	color: #3243A8;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight:bolder;
+}
+
+/* 첨부파일 */
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;   
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox label {
+    height: 25px;
+    color: #3243A8;
+    text-align: center; 
+    cursor: pointer;
+    font-size: 15px;
+    font-weight:bolder;
+    background: initial;
+    line-height: 25px;
+    margin-bottom: -1px;
+  } 
+  
+/* .filebox label { */
+/*     display: inline-block;   */
+/*     width: 100%; */
+/*     height: 25px; */
+/*     color: #3243A8; */
+/*     text-align: center;  */
+/*     cursor: pointer; */
+/*     font-size: 15px; */
+/*     font-weight:bolder; */
+/*     background: initial; */
+/*     line-height: 25px; */
+/*     margin-bottom: -1px; */
+/*   }  */
+
+.filebox .upload-name {
+	display: inline-block;  
+	background-color: white;
+	cursor: pointer;
+	border: none;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}   
+
+  
+/* 버튼 */
+
+.btn_small {
+	width: 300px;
+    height: 40px;
+    background:  #3243A8;
+    color: #eee;
+    font-size: 18px;
+    border: none;
+    margin-bottom: 30px;
+ }
+
+.btn_medium {
+	margin-left: 25px;
+	margin-top: 30px;  
+	margin-right: 0;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #3243A8;
+    width: 200px;
+    height: 35px;
+} 
+
+.btn_large {
+	width: 300px;
+    height: 40px;
+    background:  #3243A8;
+    color: #eee;
+    font-size: 18px;
+    border: none;
+    margin-bottom: 30px;
+}
+
+
+.btn_sm_stroke {
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #242526;   
+    background: initial;
+    margin-top: 30px;
+}
+
+/* carpool 페이지 */
+/* 수락 버튼 */
+.btn_sm_stroke2 {
+    padding: 1px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #ffffff;
+    background: #3243A8;
+}
+/* 거절 버튼 */
+.btn_sm_stroke3 {
+    padding: 1px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #000000;
+    background: initial;
+}
+
+.btn_sm_full{
+/*     margin-bottom: -22px; */
+    padding: 6px 13px;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #3243A8;
+    margin-top: 15px;
+}
+
+.btn_sm_full2{
+    margin-bottom: -22px;
+    padding: 6px 13px;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #dd0000;
+    margin-top: 15px;
+}
+
+
+.btn_sm_full:hover {
+    /* margin-bottom: -22px; */
+    /* padding: 6px 13px; */
+    /* border: none; */
+    font-size: 14px;
+    color: #aaffff;
+    background: #3243A8;
+    margin-top: 15px;
+}
+  
+.btn_search{
+	background-image: url('/tiger/resources/main/search64.png');
+	background-size: 24px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    height: 29px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+}
+
+
+
+/* 프로필 섬네일 */
+
+.thumb {
+		height: 150px;
+		width: 150px; 
+		margin-top: 55px;
+		margin-bottom: 10px;
+	}  
+	
+/* 설정 icon */
+.btn_setting{
+	background-image: url('/tiger/resources/main/setting.png');
+	background-size: 20px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    height: 20px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+}  
+.btn_delete{
+	background-image: url('/tiger/resources/main/delete.png');
+	background-size: 14px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 13px;
+ }
+ .btn_delete:hover{ /* 추가0728 관리자 회원 탈퇴 이미지 */
+	background-image: url('/tiger/resources/main/delete.png');
+	background-size: 14px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 13px;
+ }
+.btn_recovery{
+	background-image: url('/tiger/resources/main/recovery.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 15px;
+}
+.btn_recovery:hover{ /* 추가0728 관리자 회원 복구 이미지 */
+	background-image: url('/tiger/resources/main/recovery.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 15px;
+}
+.btn_open{
+	background-image: url('/tiger/resources/main/open.png');
+	background-size: 22px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;  
+ 	padding-bottom: 4px;
+ 	
+}
+.btn_open:hover{ /* 추가0728  */
+	background-image: url('/tiger/resources/main/open.png');
+	background-size: 22px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;  
+ 	padding-bottom: 4px;
+ 	
+}
+/* 운전면허증 upload icon */
+.btn_uploadDr{
+	background-image: url('/tiger/resources/main/none_dr.png');
+	background-size: 60%;
+	background-color: white;
+    background-position:  center;
+    background-repeat: no-repeat;
+    height: 50%;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 50%;
+}
+.searchDIV {
+	text-align: left;
+	margin-bottom : 40px !important;
+}
+
+
+/* 버튼(a태그) */
+
+a {
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+   
+.btn_prev {
+    padding: 5px 16px;
+    border: 1px solid #242526;
+    line-height: 40px;
+    font-size: 14px;
+    color: #242526;  
+}
+.btn_prev2 {
+    padding: 1px 5px;
+   /*   border: 1px solid #242526;  */
+    line-height: 20px;
+    font-size: 15px;
+    color: #242526;
+}
+
+.btn_prev:hover {
+	color: #3243A8;
+	text-decoration: none;
+}
+
+
+/* paging */
+
+.page_num {
+	color: #000000;
+}
+
+.pagination_bottom {
+	display: inline-flex;
+	margin-top: 70px;
+}
+
+.page_current_num {
+	color: #3243A8;
+}
+
+.pagination_bottom li a:hover {
+	text-decoration: none;
+}
+
+
+/* footer */
+
+.body_footer{
+	min-height: calc(100vh - 100px);
+}
+
+footer	{
+	margin-top: auto;
+}
+
+.footer_inner {
+	font-size: 14px;
+	font-weight: 300;
+	text-align: center;
+}
+
+ .footer_logo {
+	margin-bottom: 16px;
+	height: 250px;
+}
