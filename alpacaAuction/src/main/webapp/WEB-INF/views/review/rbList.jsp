@@ -22,7 +22,7 @@
 					<th colspan="6">삭제 된 글입니다</th>
 				</c:if>
 				<c:if test="${review_board.del != 'y'}">
-					<td><a href="view.do?review_no=${review_board.review_no }&pageNum=${pageNum }" class="btn btn-primary">${review_board.title }</a></td>
+					<td><a href="rv_view.do?review_no=${review_board.review_no }&pageNum=${pageNum }" class="btn btn-primary">${review_board.title }</a></td>
 					<td><img alt="" src="${path}/resources/upload/${review_board.review_img }" width="100" id="a1"></td>
 					<td>${review_board.rating }</td>
 					<td>${review_board.id }</td> 

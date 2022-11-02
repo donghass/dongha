@@ -69,13 +69,14 @@ CREATE TABLE tag (
 );
 --후기게시판 댓글
 CREATE TABLE review_reply (
-	re_reply_no	number(10)	NOT NULL primary key,
-	reply_contents	varchar(100)	NOT NULL,
-	del	char(1) 	DEFAULT 'n'	NOT NULL,
+	re_no	number(10)	NOT NULL references review_board(review_no),
+	rno	number(10)	NOT NULL,
+	replytext	varchar(300)	NOT NULL,
+	replier	varchar(40)	NOT NULL,
 	reg_date	date	NOT NULL,
-	up	char(1)	DEFAULT 'n'	NOT NULL,--수정여부
-	id	varchar(40)	NOT NULL references member(id),
-	review_no	number(10)	NOT NULL
+	updatedate	date	NOT NULL,
+	del	char(1)	NOT NULL
+	id	varchar(40)	NOT NULL references member(id)
 );
 --문의 게시판
 CREATE TABLE qna_board (

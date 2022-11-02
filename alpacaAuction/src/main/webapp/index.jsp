@@ -9,7 +9,7 @@
 <body>
 <script type="text/javascript">
  	location.href="auctionList.do";
-/* 	location.href="insertItemBot.do"; */
+/* 	location.href="insertItemBot.do";  */
 	/* location.href="rbInsertForm.do"; */
 //	location.href="main.do";
 	/* location.href="joinForm.do" */

@@ -77,7 +77,7 @@ public class RvController {
 		model.addAttribute("pb",pb);
 		return "/review/rbList";
 	}
-	@RequestMapping("view")
+	@RequestMapping("rv_view")
 	public String view(int review_no, String pageNum, Model model, HttpSession session, ReviewReply reply_review) {
 		String id = (String)session.getAttribute("id");
 		rbs.updateReadcount(review_no);
