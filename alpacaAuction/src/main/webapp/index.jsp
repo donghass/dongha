@@ -11,6 +11,8 @@
  	location.href="auctionList.do";
 /* 	location.href="insertItemBot.do"; */
 	/* location.href="rbInsertForm.do"; */
+//	location.href="main.do";
+	/* location.href="joinForm.do" */
 </script>
 </body>
 </html>

@@ -46,8 +46,9 @@
 		<property name="configLocation"
 			value="classpath:configuration.xml" />
 	</bean>
+	
 	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
 	<!-- DataBase Connection Pool -->

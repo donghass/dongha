@@ -9,11 +9,13 @@
 		<typeAlias alias="bid" type="com.alpaca.alpacaAuction.model.Bid" />
 		<typeAlias alias="review_board" type="com.alpaca.alpacaAuction.model.ReviewBoard"/>
 		<typeAlias alias="review_reply" type="com.alpaca.alpacaAuction.model.ReviewReply"/>
+		<typeAlias alias="member" type="com.alpaca.alpacaAuction.model.Member"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="auction.xml" />
 		<mapper resource="bid.xml" />
 		<mapper resource="review_board.xml"/>
 		<mapper resource="review_reply.xml"/>
+		<mapper resource="member.xml" />
 	</mappers>
 </configuration>

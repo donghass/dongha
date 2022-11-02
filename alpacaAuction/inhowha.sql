@@ -3,7 +3,6 @@ CREATE TABLE member (
 	id	varchar(40)	NOT NULL primary key,
 	password	varchar(100)	NOT NULL,
 	name	varchar(20)	NOT NULL,
-	nick_name	varchar(40)	NOT NULL,
 	call	varchar(20)	NOT NULL,
 	email	varchar(50)	NOT NULL,
 	address	varchar(60)	NOT NULL,
@@ -13,6 +12,9 @@ CREATE TABLE member (
 	age	varchar(10) DEFAULT '20대'	NOT NULL,
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
+select * from member;
+insert into member values ('master', '1234', 'IH', '010-9454-5763', 'inhowha9195@naver.com', '분당', sysdate, 'n', 'n', '20대', 'n');
+insert into member values ('lalala', '1234', 'HH', '010-1111-1111', 'inhowha9591@naver.com', '분당', sysdate, 'n', 'n', '20대', 'n');
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
