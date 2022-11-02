@@ -19,7 +19,7 @@ public class BidController {
 		int bid_price = bs.selectMax(bid.getAuction_no());
 		if(bid_price >= bid.getBid_price()) {
 			model.addAttribute("auction_no",bid.getAuction_no());
-			return "/auction/bidChk";
+			return "auction/bidChk";
 		}else {
 			int bid_no=bs.getMaxNum();
 			bid.setBid_no(bid_no);
@@ -31,6 +31,6 @@ public class BidController {
 	public String bidList(int auction_no,Model model) {
 		List<Bid> bidList = bs.list(auction_no);
 		model.addAttribute("bidList", bidList);
-		return "/auction/bidList";
+		return "/nolay/bidList";
 	}
 }

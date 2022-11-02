@@ -25,10 +25,14 @@
 			/* 	var sendData = "auction_no="+frm1.auction_no.value+
 					"&id="+frm1.id.value+
 					"&bid_price="+frm1.bid_price.value; */
+			if (!confirm("정말 입찰 하시겠습니까?")) {
+	            alert("취소 하셨습니다.");
+	        } else {
 			var sendData = $('#frm1').serialize();
 			$.post('bidInsert.do', sendData, function(data) {
 				$('#bidListDisp').html(data);
 			});
+	        }
 		});
 	});
 </script>

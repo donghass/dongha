@@ -156,31 +156,5 @@ $(document).ready(function(){
     <li><a href="#">중고</a></li>
   </ul>
 </div>
-<h1 class="display-4">display-4</h1>
-         <h1 class="display-3">display-3</h1>
-         <h1 class="display-2">display-2</h1>
-         <h1 class="display-1">display-1</h1>
-         <h1 class="display-4 font-weight-bold">display-4 font-weifht-bold</h1>
-         <h1 class="display-4 font-italic">display-4 font-italic</h1>
-         <h1 class="display-4 font-left">display-4 font-left</h1>
-         <h1 class="display-4 font-center">display-4 font-center</h1>
-         <h1 class="display-4 font-right">display-4 font-right</h1>
-         <h1 class="display-4 text-primary">display-4 text-primary</h1>
-         <h1 class="display-4 text-seconday">display-4 text-secondary</h1>
-         <h1 class="display-4 text-success">display-4 text-success</h1>
-         <h1 class="display-4 text-danger">display-4 text-danger</h1>
-         <h1 class="display-4 text-warning">display-4 text-warning</h1>
-         <h1 class="display-4 text-info">display-4 text-info</h1>
-         <h1 class="display-4 text-light">display-4 text-light</h1>
-         <h1 class="display-4 text-dark">display-4 text-dark</h1>
-         <h1 class="display-4 text-muted">display-4 text-muted</h1>
-         <h1 class="display-4 text-white">display-4 text-white</h1>
-         <h1 class="display-4 text-white bg-primary">display-4 text-white bg-primary</h1>
-         <h1 class="display-4 text-white bg-secondary">display-4 text-white bg-secondary</h1>
-         <h1 class="display-4 text-white bg-danger">display-4 text-white bg-danger</h1>
-         <h1 class="display-4 bg-warning">display-4 bg-warning</h1>
-         <h1 class="display-4 text-white bg-info">display-4 text-white bg-info</h1>
-         <h1 class="display-4 bg-light">display-4 bg-light</h1>
-         <h1 class="display-4 text-white bg-darky">display-4 text-white bg-dark</h1>
 </body>
 </html>

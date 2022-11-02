@@ -7,8 +7,8 @@
 <body>
 <footer>
 		<div class="footer_inner">
-			<img src="" class="footer_logo">
-			<p>Copyright © 2021 All Rights Reserved</p>
+			<img src="/alpacaAuction/resources/auction_images/logo.png" class="footer_logo">
+			<p>Copyright © 2022 All Rights Reserved</p>
 		</div>
 	</footer>
 </body>

@@ -30,17 +30,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
 	</definition> -->
 	
-<!-- 	<definition name="nolayout" template="/WEB-INF/views/nolayout.jsp">
-		레이아웃 적용하지 않음
+ 	<definition name="nolayout" template="/WEB-INF/views/nolayout.jsp">
+		<!-- 레이아웃 적용하지 않음 -->
 		<put-attribute name="header" value="" />
 		<put-attribute name="menu" value="" />
 		<put-attribute name="footer" value="" />
 	</definition>
 	
-		(1) nolay 폴더 안에 {1}에 jsp이름
+		<!-- (1) nolay 폴더 안에 {1}에 jsp이름 -->
 	<definition name="nolayout/*" extends="nolayout">
-		<put-attribute name="body" value="/WEB-INF/views/nolayout/{1}.jsp" />
-	</definition> -->
+		<put-attribute name="body" value="/WEB-INF/views/nolay/{1}.jsp" />
+	</definition> 
 	
 <!-- 	<definition name="main/*" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" />

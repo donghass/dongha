@@ -31,7 +31,7 @@ public class AuctionController {
 	private BidService bs;
 	@RequestMapping("insertItemForm")
 	public String insertItemForm() {
-		return "/auction/insertItemForm";
+		return "auction/insertItemForm";
 	}
 	@RequestMapping("insertItem")
 	public String insertItem(Auction auction ,Model model,HttpSession session) throws IOException, ParseException {
@@ -52,7 +52,7 @@ public class AuctionController {
 		auction.setEnd_date(end_date);
 		int result = as.insert(auction);
 		model.addAttribute("result",result);
-		return "/auction/insertItem";
+		return "auction/insertItem";
 	}
 	@RequestMapping("auctionList")
 	public String auctionList(Auction auction,String pageNum,Model model) {
@@ -94,7 +94,7 @@ public class AuctionController {
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-		return "/auction/auctionList";
+		return "auction/auctionList";
 	}
 	@RequestMapping("auctionDetail")
 	public String auctionDetail(int auction_no,String pageNum,Model model) {
@@ -110,7 +110,7 @@ public class AuctionController {
 		auction.setBid_cnt(bs.getTotal(auction.getAuction_no()));
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("auction",auction);
-		return "/auction/auctionDetail";
+		return "auction/auctionDetail";
 	}
 	@RequestMapping("insertItemBot")
 	public String insertItemBot() throws ParseException {
@@ -133,7 +133,7 @@ public class AuctionController {
 			auction.setMin_bid(500);
 			as.insert(auction);
 		}	
-		return "/auction/insertItemBot";
+		return "auction/insertItemBot";
 	}
 	
 }

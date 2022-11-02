@@ -9,7 +9,7 @@
 	<div class="header">
 		<span class="left">
 			<a href="main.do">
-				<img alt="" src="" class="logo">
+				<img alt="" src="/alpacaAuction/resources/auction_images/logo.png" class="logo">
 			</a>
 		</span>
 		<span class="header_login">
