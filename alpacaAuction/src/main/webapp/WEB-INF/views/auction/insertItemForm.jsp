@@ -66,7 +66,7 @@
 	<h2 class="text-primary">경매 물품 등록</h2>
 <form action="insertItem.do" method="post" enctype="multipart/form-data" name="frm" >
 	<%-- <input type="hidden" name="pageNum" value="${pageNum}"> --%>
-	<input type="hidden" value="test" name="id">
+	<input type="hidden" value="${id }" name="id">
 <table class="table table-bordered"><caption >물품 정보</caption>
 	<tr><th>경매 물품명 <span class="glyphicon glyphicon-pencil"></span></th>
 		<td><input type="text" name="item_name" required="required" autofocus="autofocus">

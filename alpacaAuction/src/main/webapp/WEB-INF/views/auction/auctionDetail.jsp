@@ -90,7 +90,7 @@
 		<h2 class="text-primary bg-warning">입찰</h2>
 		<!-- submit할 때 action에 없으면 자신(view)을 한번 더 수행 여기서는 ajax사용 예정이므로 submit하지 않음 -->
 		<form action="" name="frm1" id="frm1">
-			<input type="hidden" name="id" value="test">
+			<input type="hidden" name="id" value="${id }">
 			<input type="hidden" name="auction_no" value="${auction.auction_no }">
 			<table class="table table-hover">
 				<!-- 회원게시판은 board.writer가 아니라 로그인 한 사람의 이름/별명/아이디 -->
