@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.Bid;
+import com.alpaca.alpacaAuction.model.Interest;
 import com.alpaca.alpacaAuction.service.AuctionService;
 import com.alpaca.alpacaAuction.service.BidService;
+import com.alpaca.alpacaAuction.service.InterestService;
 import com.alpaca.alpacaAuction.service.PagingBean;
 
 @Controller
@@ -29,6 +31,8 @@ public class AuctionController {
 	private AuctionService as;
 	@Autowired
 	private BidService bs;
+	@Autowired
+	private InterestService is;
 	@RequestMapping("insertItemForm")
 	public String insertItemForm(Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
@@ -140,5 +144,18 @@ public class AuctionController {
 		}	
 		return "auction/insertItemBot";
 	}
-	
+	@RequestMapping("interestResister")
+	public String interestResister(Interest interest,String pageNum,Model model,HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		interest.setId(id);
+		Interest is2 = is.select(interest);
+		int result = 0;
+		if(is2==null) {
+			result = is.insert(interest);
+		}
+		model.addAttribute("result",result);
+		model.addAttribute("auction_no",interest.getAuction_no());
+		model.addAttribute("pageNum",pageNum);
+		return "auction/interestRegister";
+	}
 }

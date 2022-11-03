@@ -79,7 +79,7 @@
 						<tr class="default">
 							<td colspan="2" align="center"><a href="#bidListDisp" class="btn btn-success">입찰
 									목록</a>
-							<button class="btn btn-success" onclick="">관심 등록</button>  </td></tr>
+							<button class="btn btn-success" onclick="location.href='interestResister.do?auction_no=${auction.auction_no}&pageNum=${pageNum }'">관심 등록</button>  </td></tr>
 					</table>
 			</div>
 			<div class="col-md-12">

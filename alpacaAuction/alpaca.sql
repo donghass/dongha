@@ -15,7 +15,7 @@ CREATE TABLE member (
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
-	item_name	varchar(20)	NOT NULL,
+	item_name	varchar(50)	NOT NULL,
 	item_contents	varchar(300)	NOT NULL,
 	item_img	varchar(200)	NOT NULL,
 	start_date	date	NOT NULL,
