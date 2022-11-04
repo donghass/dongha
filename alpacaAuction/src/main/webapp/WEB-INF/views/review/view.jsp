@@ -57,10 +57,10 @@
 	<fieldset name="rating">
 		<c:forEach var="i" begin="1" end="5">
 			<c:if test="${i == 6-review_board.rating }">
-		<input type="radio" name="rating" value="${i }" id="rate${i }" checked="checked"><label for="rate${i }">★</label>
+		<input type="radio" name="rating" value="${i }" id="rate${i }" checked="checked" readonly="readonly" disabled="disabled"><label for="rate${i }">★</label>
 		</c:if>
 		<c:if test="${i != 6-review_board.rating }">
-			<input type="radio" name="rating" value="${i }" id="rate${i }"><label for="rate${i }">★</label>
+			<input type="radio" name="rating" value="${i }" id="rate${i }" readonly="readonly" disabled="disabled"><label for="rate${i }">★</label>
 		</c:if>
 			</c:forEach>
 	</fieldset>
@@ -71,9 +71,9 @@
 	</c:if>
 <form action="" name="frm1" id="frm1">
 	<input type="hidden" name="re_no" value="${review_board.review_no }">
-	<input type="hidden" name="replier" value="${review_board.id }">
+	<input type="hidden" name="replier" value="${id}">
 	<table class="table table-hover">
-		<tr><th>작성자</th><td>${review_board.id }</td>
+		<tr><th>작성자</th><td>${id }</td>
 			<th>댓글</th><td><pre><textarea rows="3" class="form-control" name="replytext"></textarea></pre></td>
 			<td><input type="button" value="댓글 입력" id="rInsert" class="btn btn-primary"></td></tr>
 	</table>
