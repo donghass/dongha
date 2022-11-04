@@ -12,7 +12,7 @@
 			<li class="menu1"><a href="auctionList.do">경매목록</a></li>
 			<li class="menu2"><a href="rbList.do">구매 후기 게시판</a>
 			</li>
-			<li class="menu4"><a href="">마이페이지</a>
+			<li class="menu4"><a href="myPageMain.do">마이페이지</a>
 				<ul class="menu4_s submenu">
 					<li><a href="updateForm.do">내 정보 수정</a></li>
 					<li><a href="#">내 입찰</a></li>

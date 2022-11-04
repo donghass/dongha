@@ -71,7 +71,41 @@
 	<tr><th>경매 물품명 <span class="glyphicon glyphicon-pencil"></span></th>
 		<td><input type="text" name="item_name" required="required" autofocus="autofocus">
 		</td></tr>
-	<tr><th>물품 설명<span class="glyphicon glyphicon-align-left"></span></th>
+				<tr>
+					<th>물품 카테고리 <span class="glyphicon glyphicon-tags"></span></th>
+					<td><select class="form-select"
+						aria-label="Default select example" name="tag_no">
+							<optgroup label="미술품">
+								<c:forEach var="tag" items="${list }">
+									<c:if test="${tag.tag_no<20 }">
+										<option value="${tag.tag_no }">${tag.tag_name }</option>
+									</c:if>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="도서">
+								<c:forEach var="tag" items="${list }">
+									<c:if test="${tag.tag_no<30 && tag.tag_no>20 }">
+										<option value="${tag.tag_no }">${tag.tag_name }</option>
+									</c:if>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="취미/수집">
+								<c:forEach var="tag" items="${list }">
+									<c:if test="${tag.tag_no<40 && tag.tag_no>30}">
+										<option value="${tag.tag_no }">${tag.tag_name }</option>
+									</c:if>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="중고 생활용품">
+								<c:forEach var="tag" items="${list }">
+									<c:if test="${tag.tag_no<50 && tag.tag_no>40}">
+										<option value="${tag.tag_no }">${tag.tag_name }</option>
+									</c:if>
+								</c:forEach>
+							</optgroup>
+					</select></td>
+				</tr>
+				<tr><th>물품 설명<span class="glyphicon glyphicon-align-left"></span></th>
 		<td><textarea rows="5" class="form-control" name="item_contents"
 		required="required"></textarea></td></tr>
 	<tr><th rowspan="2">사진 <span class="glyphicon glyphicon-picture"></span></th>

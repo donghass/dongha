@@ -4,7 +4,7 @@
 <mapper namespace="auctionns">
 	<insert id="insert" parameterType="auction">
 		insert into auction_item values(#{auction_no},#{item_name},#{item_contents},
-		#{item_img},#{start_date},#{end_date},#{start_price},#{min_bid},0,'n','n',
+		#{item_img},#{start_date},#{end_date},#{start_price},#{min_bid},0,'n',
 		sysdate,'n',#{id},1)
 	</insert>
 	<select id="getMaxNum" resultType="integer">

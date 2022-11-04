@@ -1,3 +1,12 @@
+drop table member cascade constraint;
+drop table auction_item cascade constraint;
+drop table review_board cascade constraint;
+drop table interest cascade constraint;
+drop table bidding cascade constraint;
+drop table interest_tag cascade constraint;
+drop table tag cascade constraint;
+drop table review_reply cascade constraint;
+drop table qna_board cascade constraint;
 --회원
 CREATE TABLE member (
 	id	varchar(40)	NOT NULL primary key,
@@ -12,6 +21,34 @@ CREATE TABLE member (
 	age	varchar(10) DEFAULT '20대'	NOT NULL,
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
+--태그목록
+CREATE TABLE tag (
+	tag_no	number(10)	NOT NULL primary key,
+	tag_name	varchar(20)	NOT NULL
+);
+--미술품 카테고리
+insert into tag values(11,'동양화');
+insert into tag values(12,'서양화');
+insert into tag values(13,'조각상');
+--도서 카테고리
+insert into tag values(21,'고서');
+insert into tag values(22,'근현대 도서');
+insert into tag values(23,'만화/카툰');
+insert into tag values(24,'무협지');
+--취미/수집 카테고리
+insert into tag values(31,'피규어/장난감');
+insert into tag values(32,'영화/비디오');
+insert into tag values(33,'사진/앨범');
+insert into tag values(34,'화폐');
+insert into tag values(35,'우표/엽서');
+insert into tag values(36,'음반');
+insert into tag values(37,'기타수집품');
+--중고 생활물품
+insert into tag values(41,'가전/컴퓨터');
+insert into tag values(42,'스포츠/자동차');
+insert into tag values(43,'액세서리');
+insert into tag values(44,'침구류/가구류');
+insert into tag values(45,'기타 생활용품');
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
@@ -24,13 +61,12 @@ CREATE TABLE auction_item (
 	min_bid	number(10)	NOT NULL,
 	view_cnt	number(10)	NOT NULL,
 	del	char(1) DEFAULT 'n'	NOT NULL,
-	delivery	varchar(10)	NULL,
 	reg_date	date	NOT NULL,
 	pay	char(1) default 'n' NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
-	tag_no	number(10)	NOT NULL
+	tag_no	number(10)	NOT NULL references tag(tag_no)
 );
-drop table auction_item cascade constraint;
+insert into auction_item values(111,'김홍도-향사군탄','김홍도화백의 향사군탄입니다','향사군탄.jpg',sysdate,sysdate+100,1000000,50000,0,'n',sysdate,'n','test',11);
 --경매 후기 게시판
 CREATE TABLE review_board (
 	review_no	number(10)	NOT NULL primary key,
@@ -67,7 +103,7 @@ CREATE TABLE interest (
 CREATE TABLE bidding (
 	bid_no	number(10)	NOT NULL primary key,
 	bid_price	number(10)	NOT NULL,
-	bid_date	number(10)	NOT NULL,
+	bid_date	date	NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
 	auction_no	number(10)	NOT NULL references auction_item(auction_no)
 );
@@ -76,11 +112,6 @@ CREATE TABLE interest_tag (
 	it_tag_no	number(10)	NOT NULL primary key,
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no number(10)	NOT NULL
-);
---태그목록
-CREATE TABLE tag (
-	tag_no	number(10)	NOT NULL primary key,
-	tag_name	varchar(20)	NOT NULL
 );
 --문의 게시판
 CREATE TABLE qna_board (

@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.Bid;
 import com.alpaca.alpacaAuction.model.Interest;
+import com.alpaca.alpacaAuction.model.Tag;
 import com.alpaca.alpacaAuction.service.AuctionService;
 import com.alpaca.alpacaAuction.service.BidService;
 import com.alpaca.alpacaAuction.service.InterestService;
 import com.alpaca.alpacaAuction.service.PagingBean;
+import com.alpaca.alpacaAuction.service.TagService;
 
 @Controller
 public class AuctionController {
@@ -33,10 +35,15 @@ public class AuctionController {
 	private BidService bs;
 	@Autowired
 	private InterestService is;
+	@Autowired
+	private TagService ts;
 	@RequestMapping("insertItemForm")
 	public String insertItemForm(Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
+		List<Tag> list = ts.list();
+		System.out.println(list.size());
 		model.addAttribute("id",id);
+		model.addAttribute("list",list);
 		return "auction/insertItemForm";
 	}
 	@RequestMapping("insertItem")
