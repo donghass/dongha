@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.Bid;
+import com.alpaca.alpacaAuction.model.Interest;
 import com.alpaca.alpacaAuction.service.AuctionService;
 import com.alpaca.alpacaAuction.service.BidService;
+import com.alpaca.alpacaAuction.service.InterestService;
 import com.alpaca.alpacaAuction.service.PagingBean;
 
 @Controller
@@ -29,8 +31,12 @@ public class AuctionController {
 	private AuctionService as;
 	@Autowired
 	private BidService bs;
+	@Autowired
+	private InterestService is;
 	@RequestMapping("insertItemForm")
-	public String insertItemForm() {
+	public String insertItemForm(Model model,HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		model.addAttribute("id",id);
 		return "auction/insertItemForm";
 	}
 	@RequestMapping("insertItem")
@@ -97,7 +103,9 @@ public class AuctionController {
 		return "auction/auctionList";
 	}
 	@RequestMapping("auctionDetail")
-	public String auctionDetail(int auction_no,String pageNum,Model model) {
+	public String auctionDetail(int auction_no,String pageNum,Model model,HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		
 		as.increaseViewCount(auction_no);
 		Auction auction = as.select(auction_no);
 		//			최고입찰가 추가
@@ -108,6 +116,7 @@ public class AuctionController {
 		}
 //		입찰수 추가
 		auction.setBid_cnt(bs.getTotal(auction.getAuction_no()));
+		model.addAttribute("id",id);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("auction",auction);
 		return "auction/auctionDetail";
@@ -115,7 +124,7 @@ public class AuctionController {
 	@RequestMapping("insertItemBot")
 	public String insertItemBot() throws ParseException {
 		String date_str1 = "2021-03-01 11:11:11";
-		String date_str2 = "2022-10-28 14:58:11";
+		String date_str2 = "2022-12-28 14:58:11";
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Timestamp date1 = new Timestamp(transFormat.parse(date_str1).getTime());
 		Timestamp date2 = new Timestamp(transFormat.parse(date_str2).getTime());
@@ -135,5 +144,18 @@ public class AuctionController {
 		}	
 		return "auction/insertItemBot";
 	}
-	
+	@RequestMapping("interestResister")
+	public String interestResister(Interest interest,String pageNum,Model model,HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		interest.setId(id);
+		Interest is2 = is.select(interest);
+		int result = 0;
+		if(is2==null) {
+			result = is.insert(interest);
+		}
+		model.addAttribute("result",result);
+		model.addAttribute("auction_no",interest.getAuction_no());
+		model.addAttribute("pageNum",pageNum);
+		return "auction/interestRegister";
+	}
 }

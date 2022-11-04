@@ -10,6 +10,7 @@
 		<typeAlias alias="review_board" type="com.alpaca.alpacaAuction.model.ReviewBoard"/>
 		<typeAlias alias="review_reply" type="com.alpaca.alpacaAuction.model.ReviewReply"/>
 		<typeAlias alias="member" type="com.alpaca.alpacaAuction.model.Member"/>
+		<typeAlias alias="interest" type="com.alpaca.alpacaAuction.model.Interest"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="auction.xml" />
@@ -17,5 +18,6 @@
 		<mapper resource="review_board.xml"/>
 		<mapper resource="review_reply.xml"/>
 		<mapper resource="member.xml" />
+		<mapper resource="interest.xml" />
 	</mappers>
 </configuration>

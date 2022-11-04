@@ -5,17 +5,17 @@
      font-style: normal;
 }
 
-ul, ol, li {
+/* ul, ol, li {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-}
+} */
 
-ul.myMenu {
+.myMenu {
 	text-align: center;
 } 
 
-ul.myMenu>li {
+.myMenu>li {
 	display : inline-block;
 	position: relative; 
 	width: 135px;
@@ -26,23 +26,23 @@ ul.myMenu>li {
 	text-align: center;
 	}
 	
-ul.myMenu>li a{
+.myMenu>li a{
 	color: #000000;
 }
-ul.myMenu>li:hover a:hover{
+.myMenu>li:hover a:hover{
 	color: #3243A8;
 	font-weight: bolder;
 	
 }
 
-ul.myMenu>li ul.submenu {
+.myMenu>li ul.submenu {
 	display:none; 
 	position: absolute;
 	top: 30px;
 	left: 0px;
 }
 
-ul.myMenu>li ul.submenu>li {
+.myMenu>li ul.submenu>li {
 	display: inline-block;
 	width: 135px;
 	padding: 5px 10px;
@@ -51,11 +51,11 @@ ul.myMenu>li ul.submenu>li {
 	text-align: center;
 }
 
-ul.myMenu>li:hover ul.submenu {
+.myMenu>li:hover ul.submenu {
 	display: block;
 }
 
-ul.myMenu>li ul.submenu>li a:hover {
+.myMenu>li ul.submenu>li a:hover {
 	color: #3243A8;
 	font-weight: bolder;
 	text-decoration: underline;

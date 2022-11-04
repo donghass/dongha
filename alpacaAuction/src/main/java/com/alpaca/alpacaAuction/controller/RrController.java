@@ -32,9 +32,12 @@ public class RrController {
 		return "/review/replyList";
 	}
 	@RequestMapping("rInsert")
-	public String rInsert(ReviewReply review_reply) {
+	public String rInsert(ReviewReply review_reply,HttpSession session, Model model) {
+		String id = (String)session.getAttribute("id");
 		rrs.insert(review_reply);
 		// 값을 함께 보내주므로 redirect 사용
+		
+		model.addAttribute("id",id);
 		return "redirect:/replyList.do?re_no="+review_reply.getRe_no();
 	}
 	@RequestMapping("rUpdate")

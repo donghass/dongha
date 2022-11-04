@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.ReviewBoard;
 import com.alpaca.alpacaAuction.model.ReviewReply;
+import com.alpaca.alpacaAuction.service.AuctionService;
 import com.alpaca.alpacaAuction.service.PagingBean;
 import com.alpaca.alpacaAuction.service.ReviewBoardService;
 
@@ -21,12 +23,16 @@ import com.alpaca.alpacaAuction.service.ReviewBoardService;
 public class RvController {
 	@Autowired
 	private ReviewBoardService rbs;
-	
+	@Autowired
+	private AuctionService as;
 	@RequestMapping("rbInsertForm")
 	public String rbInsertForm(HttpSession session, Model model) {
+		int auction_no =1;
 		String id = (String)session.getAttribute("id");
+		Auction auction = as.select(auction_no);
 		model.addAttribute("id",id);
-		return "/review/rbInsertForm";
+		model.addAttribute("auction",auction);
+		return "review/rbInsertForm";
 	}
 	@RequestMapping("rbInsert")
 	public String reInsert(ReviewBoard review_board, Model model, HttpSession session) throws IOException {
@@ -53,7 +59,7 @@ public class RvController {
 //			rbs.insert(review_board);
 //		}
 			
-		return "/review/rbInsert";
+		return "review/rbInsert";
 	}
 	@RequestMapping("rbList")
 	public String rbList(String pageNum, ReviewBoard review_board, Model model) {
@@ -75,7 +81,7 @@ public class RvController {
 		model.addAttribute("num",num);
 		model.addAttribute("list",list);
 		model.addAttribute("pb",pb);
-		return "/review/rbList";
+		return "review/rbList";
 	}
 	@RequestMapping("rv_view")
 	public String view(int review_no, String pageNum, Model model, HttpSession session, ReviewReply reply_review) {
@@ -86,7 +92,7 @@ public class RvController {
 		model.addAttribute("reply_review",reply_review);
 		model.addAttribute("id",id);
 		model.addAttribute("pageNum",pageNum);
-		return "/review/view";
+		return "review/view";
 	}
 	@RequestMapping("reviewUpdateForm")
 	public String reviewUpdateForm(HttpSession session, Model model, int review_no) {
@@ -94,7 +100,7 @@ public class RvController {
 			ReviewBoard review_board = rbs.select(review_no);
 			model.addAttribute("review_board",review_board);
 			model.addAttribute("id",id);
-		return "/review/reviewUpdateForm";
+		return "review/reviewUpdateForm";
 	}
 	@RequestMapping("reviewUpdate")
 	public String reviewUpdate(HttpSession session, Model model, ReviewBoard review_board) throws IOException {
@@ -108,13 +114,13 @@ public class RvController {
 		result = rbs.update(review_board);
 		model.addAttribute("result",result);
 		model.addAttribute("review_board",review_board);
-		return "/review/reviewUpdate";
+		return "review/reviewUpdate";
 	}
 	@RequestMapping("rbDelete")
 	public String rbDelete(Model model, int review_no) {
 		int result = 0;
 		result = rbs.delete(review_no);
 		model.addAttribute("result",result);
-		return "/review/rbDelete";
+		return "review/rbDelete";
 	}
 }

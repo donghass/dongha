@@ -8,7 +8,7 @@
 <body>
 	<div class="header">
 		<span class="left">
-			<a href="main.do">
+			<a href="auctionList.do">
 				<img alt="" src="/alpacaAuction/resources/auction_images/logo.png" class="logo">
 			</a>
 		</span>

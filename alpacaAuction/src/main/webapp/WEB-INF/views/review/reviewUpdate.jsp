@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("리뷰 수정 완료")
-		location.href="view.do?review_no=${review_board.review_no }&pageNum=${pageNum}"
+		location.href="rv_view.do?review_no=${review_board.review_no }&pageNum=${pageNum}"
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

@@ -80,15 +80,9 @@ $(document).ready(function(){
 	<input type="submit" value="확인">
 </form>
 		<div class="btn-group">
-			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown">
-				필터 <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="auctionList.do?filter=a">조회순</a></li>
+				<a class="btn" href="auctionList.do?filter=a">조회순</a>
 				<!-- <li><a href="auctionList.do?filter=b">인기경매순</a></li> -->
-				<li><a href="auctionList.do?filter=c">마감임박순</a></li>
-			</ul>
+				<a class="btn" href="auctionList.do?filter=c">마감임박순</a>
 		</div>
 		<a href="insertItemForm.do" class="btn btn-success">게시글 입력</a>
 <div class="row">
@@ -98,7 +92,7 @@ $(document).ready(function(){
 <c:if test="${not empty list}">
 	<c:forEach var="auction" items="${list }">
 <div class="col-xs-6 col-sm-4">
-			<a href="auctionDetail.do?auction_no=${auction.auction_no }&result=-1" >
+			<a href="auctionDetail.do?auction_no=${auction.auction_no }&result=-1&pageNum=${pb.currentPage}" >
 			<span class="thum">
 					<i><img  class="imgTypeH imgTypeW lazyload" style="height: 200px; width: 180px;" src="${path }/resources/auction_images/${auction.item_img}" onerror="this.src='/admin/images/noimg.gif';" alt='작은이미지'></i>
 			</span>

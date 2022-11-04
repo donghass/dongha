@@ -16,7 +16,7 @@ CREATE TABLE member (
 drop table member;
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
-	item_name	varchar(20)	NOT NULL,
+	item_name	varchar(50)	NOT NULL,
 	item_contents	varchar(300)	NOT NULL,
 	item_img	varchar(200)	NOT NULL,
 	start_date	date	NOT NULL,
@@ -27,9 +27,11 @@ CREATE TABLE auction_item (
 	del	char(1) DEFAULT 'n'	NOT NULL,
 	delivery	varchar(10)	NULL,
 	reg_date	date	NOT NULL,
+	pay	char(1) default 'n' NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no	number(10)	NOT NULL
 );
+drop table auction_item cascade constraint;
 --경매 후기 게시판
 CREATE TABLE review_board (
 	review_no	number(10)	NOT NULL primary key,
@@ -43,6 +45,19 @@ CREATE TABLE review_board (
 	id	varchar(40)	NOT NULL references member(id),
 	auction_no	number(10)	NOT NULL references auction_item(auction_no)
 );
+--후기게시판 댓글
+CREATE TABLE review_reply (
+	re_no	number(10)	NOT NULL references review_board(review_no),
+	rno	number(10)	NOT NULL,
+	replytext	varchar(300)	NOT NULL,
+	replier	varchar(40)	NOT NULL,
+	reg_date	date	NOT NULL,
+	updatedate	date	NOT NULL,
+	del	char(1)	NOT NULL,
+	id	varchar(40)	NOT NULL references member(id)
+);
+drop table review_reply;
+drop table review_board;
 --관심물품
 CREATE TABLE interest (
 	interest_no	number(10)	NOT NULL primary key,
@@ -67,17 +82,6 @@ CREATE TABLE interest_tag (
 CREATE TABLE tag (
 	tag_no	number(10)	NOT NULL primary key,
 	tag_name	varchar(20)	NOT NULL
-);
---후기게시판 댓글
-CREATE TABLE review_reply (
-	re_no	number(10)	NOT NULL references review_board(review_no),
-	rno	number(10)	NOT NULL,
-	replytext	varchar(300)	NOT NULL,
-	replier	varchar(40)	NOT NULL,
-	reg_date	date	NOT NULL,
-	updatedate	date	NOT NULL,
-	del	char(1)	NOT NULL
-	id	varchar(40)	NOT NULL references member(id)
 );
 --문의 게시판
 CREATE TABLE qna_board (
