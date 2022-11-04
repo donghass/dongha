@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interestns">
+	<select id="select" parameterType="interest" resultType="interest">
+		select * from interest where id=#{id} and auction_no=#{auction_no}
+	</select>
+	<insert id="insert" parameterType="interest">
+		<selectKey keyProperty="interest_no" order="BEFORE"
+			resultType="integer">
+			select nvl(max(interest_no), 0) + 1 interest_no from interest
+		</selectKey>
+		insert into interest values (#{interest_no},#{id},#{auction_no})
+	</insert>
+</mapper> 
