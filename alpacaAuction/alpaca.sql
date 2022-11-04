@@ -13,6 +13,7 @@ CREATE TABLE member (
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
 --경매 물품
+drop table member;
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
 	item_name	varchar(20)	NOT NULL,

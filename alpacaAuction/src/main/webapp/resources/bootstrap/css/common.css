@@ -83,15 +83,12 @@ th.width2 {
 /* header  */
 
 .header{
-	position: fixed;
-	top:0;
-	width:100%;
+	position: relative;
 	height: 100px;
 	
 }
 .logo{
-	height: 100px;
-	margin-left:200px;
+	height: 38px;
 	margin-top: 30px;
  	margin-bottom: 30px;
 }
@@ -99,7 +96,7 @@ th.width2 {
 .header_login {
     position: absolute;
     top: 50%; 
-	right: 30px;
+	right: 0;
 	transform: translateY(-50%);
 
 }
@@ -122,7 +119,6 @@ th.width2 {
 /* body */
 
 body{
-	padding-top:100px;
 	margin: 0;
 }
 	
@@ -550,5 +546,5 @@ footer	{
 
  .footer_logo {
 	margin-bottom: 16px;
-	height: 250px;
+	height: 20px;
 }

@@ -4,13 +4,7 @@
      font-weight: normal;
      font-style: normal;
 }
-.dropMenu{
-	position: fixed;
-	top:0;
-	width:100%;
-	height: 100px;
-	z-index: 1;
-}
+
 ul, ol, li {
 	list-style-type: none;
 	padding: 0;
@@ -19,7 +13,6 @@ ul, ol, li {
 
 ul.myMenu {
 	text-align: center;
-	padding-top: 50px;
 } 
 
 ul.myMenu>li {
