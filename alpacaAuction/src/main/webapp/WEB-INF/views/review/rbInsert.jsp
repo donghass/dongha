@@ -17,7 +17,7 @@
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("리뷰 작성 실패")
-		history.back();
+		history.back(); 
 	</script>
 </c:if>
 </body>
