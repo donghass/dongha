@@ -18,4 +18,10 @@ public class TagServiceImpl implements TagService{
 		// TODO Auto-generated method stub
 		return td.list();
 	}
+
+	@Override
+	public List<Tag> tagList(int tagValue) {
+		// TODO Auto-generated method stub
+		return td.tagList(tagValue);
+	}
 }

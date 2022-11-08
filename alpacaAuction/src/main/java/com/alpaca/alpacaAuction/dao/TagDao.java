@@ -8,4 +8,6 @@ public interface TagDao {
 
 	List<Tag> list();
 
+	List<Tag> tagList(int tagValue);
+
 }

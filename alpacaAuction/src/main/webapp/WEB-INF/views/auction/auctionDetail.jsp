@@ -7,7 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.img {width:100%;};
+.img {
+	max-width: 100% !important;
+	max-height: 100% !important;
+	width: auto !important;
+	-ms-interpolation-mode: bicubic;
+	border: 0;
+	height: 400px !important;
+	display: block;
+	margin: 0 auto;
+};
 </style>
 <script type="text/javascript">
 	function bid_priceChk(bid_price,min_bid){
@@ -35,10 +44,55 @@
 	        }
 		});
 	});
+// 타이머
+function remaindTime() {
+    var now = new Date(); //현재시간을 구한다. 
+    var endDate = '${auction.end_date}'.substring(0,19);
+    var close = new Date(endDate);
+  
+    var nt = now.getTime(); // 현재의 시간만 가져온다
+    var ct = close.getTime(); // 오픈시간만 가져온다
+  
+   if(nt<ct){ //현재시간이 오픈시간보다 이르면 오픈시간까지의 남은 시간을 구한다.   
+     sec = parseInt(ct - nt) / 1000;
+   	 day = parseInt(sec/24/60/60);
+     sec = (sec - (day*24*60*60));
+     hour = parseInt(sec/60/60);
+     sec = (sec - (hour*60*60));
+     min = parseInt(sec/60);
+     sec = parseInt(sec-(min*60));
+  
+     if(hour<10){hour="0"+hour;}
+     if(min<10){min="0"+min;}
+     if(sec<10){sec="0"+sec;}
+      $("#d-day-day").html(day);
+      $("#d-day-hour").html(hour);
+      $("#d-day-min").html(min);
+      $("#d-day-sec").html(sec);
+   } else{ //현재시간이 종료시간보다 크면
+    $("#d-day-day").html('00');
+    $("#d-day-hour").html('00');
+    $("#d-day-min").html('00');
+    $("#d-day-sec").html('00');
+   }
+  }
+  setInterval(remaindTime,1000); //1초마다 검사를 해주면 실시간으로 시간을 알 수 있다. 
 </script>
 </head>
 <body>
 	<div class="container" align="center">
+		<div class="sec7-text-box">
+			<p>경매 종료 날짜</p>
+			<p class="runTimeCon">${auction.end_date }</p>
+			<hr />
+			<p class="time-title">경매종료까지 남은 시간</p>
+			<div class="time">
+				<span id="d-day-day">00</span> <span class="col">일  </span>
+				<span id="d-day-hour">00</span> <span class="col">:</span> <span
+					id="d-day-min">00</span> <span class="col">:</span> <span
+					id="d-day-sec">00</span>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-5">
 				<i><img class="img"

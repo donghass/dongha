@@ -18,4 +18,10 @@ public class TagDaoImpl implements TagDao{
 		// TODO Auto-generated method stub
 		return sst.selectList("tagns.list");
 	}
+
+	@Override
+	public List<Tag> tagList(int tagValue) {
+		// TODO Auto-generated method stub
+		return sst.selectList("tagns.tagList",tagValue);
+	}
 }

@@ -5,7 +5,7 @@
 	<insert id="insert" parameterType="auction">
 		insert into auction_item values(#{auction_no},#{item_name},#{item_contents},
 		#{item_img},#{start_date},#{end_date},#{start_price},#{min_bid},0,'n',
-		sysdate,'n',#{id},1)
+		sysdate,'n',#{id},#{tag_no})
 	</insert>
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(auction_no), 0) + 1 from auction_item
@@ -19,6 +19,12 @@
 				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
 					and	${search} like '%'||#{keyword}||'%'
 				</if>
+				<if test="tag_no!=null and tag_no!=0">  
+					and	tag_no=#{tag_no}
+				</if>
+				<if test="tagValue!=null and tagValue!=0">  
+					and	tag_no between #{tagValue} and #{tagValue}+10
+				</if>
 		</where>
 	</select>
 	<select id="list" parameterType="auction"  resultType="auction">
@@ -31,6 +37,12 @@
 				<if test="keyword!=null and keyword!=''">  
 				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
 					and	${search} like '%'||#{keyword}||'%'
+				</if>
+				<if test="tag_no!=null and tag_no!=0">  
+					and	tag_no=#{tag_no}
+				</if>
+				<if test="tagValue!=null and tagValue!=0">  
+					and	tag_no between #{tagValue} and #{tagValue}+10
 				</if>
 			</where>
 			order by 

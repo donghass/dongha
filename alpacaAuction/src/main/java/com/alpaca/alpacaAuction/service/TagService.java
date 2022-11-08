@@ -8,4 +8,6 @@ public interface TagService {
 
 	List<Tag> list();
 
+	List<Tag> tagList(int tagValue);
+
 }

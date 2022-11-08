@@ -5,4 +5,7 @@
 	<select id="list" resultType="tag">
 		select * from tag order by tag_no
 	</select>
+	<select id="tagList" parameterType="integer" resultType="tag">
+		select * from tag where tag_no between #{tagValue} and #{tagValue}+10 order by tag_no
+	</select>
 </mapper> 

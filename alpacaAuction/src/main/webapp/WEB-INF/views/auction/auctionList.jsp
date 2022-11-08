@@ -43,6 +43,52 @@ border-top: 1px solid #e0e0e0;
     display: table;
     width: 100%;
 }
+/* 버튼 */
+.btn {
+  position: relative;
+  border: 0;
+  padding: 15px 25px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+}
+.btn:active {
+  top: 4px; 
+}
+.btn-gradient {
+  margin: 5px;
+}
+.btn-gradient {
+  text-decoration: none;
+  color: white;
+  padding: 10px 30px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom: 4px solid rgba(0,0,0,0.21);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+.btn.cyan {box-shadow:0px 4px 0px #73B9C9;}
+.btn.cyan:active {box-shadow: 0 0 #73B9C9; background-color: #70B4C4;}
+.btn.mini, 
+.btn-two.mini, 
+.btn-gradient.mini, 
+.btn-effect.mini {
+  padding: 4px 12px;  
+  font-size: 12px;
+}
+.btn-gradient.cyan {
+  background: rgba(27,188,194,1);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(27,188,194,1)), to(rgba(24,163,168,1)));
+  background: -webkit-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: -moz-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: -o-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1bbcc2', endColorstr='#18a3a8', GradientType=0);
+}
+.btn-gradient.cyan:active   {background: #169499;}
+/* 퀵메뉴 */
 .quickmenu {position:absolute;width:120px;top:50%;margin-top:-50px;right:10px;background:#fff;}
 .quickmenu ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
 .quickmenu ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
@@ -62,6 +108,14 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="container" align="center">
+<c:if test="${not empty taglist}">
+<div class="container">
+    <h2>분류</h2>
+   	<c:forEach var="tag" items="#{taglist }">
+    <a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${tag.tag_no}" class="btn-gradient cyan mini">${tag.tag_name }</a>
+    </c:forEach>
+</div>
+</c:if>
 <form action="auctionList.do?pageNum=1">
 	<select name="search">
 <!-- 	<option value="writer">판매자</option>
@@ -80,9 +134,9 @@ $(document).ready(function(){
 	<input type="submit" value="확인">
 </form>
 		<div class="btn-group">
-				<a class="btn" href="auctionList.do?filter=a">조회순</a>
+				<a class="btn-gradient cyan mini" href="auctionList.do?filter=a">조회순</a>
 				<!-- <li><a href="auctionList.do?filter=b">인기경매순</a></li> -->
-				<a class="btn" href="auctionList.do?filter=c">마감임박순</a>
+				<a class="btn-gradient cyan mini" href="auctionList.do?filter=c">마감임박순</a>
 		</div>
 		<a href="insertItemForm.do" class="btn btn-success">게시글 입력</a>
 <div class="row">
@@ -118,25 +172,25 @@ $(document).ready(function(){
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->
 		<%-- html에서의 /는 http://localhost:8080까지 추가 /ch10를 해야 한다. /ch10이 ${path }	 --%>	
 		<c:if test="${pb.startPage > pb.pagePerBlock}">
-			<li><a href="auctionList.do?pageNum=1&search=${auction.search}&keyword=${auction.keyword}">
+			<li><a href="auctionList.do?pageNum=1&tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&search=${auction.search}&keyword=${auction.keyword}">
 				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
-			<li><a href="auctionList.do?pageNum=${pb.startPage-1 }&search=${auction.search}&keyword=${auction.keyword}">
+			<li><a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&pageNum=${pb.startPage-1 }&search=${auction.search}&keyword=${auction.keyword}">
 				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 			<c:if test="${pb.currentPage == i }">
-				<li class="active"><a href="auctionList.do?pageNum=${i }&search=${auction.search}&keyword=${auction.keyword}">${i }</a></li>
+				<li class="active"><a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&pageNum=${i }&search=${auction.search}&keyword=${auction.keyword}">${i }</a></li>
 			</c:if>
 			<c:if test="${pb.currentPage != i }">
-				<li><a href="auctionList.do?pageNum=${i }&search=${auction.search}&keyword=${auction.keyword}">${i }</a></li>
+				<li><a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&pageNum=${i }&search=${auction.search}&keyword=${auction.keyword}">${i }</a></li>
 			</c:if>		
 		</c:forEach>
 		
 		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
 		<c:if test="${pb.endPage < pb.totalPage}">
-			<li><a href="auctionList.do?pageNum=${pb.endPage+1 }&search=${auction.search}&keyword=${auction.keyword}">
+			<li><a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&pageNum=${pb.endPage+1 }&search=${auction.search}&keyword=${auction.keyword}">
 				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
-			<li><a href="auctionList.do?pageNum=${pb.totalPage }&search=${auction.search}&keyword=${auction.keyword}">
+			<li><a href="auctionList.do?tagValue=${auction.tagValue }&tag_no=${auction.tag_no}&pageNum=${pb.totalPage }&search=${auction.search}&keyword=${auction.keyword}">
 				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
 		</c:if>		
 	</ul>
@@ -144,10 +198,10 @@ $(document).ready(function(){
 </div>
 <div class="quickmenu bg-warning">
   <ul>
-    <li><a href="#">도서</a></li>
-    <li><a href="#">미술품</a></li>
-    <li><a href="#">취미/수집</a></li>
-    <li><a href="#">중고</a></li>
+    <li><a href="auctionList.do?tagValue=20">도서</a></li>
+    <li><a href="auctionList.do?tagValue=10">미술품</a></li>
+    <li><a href="auctionList.do?tagValue=30">취미/수집</a></li>
+    <li><a href="auctionList.do?tagValue=40">중고</a></li>
   </ul>
 </div>
 </body>

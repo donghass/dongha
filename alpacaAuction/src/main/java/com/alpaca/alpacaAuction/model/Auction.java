@@ -45,4 +45,6 @@ public class Auction {
 	private int bid_cnt;
 //	필터
 	private String filter;
+//	태그분류값
+	private int tagValue;
 }
