@@ -1,13 +1,10 @@
 package com.alpaca.alpacaAuction.dao;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.alpaca.alpacaAuction.model.Member;
-import com.alpaca.alpacaAuction.model.MemberPhoto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{

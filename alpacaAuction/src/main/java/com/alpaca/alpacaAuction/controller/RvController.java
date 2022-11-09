@@ -3,6 +3,7 @@ package com.alpaca.alpacaAuction.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,7 @@ public class RvController {
 	private AuctionService as;
 	@RequestMapping("rbInsertForm")
 	public String rbInsertForm(HttpSession session, Model model) {
-		int auction_no =1;
+		int auction_no =5;
 		String id = (String)session.getAttribute("id");
 		Auction auction = as.select(auction_no);
 		model.addAttribute("id",id);
@@ -62,7 +63,7 @@ public class RvController {
 		return "review/rbInsert";
 	}
 	@RequestMapping("rbList")
-	public String rbList(String pageNum, ReviewBoard review_board, Model model) {
+	public String rbList( String pageNum, ReviewBoard review_board, Model model) {
 		int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
 		if(pageNum == null || pageNum.equals(""))pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -73,9 +74,12 @@ public class RvController {
 		review_board.setStartRow(startRow);
 		review_board.setEndRow(endRow);
 		List<ReviewBoard> list = rbs.list(review_board);
+		/*
+		 * for(ReviewBoard r: list) { Auction a = as.select(r.getAuction_no());
+		 * r.setItem_name(a.getItem_name()); }
+		 */
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"작성자","제목","내용","제목+내용"};
-		
 		model.addAttribute("title",title);
 		model.addAttribute("review_board",review_board);
 		model.addAttribute("num",num);

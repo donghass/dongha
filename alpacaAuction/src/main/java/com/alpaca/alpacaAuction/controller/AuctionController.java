@@ -105,10 +105,11 @@ public class AuctionController {
 	@RequestMapping("auctionDetail")
 	public String auctionDetail(int auction_no,String pageNum,Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
-		
+		System.out.println("auction_no = "+auction_no);
 		as.increaseViewCount(auction_no);
 		Auction auction = as.select(auction_no);
 		//			최고입찰가 추가
+		System.out.println("aution = "+auction);
 		if(bs.selectMax(auction.getAuction_no())==0) {
 			auction.setBid_price(auction.getStart_price());
 		}else {

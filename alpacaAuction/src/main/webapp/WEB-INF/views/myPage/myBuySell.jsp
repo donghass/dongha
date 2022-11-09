@@ -1,33 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="rvheader.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function() {
+		$('#a1').click(function() {
+			if($(this).width()==100)
+				$(this).width(500);
+			else $(this).width(100);
+		});
+	});
+</script>
 </head>
 <body>
 <div class="container">
-	<h2 class="text-primary"><a href="rbList.do">리뷰 게시판</a></h2>
+	<h2 class="text-primary">구매 현황</h2>
 	<table class="table table-bordered">
-		<tr><th>상품명</th><th>제목</th><th>사진</th><th>별점</th><th>작성자</th><th>작성일</th></tr>
+		<tr><th>구분</th><th>상품 번호</th><th>이미지</th><th>상품명</th><th>구매 가격</th><th>낙찰/구매일</th><th>판매자</th></tr>
 		<c:if test="${empty list }">
-			<tr><td colspan="7">리뷰가 없습니다</td></tr>
+			<tr><td colspan="7">관심 상품이 없습니다</td></tr>
 		</c:if>
 		<c:if test="${not empty list }">
-			<c:forEach var="review_board" items="${list}">
-				<tr><td>${review_board.item_name }</td>
-				<c:if test="${review_board.del == 'y'}">
-					<th colspan="6">삭제 된 글입니다</th>
-				</c:if>
-				<c:if test="${review_board.del != 'y'}">
-					<td><a href="rv_view.do?review_no=${review_board.review_no }&pageNum=${pageNum }" class="btn btn-primary">${review_board.title }</a></td>
-					<td><img alt="" src="${path}/resources/upload/${review_board.review_img }" width="100" id="a1"></td>
-					<td>${review_board.rating }</td>
-					<td>${review_board.id }</td> 
-					<td>${review_board.reg_date }</td>
-				</c:if></tr>
+			<c:forEach var="interest" items="${list}">
+				<tr><td>${interest.interest_no }</td>
+					<td><a href="auctionDetail.do?auction_no=${interest.auction_no }&result=-1&pageNum=${pb.currentPage}" class="btn btn-primary">${interest.item_name }</a></td>
+					<td>${interest.item_name }</td>
+					<td><img alt="" src="${path}/resources/upload/${interest.item_img }" width="100" id="a1"></td>
+					<c:if test="${interest.bid_price == 0}">
+						<td>${interest.start_price }</td>
+					</c:if>
+					<c:if test="${interest.bid_price != 0}">
+						<td>${interest.bid_price }</td> 
+					</c:if>
+					<%-- <td>${interest.bid_price }</td> --%>
+					<td>${interest.view_cnt }</td>
+					<td>${interest.id }</td>
+					<td>${interest.end_date }</td>
+				</tr>
 			</c:forEach>
 		</c:if>
 	</table>
@@ -53,21 +66,6 @@
 		</c:if>
 	</ul>
 </div>
-<form action="rbList.do">
-	<input type="hidden" name="pageNum" value="1">
-	<select name="search">
-		<c:forTokens var="sh" items="id,title,contents,subcon" delims="," varStatus="i">
-			<c:if test="${sh == review_board.search }">
-				<option value="${sh }" selected="selected">${title[i.index] }</option>
-			</c:if>
-			<c:if test="${sh != review_board.search }">
-				<option value="${sh }" >${title[i.index] }</option>
-			</c:if>
-		</c:forTokens>
-	</select>
-<input type="text" name="keyword" value="${review_board.keyword }">
-<input type="submit" value="검색" class="btn btn-info">
-</form>
 </div>
 </body>
 </html>

@@ -126,13 +126,13 @@
 <div class="container">
 	<table class="table table-striped">
 		<tr class="col-md-3"><td><a href="main.do">내 정보 수정</a></td></tr>
-		<tr class="col-md-3"><td><a href="interestItemList.do">관심 물품</a></td></tr>
+		<tr class="col-md-3"><td><a href="interestPage.do">관심 물품</a></td></tr>
 	</table>
 </div>
 <div class="container">
 	<table class="table table-striped">
 	<tr class="col-md-3"><td><a href="myReview.do">내가 쓴 리뷰</a></td></tr>
-		<tr class="col-md-3"><td><a href="">내 구매 현황</a></td></tr>
+		<tr class="col-md-3"><td><a href="myBuySell.do">내 구매 현황</a></td></tr>
 		<tr class="col-md-3"><td><a href="">내 판매 현황</a></td></tr>
 	</table>
 	

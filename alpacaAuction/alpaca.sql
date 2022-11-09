@@ -67,7 +67,7 @@ CREATE TABLE interest (
 CREATE TABLE bidding (
 	bid_no	number(10)	NOT NULL primary key,
 	bid_price	number(10)	NOT NULL,
-	bid_date	number(10)	NOT NULL,
+	bid_date	date	NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
 	auction_no	number(10)	NOT NULL references auction_item(auction_no)
 );

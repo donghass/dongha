@@ -30,5 +30,7 @@ public class ReviewBoard {
 	private int startRow;
 	private int endRow;
 	//join용
-	private int item_name;
+	private String item_name;
+	//상품명
+//	private String item_name;
 }
