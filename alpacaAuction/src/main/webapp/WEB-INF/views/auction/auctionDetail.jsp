@@ -138,7 +138,7 @@ function remaindTime() {
 			</div>
 			<div class="col-md-12">
 				<h2>물품설명</h2>
-				<pre style="font-size: 20px;">${auction.item_contents}</pre>
+				<pre class="textbox" style="font-size: 20px;">${auction.item_contents}</pre>
 			</div>
 		</div>
 		<h2 class="text-primary bg-warning">입찰</h2>

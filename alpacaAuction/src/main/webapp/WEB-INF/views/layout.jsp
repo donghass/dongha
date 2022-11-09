@@ -14,7 +14,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 패키지 내의 정보가 절대 경로로 변경됨 --%>
 	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css?1">
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">

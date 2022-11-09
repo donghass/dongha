@@ -26,29 +26,7 @@ CREATE TABLE tag (
 	tag_no	number(10)	NOT NULL primary key,
 	tag_name	varchar(20)	NOT NULL
 );
---미술품 카테고리
-insert into tag values(11,'동양화');
-insert into tag values(12,'서양화');
-insert into tag values(13,'조각상');
---도서 카테고리
-insert into tag values(21,'고서');
-insert into tag values(22,'근현대 도서');
-insert into tag values(23,'만화/카툰');
-insert into tag values(24,'무협지');
---취미/수집 카테고리
-insert into tag values(31,'피규어/장난감');
-insert into tag values(32,'영화/비디오');
-insert into tag values(33,'사진/앨범');
-insert into tag values(34,'화폐');
-insert into tag values(35,'우표/엽서');
-insert into tag values(36,'음반');
-insert into tag values(37,'기타수집품');
---중고 생활물품
-insert into tag values(41,'가전/컴퓨터');
-insert into tag values(42,'스포츠/자동차');
-insert into tag values(43,'액세서리');
-insert into tag values(44,'침구류/가구류');
-insert into tag values(45,'기타 생활용품');
+
 --경매 물품
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
@@ -66,7 +44,6 @@ CREATE TABLE auction_item (
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no	number(10)	NOT NULL references tag(tag_no)
 );
-insert into auction_item values(111,'김홍도-향사군탄','김홍도화백의 향사군탄입니다','향사군탄.jpg',sysdate,sysdate+100,1000000,50000,0,'n',sysdate,'n','test',11);
 --경매 후기 게시판
 CREATE TABLE review_board (
 	review_no	number(10)	NOT NULL primary key,
