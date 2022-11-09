@@ -10,7 +10,7 @@
 
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
-		insert into member values(#{id},#{password},#{name},#{call},#{email},#{address},sysdate,'n','n','20','m')
+		insert into member values(#{id},#{password},#{name},#{call},#{email},#{address},sysdate,'n','n',#{age},#{gender})
 	</insert>
 	
 <!-- 	<select id="listPhoto" parameterType="string" resultType="memberphoto">

@@ -18,9 +18,9 @@
 	</bean>
 	
 	<context:property-placeholder location="classpath:db.properties" />
-		
+	
 	<!-- SET default mail properties -->
-	<bean id="jMailSender"
+	 <bean id="jMailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="465" />
@@ -34,7 +34,7 @@
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
 				<prop key="mail.smtps.ssl.trust">*</prop>
-				<!-- <prop key="mail.debug">true</prop> -->
+				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
 	</bean>
