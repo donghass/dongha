@@ -10,8 +10,18 @@
 
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
-		insert into member values(#{id},#{password},#{name},#{call},#{email},#{address},sysdate,'n','n','20','m')
+		insert into member values(#{id},#{password},#{name},#{call},#{email},#{address},sysdate,'n','n',#{age},#{gender})
 	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="selectFindId" parameterType="member" resultType="member">
+		select * from member where name=#{name} and call=#{call}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectFindPw" parameterType="member" resultType="member">
+		select * from member where id=#{id} and email=#{email}
+	</select>
 	
 <!-- 	<select id="listPhoto" parameterType="string" resultType="memberphoto">
 		select * from memberPhoto where id=#{id}

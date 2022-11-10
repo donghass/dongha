@@ -1,23 +1,21 @@
 package com.alpaca.alpacaAuction.controller;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.io.IOException;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alpaca.alpacaAuction.model.Member;
-import com.alpaca.alpacaAuction.model.MemberPhoto;
 import com.alpaca.alpacaAuction.service.MemberService;
 @Controller
 public class MemberController {
@@ -25,7 +23,10 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder bpe; // 비밀번호를 암호화
-
+	@Autowired
+	private JavaMailSender jMailSender;
+	
+	
 	@RequestMapping("joinForm")
 	public String joinForm() {
 		return "member/joinForm";
@@ -51,6 +52,8 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "member/join";
 	}
+		
+	
 
 	/*
 	 * @RequestMapping("join2") public String join2(Member member, Model model,
@@ -158,13 +161,101 @@ public class MemberController {
 		else msg = "이미 등록된 아이디 입니다";
 		return msg;
 	}
-//	@RequestMapping("idChk")
-//	public String idChk(String id, Model model) {
-//		String msg = "";
-//		Member member = ms.select(id);
-//		if (member == null) msg = "사용 가능한 아이디 입니다";
-//		else msg = "이미 사용중이니 다른 아이디를 사용하세요";
-//		model.addAttribute("msg", msg);
-//		return "idChk";
-//	}
+	
+	/*
+	 * // 이메일 인증
+	 * 
+	 * @RequestMapping(value = "mailResult", produces = "text/html;charset=utf-8")
+	 * 
+	 * @ResponseBody public String mailResult(String email, Model model) { String
+	 * msg = ""; // 코드를 담아 보낼 메세지 String code=""; // 코드 생성
+	 * 
+	 * // 난수 생성 Random random = new Random(); for(int i=0; i<3; i++) { int index =
+	 * random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성 code += (char)index; } int numIndex
+	 * = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성 code += numIndex; msg =
+	 * (String)code; //메시지 내용 함수입력
+	 * 
+	 * MimeMessage mm = jMailSender.createMimeMessage(); try { MimeMessageHelper mmh
+	 * = new MimeMessageHelper(mm, true, "utf-8"); mmh.setSubject("이메일 인증번호 입니다.");
+	 * mmh.setText("인증번호 : " + msg); System.out.println("msg"+msg);
+	 * mmh.setTo(email); mmh.setFrom("inhowha9195@naver.com"); jMailSender.send(mm);
+	 * model.addAttribute("msg", msg); } catch (Exception e) {
+	 * model.addAttribute("msg", e.getMessage()); } return msg; }
+	 */
+		
+		// 아이디 찾기
+		@RequestMapping("findIdResult")
+		public String findIdResult(Member member, Model model) {
+			int result = 0;
+			Member member2 = ms.selectFindId(member);
+			if (member2 != null) {
+				result = 1;
+				model.addAttribute("member", member2);
+			} else {
+				result = -1;
+			}
+			model.addAttribute("result", result);
+			return "member/findIdResult";
+		}
+		
+		// 아이디 찾기 폼으로 이동
+		@RequestMapping("findIdForm")
+		public String findIdForm() {
+			return "member/findIdForm";
+		}
+		
+		// 비밀번호 찾기 폼으로 이동
+		@RequestMapping("findPwForm")
+		public String findPwForm(String id, Model model) {
+			// 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함
+			model.addAttribute("id", id);
+			return "member/findPwForm";
+		}
+		
+		// 비밀번호 찾기
+		@RequestMapping("findPwResult")
+		public String findPwResult(Member member, Model model) {
+			int result = 0;
+			Member member2 = ms.selectFindPw(member);
+			if (member2 != null) {
+				// 아이디가 존재 할 때 결과 값 1을 반영
+				result = 1;
+				model.addAttribute("member", member2);
+				
+				// 난수 생성
+				String msg = "";
+				String code = "";
+				Random random = new Random();
+				for(int i=0; i<3; i++) {
+					int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+					code += (char)index;
+				}
+				int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
+				code += numIndex;		
+				msg = (String)code;  //메시지 내용 함수입력
+						
+				MimeMessage mm = jMailSender.createMimeMessage();
+				try {
+					MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+					mmh.setSubject("타이거 임시비밀번호 입니다.");
+					mmh.setText("임시비밀번호 : " + msg);
+					mmh.setTo(member.getId());
+					mmh.setFrom("inhowha9195@naver.com");
+					jMailSender.send(mm);
+					
+					// 이메일이 성공적으로 보내졌으면 멤버 비밀번호를 변경
+					member.setPassword(msg);
+					int resultUpdatePw = ms.updatePw(member);
+					model.addAttribute("resultUpdatePw", resultUpdatePw);
+					
+				} catch (Exception e) {
+					result = 0;
+					model.addAttribute("msg", e.getMessage());
+				}		
+			} else {
+				result = -1;
+			}
+			model.addAttribute("result", result);
+			return "member/findPwResult";
+		}
 }

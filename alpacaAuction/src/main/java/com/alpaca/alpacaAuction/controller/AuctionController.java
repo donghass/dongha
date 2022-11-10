@@ -153,7 +153,7 @@ public class AuctionController {
 		int result = 0;
 		if(is2==null) {
 			result = is.insert(interest);
-		}
+		} 
 		model.addAttribute("result",result);
 		model.addAttribute("auction_no",interest.getAuction_no());
 		model.addAttribute("pageNum",pageNum);

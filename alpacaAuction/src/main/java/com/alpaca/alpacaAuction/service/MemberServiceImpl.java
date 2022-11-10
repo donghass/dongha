@@ -29,6 +29,19 @@ public class MemberServiceImpl implements MemberService{
 		return md.delete(id);
 	}
 
+	public Member selectFindId(Member member) {
+		return md.selectFindId(member);
+	}
+
+	public Member selectFindPw(Member member) {
+
+		return md.selectFindPw(member);
+	}
+
+	public int updatePw(Member member) {
+		return md.updatePw(member);
+	}
+
 	/*
 	 * public void insertPhoto(List<MemberPhoto> photos) { for (MemberPhoto mp :
 	 * photos) { md.insertPh(mp); } }

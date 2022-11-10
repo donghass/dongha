@@ -15,5 +15,11 @@ public interface MemberDao {
 
 	int delete(String id);
 
+	Member selectFindId(Member member);
+
+	Member selectFindPw(Member member);
+
+	int updatePw(Member member);
+
 
 }
