@@ -51,6 +51,7 @@ public class AuctionController {
 		int auction_no = as.getMaxNum();
 		//datetime-local을 받기위해 날짜 시간포맷하기
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(auction.getSDate());
 		Timestamp start_date = new Timestamp(transFormat.parse(auction.getSDate().replace("T", " ")+":00").getTime());
 		Timestamp end_date = new Timestamp(transFormat.parse(auction.getEDate().replace("T", " ")+":00").getTime());
 		String fileName = auction.getFile().getOriginalFilename();

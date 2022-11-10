@@ -20,12 +20,12 @@
 					<li><a href="myReview.do">내가 쓴 글</a></li>
 				</ul>
 			</li>
-			<li class="menu5"><a href="">고객센터</a>
-				<ul class="menu5_s submenu">
+			<li class="menu5"><a href="insertItemForm.do">경매 물품 등록</a>
+			<!-- 	<ul class="menu5_s submenu">
 					<li><a href="">공지사항</a></li>
 					<li><a href="">문의내역</a></li>
 					<li><a href="">1:1 문의하기</a></li>
-				</ul>
+				</ul> -->
 			</li>
 		</ul>
 	</div>

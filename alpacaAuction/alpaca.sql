@@ -68,8 +68,6 @@ CREATE TABLE review_reply (
 	del	char(1)	NOT NULL,
 	id	varchar(40)	NOT NULL references member(id)
 );
-drop table review_reply;
-drop table review_board;
 --관심물품
 CREATE TABLE interest (
 	interest_no	number(10)	NOT NULL primary key,
