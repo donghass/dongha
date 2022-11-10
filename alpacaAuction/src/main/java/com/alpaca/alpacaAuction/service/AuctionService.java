@@ -18,7 +18,7 @@ public interface AuctionService {
 
 	Auction select(int auction_no);
 
-	List<Auction> bList(String id);
+	List<Auction> bList(Auction auction);
 
 	List<Auction> sList(Auction auction);
 

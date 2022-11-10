@@ -12,6 +12,7 @@
 <div class="container" align="center">
 <form action="rbInsert.do" class="form-horizontal" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="${id }">
+	<input type="hidden" name="item_name" value="${auction.item_name } }">
 	<input type="hidden" name="auction_no" value="${auction.auction_no }">
 	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">제목</label><div class="col-xs-10 col-lg-10"><input required="required" type="text" class="form-control" name="title" autofocus="autofocus" placeholder="제목"></div></div>
 	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">상품명</label><div class="col-xs-10 col-lg-10">${auction.item_name }</div></div>

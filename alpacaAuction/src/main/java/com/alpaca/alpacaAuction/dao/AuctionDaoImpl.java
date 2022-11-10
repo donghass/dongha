@@ -45,13 +45,12 @@ public class AuctionDaoImpl implements AuctionDao {
 	}
 
 	@Override
-	public List<Auction> bList(String id) {
-		return sst.selectList("auctionns.bList",id);
+	public List<Auction> bList(Auction auction) {
+		return sst.selectList("auctionns.bList",auction);
 	}
 
 	@Override
 	public List<Auction> sList(Auction auction) {
-		System.out.println("id = "+auction.getId());
 		return sst.selectList("auctionns.sList",auction);
 	}
 }

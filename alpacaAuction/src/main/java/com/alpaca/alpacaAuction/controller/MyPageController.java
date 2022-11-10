@@ -95,32 +95,21 @@ public class MyPageController {
 		model.addAttribute("pb",pb);
 	 return "myPage/interestPage";
  }
- @RequestMapping("myBuySell")
- public String myBuySell(String pageNum, HttpSession session, Model model,Auction auction){
+ @RequestMapping("myBuy")
+ public String myBuy(String pageNum, HttpSession session, Model model,Auction auction){
 	 String id = (String)session.getAttribute("id");
 	 auction.setId(id);	// 세션에 아이디 넣어줌
-	 int rowPerPage1 = 10;	// 한 화면에 보여주는 페이지 수
+	 int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
 		if(pageNum == null || pageNum.equals(""))pageNum="1";
-		int currentPage1 = Integer.parseInt(pageNum);
-		int total1 = as.getTotal(auction);
-		int startRow1 = (currentPage1 - 1) * rowPerPage1 +1;
-		int endRow1 = startRow1 + rowPerPage1 -1;
-		int num1 = total1 - startRow1 + 1;
-	int rowPerPage2 = 10;	// 한 화면에 보여주는 페이지 수
-		if(pageNum == null || pageNum.equals(""))pageNum="1";
-		int currentPage2 = Integer.parseInt(pageNum);
-		int total2 = as.getTotal(auction);
-		int startRow2 = (currentPage2 - 1) * rowPerPage2 +1;
-		int endRow2 = startRow2 + rowPerPage2 -1;
-		int num2 = total2 - startRow2 + 1;
-		auction.setStartRow(startRow1);
-		auction.setEndRow(endRow1);
-		auction.setStartRow(startRow2);
-		auction.setEndRow(endRow2);
-		List<Auction> bList = as.bList(id);
-		List<Auction> sList = as.sList(auction);
-		PagingBean pb1 = new PagingBean(currentPage1, rowPerPage1, total1);
-		PagingBean pb2 = new PagingBean(currentPage2, rowPerPage2, total2);
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotal(auction);
+		int startRow = (currentPage - 1) * rowPerPage +1;
+		int endRow = startRow + rowPerPage -1;
+		int num = total - startRow + 1;
+		auction.setStartRow(startRow);
+		auction.setEndRow(endRow);
+		List<Auction> bList = as.bList(auction);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		Timestamp today=new Timestamp(System.currentTimeMillis());
 		for(Auction a : bList) {
 			if(bs.selectMax(a.getAuction_no())==0) {
@@ -131,26 +120,46 @@ public class MyPageController {
 			a.setMy_bid(bs.selectMyBid(id,a.getAuction_no()));
 			a.setYes_or_no(String.valueOf(a.getEnd_date().before(today)));
 		}
+		model.addAttribute("id",id);
+		model.addAttribute("auction",auction);
+		model.addAttribute("num",num);
+		model.addAttribute("bList",bList);
+		model.addAttribute("pb",pb);
+	 
+	 return "myPage/myBuy";
+ }
+ @RequestMapping("mySell")
+ public String mySell(String pageNum, HttpSession session, Model model,Auction auction){
+	 String id = (String)session.getAttribute("id");
+	 auction.setId(id);	// 세션에 아이디 넣어줌
+	int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
+		if(pageNum == null || pageNum.equals(""))pageNum="1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotal(auction);
+		int startRow = (currentPage - 1) * rowPerPage +1;
+		int endRow = startRow + rowPerPage -1;
+		int num = total - startRow + 1;
+		auction.setStartRow(startRow);
+		auction.setEndRow(endRow);
+		List<Auction> sList = as.sList(auction);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		Timestamp today=new Timestamp(System.currentTimeMillis());
 		for(Auction a : sList) {
 			if(bs.selectMax(a.getAuction_no())==0) {
 				a.setBid_price(a.getStart_price());
 			}else {
 				a.setBid_price(bs.selectMax(a.getAuction_no()));
 			}
-			a.setBidName(bs.selectMaxId(a.getBid_price()));
-			a.setMy_bid(bs.selectMyBid(id,a.getAuction_no()));
+			a.setBidName(bs.selectMaxId(a.getBid_price(),a.getAuction_no()));
 			a.setYes_or_no(String.valueOf(a.getEnd_date().before(today)));
 		}
 		model.addAttribute("id",id);
 		model.addAttribute("auction",auction);
-		model.addAttribute("num1",num1);
-		model.addAttribute("num2",num2);
-		model.addAttribute("bList",bList);
+		model.addAttribute("num",num);
 		model.addAttribute("sList",sList);
-		model.addAttribute("pb1",pb1);
-		model.addAttribute("pb2",pb2);
+		model.addAttribute("pb",pb);
 	 
-	 return "myPage/myBuySell";
+	 return "myPage/mySell";
  }
  @RequestMapping("iDelete")
 	public String iDelete(Model model, int interest_no, String pageNum) {
