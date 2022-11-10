@@ -102,13 +102,15 @@ public class MyPageController {
 	 int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
 		if(pageNum == null || pageNum.equals(""))pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = as.getTotal(auction);
+		int total = as.buyTotal(auction);
 		int startRow = (currentPage - 1) * rowPerPage +1;
 		int endRow = startRow + rowPerPage -1;
 		int num = total - startRow + 1;
 		auction.setStartRow(startRow);
 		auction.setEndRow(endRow);
 		List<Auction> bList = as.bList(auction);
+		System.out.println("size = "+bList.size());
+		System.out.println("total = "+total);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		Timestamp today=new Timestamp(System.currentTimeMillis());
 		for(Auction a : bList) {
@@ -135,7 +137,7 @@ public class MyPageController {
 	int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
 		if(pageNum == null || pageNum.equals(""))pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = as.getTotal(auction);
+		int total = as.sellTotal(auction);
 		int startRow = (currentPage - 1) * rowPerPage +1;
 		int endRow = startRow + rowPerPage -1;
 		int num = total - startRow + 1;

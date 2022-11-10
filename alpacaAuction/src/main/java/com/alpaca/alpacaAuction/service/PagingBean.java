@@ -22,6 +22,7 @@ public class PagingBean {
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
+		System.out.println("total="+total+", totalPage="+totalPage);
 	}
 
 }

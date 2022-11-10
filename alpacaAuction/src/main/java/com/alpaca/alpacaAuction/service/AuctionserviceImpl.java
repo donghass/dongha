@@ -53,4 +53,14 @@ public class AuctionserviceImpl implements AuctionService {
 	public List<Auction> sList(Auction auction) {
 		return ad.sList(auction);
 	}
+
+	@Override
+	public int buyTotal(Auction auction) {
+		return ad.buyTotal(auction);
+	}
+
+	@Override
+	public int sellTotal(Auction auction) {
+		return ad.sellTotal(auction);
+	}
 }

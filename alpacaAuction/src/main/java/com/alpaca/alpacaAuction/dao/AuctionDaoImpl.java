@@ -53,4 +53,14 @@ public class AuctionDaoImpl implements AuctionDao {
 	public List<Auction> sList(Auction auction) {
 		return sst.selectList("auctionns.sList",auction);
 	}
+
+	@Override
+	public int buyTotal(Auction auction) {
+		return sst.selectOne("auctionns.buyTotal",auction);
+	}
+
+	@Override
+	public int sellTotal(Auction auction) {
+		return sst.selectOne("auctionns.sellTotal",auction);
+	}
 }
