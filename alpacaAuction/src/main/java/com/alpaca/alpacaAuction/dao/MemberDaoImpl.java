@@ -30,6 +30,18 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.update("memberns.delete", id);
 	}
 
+	public Member selectFindId(Member member) {
+		return sst.selectOne("memberns.selectFindId", member);
+	}
+
+	public Member selectFindPw(Member member) {
+		return sst.selectOne("memberns.selectFindPw", member);
+	}
+
+	public int updatePw(Member member) {
+		return sst.update("memberns.updatePw", member);
+	}
+
 	/*
 	 * public void insertPh(MemberPhoto mp) { sst.insert("memberns.insertPh", mp); }
 	 * 

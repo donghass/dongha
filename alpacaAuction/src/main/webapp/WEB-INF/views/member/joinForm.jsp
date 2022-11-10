@@ -136,8 +136,8 @@ function check_pw(){
 			class="form-control"></td></tr>
 			
 		<tr><th>연락처</th>
-			<td><input type="text" name="call" required="required"
-			class="form-control"></td></tr>
+			<td><input type="tel" name="call" id="call" required="required"
+			title="형식 010-0000-0000" pattern="\d{3}-\d{4}-\d{4}" placeholder="휴대폰 번호" class="form-control"></td></tr>
 
 		<tr><th>이메일</th>
 			<td>

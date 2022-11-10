@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-
-	<!-- 암호화 -->
-	<bean id="passwordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-	</bean>
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		<!-- 그림파일 업로드 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
-	
-	<context:property-placeholder location="classpath:db.properties" />
-	
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	<!-- SET default mail properties -->
-	 <bean id="jMailSender"
+	<bean id="jMailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="465" />
-		<property name="username" value="*********" />
-		<property name="password" value="*********" />
+		<property name="username" value="inhowha9195" />
+		<property name="password" value="gkdlsgh9195" />
 		<property value="smtps" name="protocol" />
 		<property value="utf-8" name="defaultEncoding" />
 		<property name="javaMailProperties">
@@ -34,11 +19,19 @@
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
 				<prop key="mail.smtps.ssl.trust">*</prop>
-				<prop key="mail.debug">true</prop>
+				<!-- <prop key="mail.debug">true</prop> -->
 			</props>
 		</property>
 	</bean>
-
+	
+	<!-- 암호화 -->
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+	
+	<context:property-placeholder
+		location="classpath:db.properties" />
+	
 	<!-- myBatis시작 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -46,11 +39,11 @@
 		<property name="configLocation"
 			value="classpath:configuration.xml" />
 	</bean>
-	
-	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
-	</bean>
 
+	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
 	<!-- DataBase Connection Pool -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${driver}" />
@@ -61,5 +54,5 @@
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
-	</bean>	
+	</bean>
 </beans>

@@ -14,7 +14,9 @@
 //	location.href="myPageMain.do";
 //	 location.href="main.do"; 
 //	 location.href="joinForm.do"
-	location.href="adminMbList.do"
+	 location.href="findIdForm.do"
+//	location.href="adminMbList.do"
+
 </script>
 </body>
 </html>
