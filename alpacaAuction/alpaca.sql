@@ -1,3 +1,12 @@
+drop table member cascade constraint;
+drop table auction_item cascade constraint;
+drop table review_board cascade constraint;
+drop table interest cascade constraint;
+drop table bidding cascade constraint;
+drop table interest_tag cascade constraint;
+drop table tag cascade constraint;
+drop table review_reply cascade constraint;
+drop table qna_board cascade constraint;
 --회원
 CREATE TABLE member (
 	id	varchar(40)	NOT NULL primary key,
@@ -12,6 +21,12 @@ CREATE TABLE member (
 	age	varchar(10) DEFAULT '20대'	NOT NULL,
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
+--태그목록
+CREATE TABLE tag (
+	tag_no	number(10)	NOT NULL primary key,
+	tag_name	varchar(20)	NOT NULL
+);
+
 --경매 물품
 drop table member;
 CREATE TABLE auction_item (
@@ -25,13 +40,11 @@ CREATE TABLE auction_item (
 	min_bid	number(10)	NOT NULL,
 	view_cnt	number(10)	NOT NULL,
 	del	char(1) DEFAULT 'n'	NOT NULL,
-	delivery	varchar(10)	NULL,
 	reg_date	date	NOT NULL,
 	pay	char(1) default 'n' NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
-	tag_no	number(10)	NOT NULL
+	tag_no	number(10)	NOT NULL references tag(tag_no)
 );
-drop table auction_item cascade constraint;
 --경매 후기 게시판
 CREATE TABLE review_board (
 	review_no	number(10)	NOT NULL primary key,
@@ -77,11 +90,6 @@ CREATE TABLE interest_tag (
 	it_tag_no	number(10)	NOT NULL primary key,
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no number(10)	NOT NULL
-);
---태그목록
-CREATE TABLE tag (
-	tag_no	number(10)	NOT NULL primary key,
-	tag_name	varchar(20)	NOT NULL
 );
 --문의 게시판
 CREATE TABLE qna_board (

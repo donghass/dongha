@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.Bid;
 import com.alpaca.alpacaAuction.model.Interest;
+import com.alpaca.alpacaAuction.model.Tag;
 import com.alpaca.alpacaAuction.service.AuctionService;
 import com.alpaca.alpacaAuction.service.BidService;
 import com.alpaca.alpacaAuction.service.InterestService;
 import com.alpaca.alpacaAuction.service.PagingBean;
+import com.alpaca.alpacaAuction.service.TagService;
 
 @Controller
 public class AuctionController {
@@ -33,10 +35,15 @@ public class AuctionController {
 	private BidService bs;
 	@Autowired
 	private InterestService is;
+	@Autowired
+	private TagService ts;
 	@RequestMapping("insertItemForm")
 	public String insertItemForm(Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
+		//태그 리스트 가져오기
+		List<Tag> list = ts.list();
 		model.addAttribute("id",id);
+		model.addAttribute("list",list);
 		return "auction/insertItemForm";
 	}
 	@RequestMapping("insertItem")
@@ -92,12 +99,15 @@ public class AuctionController {
 //			입찰수 추가
 			a.setBid_cnt(bs.getTotal(a.getAuction_no()));
 		}
-		
+//		대분류에따른 태그가져오기
+		List<Tag> taglist = ts.tagList(auction.getTagValue());
 		
 		model.addAttribute("title", title);
 //		매개변수로 넘어온 데이터 데이터를 다시 같은 jsp로 전달할 때는 model.addAttribute생략 가능
 		model.addAttribute("auction", auction);
 		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("taglist", taglist);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
 		return "auction/auctionList";
@@ -139,7 +149,7 @@ public class AuctionController {
 			auction.setStart_date(date1);
 			auction.setEnd_date(date2);
 			auction.setStart_price(9000);
-			auction.setId("엄");
+			auction.setId("test");
 			auction.setMin_bid(500);
 			as.insert(auction);
 		}	

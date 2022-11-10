@@ -87,6 +87,7 @@ public class MemberController {
 		else if (bpe.matches(member.getPassword(), member2.getPassword())) {
 			result = 1; // 성공 id와 password가 일치
 			session.setAttribute("id", member.getId());
+			session.setAttribute("authority", member.getAuthority());
 		}
 		model.addAttribute("result", result);
 		return "member/login";
