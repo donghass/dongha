@@ -28,20 +28,33 @@
 			frm1.bid_price.value=bid_price+min_bid;
 		}
 	}
+	function interestChk(){
+		if(frm1.id.value==null || frm1.id.value==''){
+			alert("로그인이 필요한 기능입니다");
+			location.href="loginForm.do";
+		}else{
+			location.href='interestResister.do?auction_no=${auction.auction_no}&pageNum=${pageNum }'
+		}
+	}
 	$(function() {
 		$('#bidListDisp').load('bidList.do?auction_no=${auction.auction_no}');
 		$('#bidInsert').click(function() {
 			/* 	var sendData = "auction_no="+frm1.auction_no.value+
 					"&id="+frm1.id.value+
 					"&bid_price="+frm1.bid_price.value; */
-			if (!confirm("정말 입찰 하시겠습니까?")) {
-	            alert("취소 하셨습니다.");
-	        } else {
-			var sendData = $('#frm1').serialize();
-			$.post('bidInsert.do', sendData, function(data) {
-				$('#bidListDisp').html(data);
-			});
-	        }
+			if(frm1.id.value==null || frm1.id.value==''){
+				alert("로그인 후 이용해주세요");
+				location.href="loginForm.do";
+			}else{
+				if (!confirm("정말 입찰 하시겠습니까?")) {
+		            alert("취소 하셨습니다.");
+		        } else {
+				var sendData = $('#frm1').serialize();
+				$.post('bidInsert.do', sendData, function(data) {
+					$('#bidListDisp').html(data);
+				});
+		        }
+			}
 		});
 	});
 // 타이머
@@ -133,7 +146,7 @@ function remaindTime() {
 						<tr class="default">
 							<td colspan="2" align="center"><a href="#bidListDisp" class="btn btn-success">입찰
 									목록</a>
-							<button class="btn btn-success" onclick="location.href='interestResister.do?auction_no=${auction.auction_no}&pageNum=${pageNum }'">관심 등록</button>  </td></tr>
+							<button class="btn btn-success" onclick="interestChk()">관심 등록</button>  </td></tr>
 					</table>
 			</div>
 			<div class="col-md-12">
