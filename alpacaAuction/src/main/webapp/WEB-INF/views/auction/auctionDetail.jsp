@@ -46,14 +46,18 @@
 				alert("로그인 후 이용해주세요");
 				location.href="loginForm.do";
 			}else{
-				if (!confirm("정말 입찰 하시겠습니까?")) {
-		            alert("취소 하셨습니다.");
-		        } else {
-				var sendData = $('#frm1').serialize();
-				$.post('bidInsert.do', sendData, function(data) {
-					$('#bidListDisp').html(data);
-				});
-		        }
+				if(frm1.id.value == '${auction.id}'){
+					alert("판매자는 입찰에 참여하실수 없습니다")
+				}else{
+					if (!confirm("정말 입찰 하시겠습니까?")) {
+			            alert("취소 하셨습니다.");
+			        } else {
+					var sendData = $('#frm1').serialize();
+					$.post('bidInsert.do', sendData, function(data) {
+						$('#bidListDisp').html(data);
+					});
+			        }
+				}
 			}
 		});
 	});
