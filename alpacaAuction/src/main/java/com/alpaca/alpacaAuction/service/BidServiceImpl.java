@@ -42,4 +42,14 @@ public class BidServiceImpl implements BidService{
 		// TODO Auto-generated method stub
 		return bd.getTotal(i);
 	}
+
+	@Override
+	public int selectMyBid(String id, int auction_no) {
+		return bd.selectMyBid(id,auction_no);
+	}
+
+	@Override
+	public String selectMaxId(int bid_price) {
+		return bd.selectMaxId(bid_price);
+	}
 }

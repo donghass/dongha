@@ -43,4 +43,15 @@ public class AuctionDaoImpl implements AuctionDao {
 		// TODO Auto-generated method stub
 		return sst.selectOne("auctionns.select",auction_no);
 	}
+
+	@Override
+	public List<Auction> bList(String id) {
+		return sst.selectList("auctionns.bList",id);
+	}
+
+	@Override
+	public List<Auction> sList(Auction auction) {
+		System.out.println("id = "+auction.getId());
+		return sst.selectList("auctionns.sList",auction);
+	}
 }

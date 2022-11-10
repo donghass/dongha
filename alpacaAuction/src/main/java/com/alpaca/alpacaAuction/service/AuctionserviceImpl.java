@@ -43,4 +43,14 @@ public class AuctionserviceImpl implements AuctionService {
 		// TODO Auto-generated method stub
 		return ad.select(auction_no);
 	}
+
+	@Override
+	public List<Auction> bList(String id) {
+		return ad.bList(id);
+	}
+
+	@Override
+	public List<Auction> sList(Auction auction) {
+		return ad.sList(auction);
+	}
 }

@@ -12,7 +12,7 @@
 //	location.href="insertItemForm.do"; 
 //	 location.href="rbInsertForm.do"; 
 	location.href="myPageMain.do";
-	/* location.href="main.do"; */
+//	location.href="main.do"; 
 //	 location.href="joinForm.do" 
 </script>
 </body>

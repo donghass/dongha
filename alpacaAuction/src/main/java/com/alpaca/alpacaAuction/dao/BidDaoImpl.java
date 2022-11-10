@@ -1,6 +1,8 @@
 package com.alpaca.alpacaAuction.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,18 @@ public class BidDaoImpl implements BidDao {
 	public int getTotal(int i) {
 		// TODO Auto-generated method stub
 		return sst.selectOne("bidns.getTotal",i);
+	}
+
+	@Override
+	public int selectMyBid(String id, int auction_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("auction_no", auction_no);
+		return sst.selectOne("bidns.selectMyBid",map);
+	}
+
+	@Override
+	public String selectMaxId(int bid_price) {
+		return sst.selectOne("bidns.selectMaxId",bid_price);
 	}
 }

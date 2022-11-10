@@ -18,4 +18,8 @@ public interface AuctionDao {
 
 	Auction select(int auction_no);
 
+	List<Auction> bList(String id);
+
+	List<Auction> sList(Auction auction);
+
 }
