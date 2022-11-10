@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Insert title here</title></head><body>
+<title>login</title></head><body>
 <c:if test="${result > 0}">
 	<script type="text/javascript">
 		alert("로그인 되었습니다");
-		location.href="main.do";
+		location.href="auctionList.do";
 	</script>
 </c:if>
 <c:if test="${result == 0}">
