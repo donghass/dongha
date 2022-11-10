@@ -45,8 +45,8 @@ public class AuctionserviceImpl implements AuctionService {
 	}
 
 	@Override
-	public List<Auction> bList(String id) {
-		return ad.bList(id);
+	public List<Auction> bList(Auction auction) {
+		return ad.bList(auction);
 	}
 
 	@Override

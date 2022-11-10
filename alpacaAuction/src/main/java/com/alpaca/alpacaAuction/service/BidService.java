@@ -18,6 +18,6 @@ public interface BidService {
 
 	int selectMyBid(String id, int auction_no);
 
-	String selectMaxId(int bid_price);
+	String selectMaxId(int bid_price, int auction_no);
 
 }

@@ -27,8 +27,7 @@ public class RvController {
 	@Autowired
 	private AuctionService as;
 	@RequestMapping("rbInsertForm")
-	public String rbInsertForm(HttpSession session, Model model) {
-		int auction_no =5;
+	public String rbInsertForm(HttpSession session, Model model, int auction_no) {
 		String id = (String)session.getAttribute("id");
 		Auction auction = as.select(auction_no);
 		model.addAttribute("id",id);
