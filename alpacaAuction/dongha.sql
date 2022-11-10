@@ -1,3 +1,5 @@
+select * from(select a.*,rowNum rn from(select r.*,item_name from review_board r,auction_item ai
+where r.aucton_no=ai.auction_no	order by r.review_no desc)a)where rn between 1 and 10;
 --회원
 CREATE TABLE member (
 	id	varchar(40)	NOT NULL primary key,
@@ -30,6 +32,7 @@ CREATE TABLE auction_item (
 	id	varchar(40)	NOT NULL references member(id),
 	tag_no	number(10)	NOT NULL
 );
+select * from AUCTION_ITEM;
 drop table auction_item cascade constraint;
 --경매 후기 게시판
 CREATE TABLE review_board (
@@ -67,10 +70,11 @@ CREATE TABLE interest (
 CREATE TABLE bidding (
 	bid_no	number(10)	NOT NULL primary key,
 	bid_price	number(10)	NOT NULL,
-	bid_date	number(10)	NOT NULL,
+	bid_date	date	NOT NULL,
 	id	varchar(40)	NOT NULL references member(id),
 	auction_no	number(10)	NOT NULL references auction_item(auction_no)
 );
+drop table bidding;
 --관심태그
 CREATE TABLE interest_tag (
 	it_tag_no	number(10)	NOT NULL primary key,

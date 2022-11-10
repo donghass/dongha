@@ -8,12 +8,16 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="auctionList.do";
+// 	location.href="auctionList.do";
+//	location.href="auctionList.do";
 //	location.href="insertItemForm.do"; 
-//	location.href="rbInsertForm.do"; 
-//	location.href="myPageMain.do";
-/* 	location.href="main.do"; */
-//	location.href="joinForm.do" 
+//	 location.href="rbInsertForm.do"; 
+ 	location.href="myPageMain.do";
+//	location.href="main.do"; 
+//	 location.href="joinForm.do" 
+//	 location.href="findIdForm.do"
+//	location.href="adminMbList.do"
+
 </script>
 </body>
 </html>

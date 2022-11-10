@@ -27,18 +27,18 @@
 		order by review_no desc
 	</select>
 	<select id="list" parameterType="review_board" resultType="review_board">
-		select * from(select a.*,rowNum rn from(
-			select * from review_board
+		select * from(select a.*,rowNum rn from(select r.*,item_name from review_board r,auction_item ai
 		<where>
+			r.auction_no=ai.auction_no
 			<!-- keyword에 값이 있으면 검색 / 값이 있을 경우에 where가 필요하다 -->
 			<if test="keyword != null and keyword != '' ">
 				<if test="search == 'subcon'">
 				<!-- #은 값 $는 변수를 의미한다 / #은 작은따옴표 사용 -->
-					title like '%'||#{keyword}||'%' or
-					contents like '%'||#{keyword}||'%'
+					and (title like '%'||#{keyword}||'%' or
+					contents like '%'||#{keyword}||'%')
 				</if>
 				<if test="search != 'subcon'">
-					${search} like '%'||#{keyword}||'%'
+					and ${search} like '%'||#{keyword}||'%'
 				</if>
 			</if>
 		</where>
@@ -48,7 +48,7 @@
 		update review_board set read_cnt = read_cnt + 1 where review_no=#{review_no}
 	</update>
 	<select id="select" parameterType="integer" resultType="review_board">
-		select * from review_board where review_no=#{review_no}
+		select r.*,item_name from review_board r,auction_item ai where r.auction_no=ai.auction_no and review_no=#{review_no}
 	</select>
 	<update id="update" parameterType="review_board">
 		update review_board set title=#{title},contents=#{contents},rating=#{rating} where review_no=#{review_no}

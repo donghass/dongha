@@ -16,4 +16,8 @@ public interface BidService {
 
 	int getTotal(int i);
 
+	int selectMyBid(String id, int auction_no);
+
+	String selectMaxId(int bid_price);
+
 }

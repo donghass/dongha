@@ -16,7 +16,7 @@
 	});
 	$(function() {
 		$('#replyListDisp').load('${path}/replyList.do?re_no=${review_board.review_no}');
-		$('#rbDisp').load("rbList.do", "pageNum=${pageNum}");
+		$('#rbDisp').load("rbList.do", "review_no=${review_board.review_no }&pageNum=${pageNum}");
 		$('#rInsert').click(function() {
 			var sendData = $('#frm1').serialize();
 			$.post('${path}/rInsert.do', sendData, function(data) {

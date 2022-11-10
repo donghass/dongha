@@ -28,6 +28,7 @@ CREATE TABLE tag (
 );
 
 --경매 물품
+drop table member;
 CREATE TABLE auction_item (
 	auction_no	number(10)	NOT NULL primary key,
 	item_name	varchar(50)	NOT NULL,

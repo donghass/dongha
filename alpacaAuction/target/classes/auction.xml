@@ -68,4 +68,12 @@
 	<update id="increaseViewCount" parameterType="integer">
 		update auction_item set view_cnt=view_cnt+1 where auction_no=#{auction_no}
 	</update>
+	<select id="bList" parameterType="string" resultType="auction">
+		select * from auction_item where auction_no in (select auction_no from bidding where id =#{id})
+	</select>
+	<select id="sList" parameterType="auction" resultType="auction">
+		select * from(select a.*,rowNum rn from(
+			select ai.*,b.id from auction_item ai,bidding b 
+			where ai.auction_no=b.auction_no and id=#{id} order by auction_no desc)a)where rn between #{startRow} and #{endRow}
+	</select>
 </mapper> 

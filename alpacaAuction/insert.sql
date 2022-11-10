@@ -2,7 +2,7 @@
 insert into member values ('master2', '1234', 'IH', '010-9454-5763', 'inhowha9195@naver.com', '분당', sysdate, 'n', 'y', '20대', 'm');
 insert into member values ('khs', '1234', '현서', '010-8838-0247', 'ksh98520@naver.com', '분당', sysdate, 'n', 'y', '20대', 'm');
 insert into member values ('dongha', '1', 'IH', '010-9454-5763', 'inhowha9195@naver.com', '분당', sysdate, 'n', 'y', '20대', 'm');
-insert into member values ('lalala', '1234', 'HH', '010-1111-1111', 'inhowha9591@naver.com', '분당', sysdate, 'n', 'n', '20대', 'f');
+insert into member values ('test', '1234', 'HH', '010-1111-1111', 'inhowha9591@naver.com', '분당', sysdate, 'n', 'n', '20대', 'f');
 --카테고리 태그
 --미술품 카테고리
 insert into tag values(11,'동양화');

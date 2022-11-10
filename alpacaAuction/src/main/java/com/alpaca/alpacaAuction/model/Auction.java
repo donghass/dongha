@@ -43,8 +43,15 @@ public class Auction {
 	private int bid_price;
 //	입찰 수
 	private int bid_cnt;
+	private String bidName;
 //	필터
 	private String filter;
+
+//	최대입찰가용
+	private int my_bid;
+//	경매여부
+	private String yes_or_no;
+
 //	태그분류값
 	private int tagValue;
 }

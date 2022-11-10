@@ -17,7 +17,7 @@
 		</c:if>
 		<c:if test="${not empty list }">
 			<c:forEach var="review_board" items="${list}">
-				<tr><td>${auction_item.item_name }</td>
+				<tr><td>${review_board.item_name }</td>
 				<c:if test="${review_board.del == 'y'}">
 					<th colspan="6">삭제 된 글입니다</th>
 				</c:if>
