@@ -97,7 +97,7 @@ function check_pw(){
 <body>
 <div class="container" align="center">	
  	<h2 class="text-primary">회원 가입</h2>
-<form action="join.do" method="post" enctype="multipart/form-data" name="frm"
+<form action="join.do" method="post" name="frm"
 	onsubmit="return check_pw()">
 <table class="table table-bordered">
 	
