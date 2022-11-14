@@ -16,7 +16,7 @@
 				<ul class="menu4_s submenu">
 					<li><a href="updateForm.do">내 정보 수정</a></li>
 					<li><a href="myBuySell.do">내 입찰</a></li>
-					<li><a href="interest.do">관심물품</a></li>
+					<li><a href="interestPage.do">관심물품</a></li>
 					<li><a href="myReview.do">내가 쓴 글</a></li>
 				</ul>
 			</li>

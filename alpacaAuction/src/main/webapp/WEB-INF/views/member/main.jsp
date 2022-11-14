@@ -13,8 +13,6 @@
 <div class="container" align="center">
 	<h2 class="text-primary">${member.name }님 환영합니다</h2>
 <table class="table table-striped">
-	<!-- <tr><td><a href="view.do" class="btn btn-success">조회</a></td></tr> -->
-	<!-- <tr><td><a href="view2.do" class="btn btn-primary">조회(사진여러장)</a></td></tr> -->
 	<tr><td><a href="updateForm.do" class="btn btn-warning">수정</a></td></tr>
 	<tr><td><a onclick="del()" class="btn btn-danger">탈퇴</a></td></tr>
 	<tr><td><a href="logout.do" class="btn btn-info">로그 아웃</a></td></tr>

@@ -52,7 +52,7 @@
 			$('#idChk1').html(data);
 		});
 	}	
-//	 asd
+//	비밀번호 유효성 검사 및 중복 체크
 function check_pw(){
  
             var pw = document.getElementById('pw').value;
@@ -85,14 +85,6 @@ function check_pw(){
             }
         }
 
- /* // 비밀번호 유효성 검사
-	function chk() {
-	   if (frm.password.value != frm.password2.value) {
-			alert("암호가 서로 일치하지 않습니다"); frm.password.focus();
-			frm.password.value=""; frm.password2.value="";
-			return false;
-		}   
-	}  */
 </script>
 </head>
 <body>
@@ -115,15 +107,7 @@ function check_pw(){
         <tr><th>비밀번호 확인</th>
             <td><input type="password" name="password2" id="pw2" onchange="check_pw()" required="required">&nbsp;<span id="check"></span></td>
         </tr>
-	<!-- 	<tr><th>비밀번호</th>
-			<td><input type="password" name="password" id="password" required="required"
-			class="form-control"></td></tr>
-
-		<tr><th>비밀번호 확인</th>
-			<td><input type="password" name="password2" id="password2" required="required"
-			class="form-control">
-				<input type="button" class="btn btn-warning btn-sm" onclick="chkPw()" value="확인"></td></tr> --> 
-			
+	
 		<tr><th>이름</th>
 			<td><input type="text" name="name" required="required"
 			class="form-control"></td></tr>
