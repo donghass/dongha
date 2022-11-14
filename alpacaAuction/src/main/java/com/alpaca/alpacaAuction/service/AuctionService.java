@@ -22,4 +22,8 @@ public interface AuctionService {
 
 	List<Auction> sList(Auction auction);
 
+	int buyTotal(Auction auction);
+
+	int sellTotal(Auction auction);
+
 }

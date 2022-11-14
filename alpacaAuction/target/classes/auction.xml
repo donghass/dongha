@@ -27,6 +27,14 @@
 				</if>
 		</where>
 	</select>
+	<select id="buyTotal" parameterType="auction" resultType="integer">
+		select count(*) from auction_item
+			where auction_no in (select auction_no from bidding where id =#{id})
+	</select>
+	<select id="sellTotal" parameterType="auction" resultType="integer">
+		select count(*) from auction_item
+			where auction_no in (select auction_no from auction_item where id =#{id})
+	</select>
 	<select id="list" parameterType="auction"  resultType="auction">
 		<!-- select * from auction_item order by auction_no desc -->
 		select * from (select a.*, rowNum rn from (

@@ -14,10 +14,11 @@
 	<input type="hidden" name="review_no" value="${review_board.review_no }">
 	<%-- <input type="hidden" name="id" value="${member.id }">
 	<input type="hidden" name="auction_no" value="${review_board.auction_no }"> --%>
-	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">제목</label><div class="col-xs-10 col-lg-10"><input required="required" type="text" class="form-control" name="title" autofocus="autofocus" placeholder="제목"></div></div>
-	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">상품명</label><div class="col-xs-10 col-lg-10">${action_item.item_name }</div></div>
+	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">제목</label><div class="col-xs-10 col-lg-10"><input required="required" type="text" class="form-control" name="title" autofocus="autofocus" placeholder="제목" value="${review_board.title }"></div></div>
+	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">상품명</label><div class="col-xs-10 col-lg-10">${review_board.item_name }</div></div>
 	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">후기 사진</label><div class="col-xs-10 col-lg-10"><input required="required" type="file" name="file" class="form-control"></div></div>
 	<div class="form-group"><label for="Title" class="col-xs-2 col-lg-2 control-label">내용</label><div class="col-xs-10 col-lg-10"><textarea required="required" class="form-control col-xs-10 col-lg-10" name="contents">${review_board.contents }</textarea></div></div>
+
 <div id="myform">
  <fieldset name="rating" >
 		<span class="text-bold">별점을 선택해주세요</span>

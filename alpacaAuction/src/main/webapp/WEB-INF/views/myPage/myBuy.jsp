@@ -41,7 +41,8 @@
 						<td>경매중</td>
 						</c:if>
 						<td><c:if test="${auction.yes_or_no == 'true' && auction.bid_price == auction.my_bid}"><a href="rbInsertForm.do?auction_no=${auction.auction_no }" class="btn btn-info">리뷰 작성</a></c:if>
-						<c:if test="${auction.yes_or_no == 'false'}">경매 진행중</c:if></td>
+							<c:if test="${auction.yes_or_no == 'true' && auction.bid_price != auction.my_bid}">낙찰 실패</c:if>
+							<c:if test="${auction.yes_or_no == 'false'}">경매 진행중</c:if></td>
 				</tr>
 			</c:forEach>
 		</c:if>

@@ -13,4 +13,5 @@ public class ReviewReply {
 	private Date reg_date;
 	private Date updatedate;
 	private String del;
+	private String id;
 }

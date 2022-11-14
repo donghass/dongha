@@ -9,7 +9,7 @@
 		<selectKey keyProperty="rno" order="BEFORE" resultType="integer">
 			select nvl(max(rno),0)+1 rno from review_reply
 		</selectKey>
-		insert into review_reply values(#{re_no},#{rno},#{replytext},#{replier},sysdate,sysdate,'n')
+		insert into review_reply values(#{re_no},#{rno},#{replytext},#{replier},sysdate,sysdate,'n',#{id})
 	</insert>
 	<update id="update" parameterType="review_reply">
 		update review_reply set replytext=#{replytext}, updatedate=sysdate where rno=#{rno}
