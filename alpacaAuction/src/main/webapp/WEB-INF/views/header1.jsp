@@ -21,7 +21,7 @@
 				<c:if test="${sessionScope.authority == 'y'}">
 					<a href="adminMain.do">관리자 페이지</a>
 				</c:if>
-				<c:if test="${sessionScope.authority != 'n'}">
+				<c:if test="${sessionScope.authority == 'n'}">
 					${sessionScope.name }님 환영합니다
 				</c:if>
 				<a href="logout.do">로그아웃</a>

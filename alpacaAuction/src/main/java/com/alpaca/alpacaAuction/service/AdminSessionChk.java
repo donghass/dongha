@@ -7,16 +7,14 @@ public class AdminSessionChk extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		if (session == null) {
-			response.sendRedirect("login.do");
+		if (session == null || session.getAttribute("id")==null) {
+			response.sendRedirect("loginForm.do");
 			return false;
-		}else { 
-			if(session.getAttribute("authority")==null ||session.getAttribute("authority").equals('n')) {
+		}else {
+			if(session.getAttribute("authority")==null || session.getAttribute("authority").equals("n")) {
 				response.sendRedirect("auctionList.do");
 				return false;
-			}else {
-				return true;
-			}
+			}else {return true;}
 		}
 	}
 }
