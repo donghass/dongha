@@ -61,9 +61,6 @@
 				<c:if test="${not empty member.MB_img  }">  
 					<img alt="" src="" class="thumbnail" >  
 				 </c:if> --%>    
-				 <div>
-				 	<input type="button" id="line" value="정보 수정" onclick="location.href='updateForm.do'" class="btn_sm_full">
-				 </div>	  
 				 <!-- <div id="title_box">
 					 <input onclick="location.href='updateForm.do'"     
 					 		  class="btn_setting" type="button" data-toggle="tooltip" 
@@ -125,7 +122,7 @@
 
 <div class="container">
 	<table class="table table-striped">
-		<tr class="col-md-3"><td><a href="main.do">내 정보 수정</a></td></tr>
+		<tr class="col-md-3"><td><a href="updateForm.do">내 정보 수정</a></td></tr>
 		<tr class="col-md-3"><td><a href="interestPage.do">관심 물품</a></td></tr>
 	</table>
 </div>

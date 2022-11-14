@@ -17,8 +17,8 @@
 		<input type="submit" class="btn btn-danger" value="확인"></td></tr>
 </table>
 </form>
-<a href="findIdForm.do" class="btn btn-success">아이디</a>
-<a href="findPwForm.do" class="btn btn-success">비밀번호찾기</a>
+<a href="findIdForm.do" class="btn btn-success">아이디 찾기</a>
+<a href="findPwForm.do" class="btn btn-success">비밀번호 찾기</a>
 <a href="joinForm.do" class="btn btn-success">회원 가입</a>
 </div>
 </body>

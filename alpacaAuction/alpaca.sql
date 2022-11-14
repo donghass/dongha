@@ -21,6 +21,7 @@ CREATE TABLE member (
 	age	varchar(10) DEFAULT '20대'	NOT NULL,
 	gender	char(1) DEFAULT 'm'	NOT NULL	
 );
+select * from member;
 --태그목록
 CREATE TABLE tag (
 	tag_no	number(10)	NOT NULL primary key,
