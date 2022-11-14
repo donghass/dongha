@@ -4,25 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css"
+	href="${path }/resources/bootstrap/css/common.css">
 </head>
 <body>
 	<div class="header">
 		<span class="left">
-			<a href="auctionList.do">
-				<img alt="" src="/alpacaAuction/resources/auction_images/알파카.png" class="logo">
+			<a href="adminMain.do">
+				<img alt="" src="${path }/resources/auction_images/알파카.png" class="logo">
 			</a>
 		</span>
- 		<span class="header_login">
+		<span class="header_login">
 			<c:if test="${sessionScope.id == null }">
-				<a href="joinForm.do">회원가입</a>
+				<a>회원가입</a>
 				<a href="loginForm.do">로그인</a>
 			</c:if>
 			<c:if test="${sessionScope.id != null }">
 				<c:if test="${sessionScope.authority == 'y'}">
-					<a href="adminMain.do">관리자 페이지</a>
-				</c:if>
-				<c:if test="${sessionScope.authority != 'n'}">
-					${sessionScope.name }님 환영합니다
+					<span><a href="auctionList.do">경매 목록</a></span>
 				</c:if>
 				<a href="logout.do">로그아웃</a>
 			</c:if>
