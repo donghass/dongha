@@ -49,7 +49,7 @@ public class BidServiceImpl implements BidService{
 	}
 
 	@Override
-	public String selectMaxId(int bid_price) {
-		return bd.selectMaxId(bid_price);
+	public String selectMaxId(int bid_price, int auction_no) {
+		return bd.selectMaxId(bid_price,auction_no);
 	}
 }

@@ -20,9 +20,6 @@ public class Member {
 	private Date created_date;
 	private String del;
 	private String authority;
-	// 업로드
-	private MultipartFile file;
-
 	
 	// paging용
     private int startRow;

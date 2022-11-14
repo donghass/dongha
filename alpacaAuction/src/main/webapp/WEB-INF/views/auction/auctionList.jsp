@@ -138,7 +138,7 @@ $(document).ready(function(){
 				<!-- <li><a href="auctionList.do?filter=b">인기경매순</a></li> -->
 				<a class="btn-gradient cyan mini" href="auctionList.do?filter=c">마감임박순</a>
 		</div>
-		<a href="insertItemForm.do" class="btn btn-success">게시글 입력</a>
+		<a href="insertItemForm.do" class="btn btn-success">경매 물품 등록</a>
 <div class="row">
 <c:if test="${empty list}">
 	<tr class="warning"><td colspan="5">게시글이 없습니다</td></tr>

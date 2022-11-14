@@ -53,7 +53,10 @@ public class BidDaoImpl implements BidDao {
 	}
 
 	@Override
-	public String selectMaxId(int bid_price) {
-		return sst.selectOne("bidns.selectMaxId",bid_price);
+	public String selectMaxId(int bid_price, int auction_no) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("bid_price", bid_price);
+		map.put("auction_no", auction_no);
+		return sst.selectOne("bidns.selectMaxId",map);
 	}
 }

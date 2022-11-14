@@ -80,6 +80,7 @@ function check_pw(){
                 else{
                     document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
                     document.getElementById('check').style.color='red';
+                    return false;
                 }
             }
         }
@@ -114,14 +115,6 @@ function check_pw(){
         <tr><th>비밀번호 확인</th>
             <td><input type="password" name="password2" id="pw2" onchange="check_pw()" required="required">&nbsp;<span id="check"></span></td>
         </tr>
-		
-
-
-
-
-
-
-
 	<!-- 	<tr><th>비밀번호</th>
 			<td><input type="password" name="password" id="password" required="required"
 			class="form-control"></td></tr>
@@ -147,9 +140,7 @@ function check_pw(){
 				<div id="emailChk1">
 					<input type="text" name="emailChk1" id="emailChk1" placeholder="인증번호 입력">
 				</div>
-				<div id="emailChk1_success" class="email_err">인증번호가 일치합니다</div>
-				<div id="emailChk1_fail" class="email_err">인증번호가 일치하지 않습니다</div>
-				<div id="emailChk1False" class="email_err"></div></td>
+				<div id="emailChk1False"></div></td>
 		</tr>
 		
 		<tr><th>주소</th>

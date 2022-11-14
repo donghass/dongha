@@ -18,9 +18,9 @@
 		select * from bidding where auction_no=#{auction_no} order by bid_date desc
 	</select>
 	<select id="selectMyBid" parameterType="map" resultType="integer">
-		select max(bid_price) from bidding where id=#{id} and auction_no=#{auction_no}
+		select nvl(max(bid_price),0) from bidding where id=#{id} and auction_no=#{auction_no}
 	</select>
-	<select id="selectMaxId" parameterType="integer" resultType="integer">
-		select nvl(max(bid_price),0) from bidding where auction_no=#{auction_no}
+	<select id="selectMaxId" parameterType="map" resultType="string">
+		select id from bidding where auction_no=#{auction_no} and bid_price=#{bid_price}
 	</select>
 </mapper> 
