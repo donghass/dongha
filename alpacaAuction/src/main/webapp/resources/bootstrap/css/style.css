@@ -13,6 +13,7 @@
 
 .myMenu {
 	text-align: center;
+	z-index: 2;
 } 
 
 .myMenu>li {
@@ -40,6 +41,7 @@
 	position: absolute;
 	top: 30px;
 	left: 0px;
+	z-index: 2;
 }
 
 .myMenu>li ul.submenu>li {
@@ -49,6 +51,7 @@
 	background: #ffffff;
 	background: rgba( 255, 255, 255, 0.7 );
 	text-align: center;
+	z-index: 2;
 }
 
 .myMenu>li:hover ul.submenu {

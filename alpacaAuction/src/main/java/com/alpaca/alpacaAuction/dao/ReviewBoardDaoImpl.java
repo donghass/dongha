@@ -41,4 +41,10 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao{
 		return sst.update("rvBoardns.delete",review_no);
 	}
 
+	@Override
+	public int BdRollback(int review_no) {
+		// TODO Auto-generated method stub
+		return sst.update("rvBoardns.BdRollback",review_no);
+	}
+
 }

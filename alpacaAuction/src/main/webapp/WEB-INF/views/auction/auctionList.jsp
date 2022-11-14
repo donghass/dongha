@@ -68,6 +68,7 @@ border-top: 1px solid #e0e0e0;
   border-bottom: 4px solid rgba(0,0,0,0.21);
   border-radius: 4px;
   text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  z-index: 0;
 }
 .btn.cyan {box-shadow:0px 4px 0px #73B9C9;}
 .btn.cyan:active {box-shadow: 0 0 #73B9C9; background-color: #70B4C4;}
@@ -138,7 +139,7 @@ $(document).ready(function(){
 				<!-- <li><a href="auctionList.do?filter=b">인기경매순</a></li> -->
 				<a class="btn-gradient cyan mini" href="auctionList.do?filter=c">마감임박순</a>
 		</div>
-		<a href="insertItemForm.do" class="btn btn-success">경매 물품 등록</a>
+		<!-- <a href="insertItemForm.do" class="btn btn-success">경매 물품 등록</a> -->
 <div class="row">
 <c:if test="${empty list}">
 	<tr class="warning"><td colspan="5">게시글이 없습니다</td></tr>

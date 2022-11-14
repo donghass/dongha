@@ -42,6 +42,24 @@ public class MemberServiceImpl implements MemberService{
 		return md.updatePw(member);
 	}
 
+	@Override
+	public int getMbTotal(Member member) {
+		// TODO Auto-generated method stub
+		return md.getMbTotal(member);
+	}
+
+	@Override
+	public List<Member> mbList(Member member) {
+		// TODO Auto-generated method stub
+		return md.mbList(member);
+	}
+
+	@Override
+	public int MbRollback(String id) {
+		// TODO Auto-generated method stub
+		return md.MbRollback(id);
+	}
+
 	/*
 	 * public void insertPhoto(List<MemberPhoto> photos) { for (MemberPhoto mp :
 	 * photos) { md.insertPh(mp); } }

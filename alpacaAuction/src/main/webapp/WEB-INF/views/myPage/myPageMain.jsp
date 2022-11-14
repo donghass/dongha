@@ -125,7 +125,7 @@
 
 <div class="container">
 	<table class="table table-striped">
-		<tr class="col-md-3"><td><a href="main.do">내 정보 수정</a></td></tr>
+		<tr class="col-md-3"><td><a href="updateForm.do">내 정보 수정</a></td></tr>
 		<tr class="col-md-3"><td><a href="interestPage.do">관심 물품</a></td></tr>
 	</table>
 </div>

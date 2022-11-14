@@ -56,4 +56,7 @@
 	<update id="delete" parameterType="integer">
 		update review_board set del = 'y' where review_no=#{review_no}
 	</update>
+	<update id="BdRollback" parameterType="integer">
+		update review_board set del = 'n' where review_no=#{review_no}
+	</update>
 </mapper> 

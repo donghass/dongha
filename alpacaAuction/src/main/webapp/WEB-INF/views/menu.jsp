@@ -14,7 +14,6 @@
 			</li>
 			<li class="menu4"><a href="myPageMain.do">마이페이지</a>
 				<ul class="menu4_s submenu">
-					<li><a href="updateForm.do">내 정보 수정</a></li>
 					<li><a href="interestPage.do">관심물품</a></li>
 					<li><a href="myBuy.do">내 구매목록</a></li>
 					<li><a href="mySell.do">내 판매목록</a></li>
