@@ -57,7 +57,7 @@
 			<beans:ref bean="sc"></beans:ref>
 		</interceptor>
 		<interceptor>
-			<mapping path="/WEB-INF/views/admin/*"/>
+			<mapping path="/admin*.do"/>
 			<beans:ref bean="asc"></beans:ref>
 		</interceptor>
 	</interceptors>
