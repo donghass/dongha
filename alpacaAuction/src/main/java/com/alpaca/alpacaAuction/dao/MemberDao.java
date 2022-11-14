@@ -21,5 +21,11 @@ public interface MemberDao {
 
 	int updatePw(Member member);
 
+	int getMbTotal(Member member);
+
+	List<Member> mbList(Member member);
+
+	int MbRollback(String id);
+
 
 }

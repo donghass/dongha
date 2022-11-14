@@ -20,5 +20,7 @@ public interface ReviewBoardService {
 
 	int delete(int review_no);
 
+	int BdRollback(int review_no);
+
 
 }

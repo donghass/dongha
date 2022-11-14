@@ -1,5 +1,7 @@
 package com.alpaca.alpacaAuction.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +39,24 @@ public class MemberDaoImpl implements MemberDao{
 
 	public int updatePw(Member member) {
 		return sst.update("memberns.updatePw", member);
+	}
+
+	@Override
+	public int getMbTotal(Member member) {
+		// TODO Auto-generated method stub
+		return sst.selectOne("memberns.getMbTotal",member);
+	}
+
+	@Override
+	public List<Member> mbList(Member member) {
+		// TODO Auto-generated method stub
+		return sst.selectList("memberns.mbList",member);
+	}
+
+	@Override
+	public int MbRollback(String id) {
+		// TODO Auto-generated method stub
+		return sst.update("memberns.MbRollback",id);
 	}
 
 	/*

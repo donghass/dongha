@@ -2,7 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-
+	<!-- 관리자 회원 목록 -->
+	<select id="mbList" parameterType="member" resultType="member">
+		select * from (select a.*, rowNum rn from (select * from member
+			order by created_date desc) a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getMbTotal" parameterType="member" resultType="integer">
+		select count(*) from member	<!-- member 행 갯수 -->
+	</select>
 	 <!-- 아이디로 검색 -->
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id}
@@ -55,5 +63,8 @@
 	
 	<update id="delete" parameterType="string">
 		update member set del='y' where id=#{id}
+	</update>
+	<update id="MbRollback" parameterType="string">
+		update member set del='n' where id=#{id}
 	</update>
 </mapper> 

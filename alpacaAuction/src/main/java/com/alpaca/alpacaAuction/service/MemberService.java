@@ -20,6 +20,12 @@ public interface MemberService {
 	
 	int updatePw(Member member);
 
+	int getMbTotal(Member member);
+
+	List<Member> mbList(Member member);
+
+	int MbRollback(String id);
+
 //	void insertPhoto(List<MemberPhoto> photos);
 	
 //	List<MemberPhoto> listPhoto(String id);

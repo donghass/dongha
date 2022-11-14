@@ -42,4 +42,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService{
 		return rbd.delete(review_no);
 	}
 
+	@Override
+	public int BdRollback(int review_no) {
+		// TODO Auto-generated method stub
+		return rbd.BdRollback(review_no);
+	}
+
 }

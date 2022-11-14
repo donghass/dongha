@@ -40,7 +40,26 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.alpaca.alpacaAuction.*" />
-	
-	
+	<beans:bean id="sc" class="com.alpaca.alpacaAuction.service.SessionChk"></beans:bean>
+	<beans:bean id="asc" class="com.alpaca.alpacaAuction.service.AdminSessionChk"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/insertItemForm.do"/>
+			<mapping path="/updateForm.do"/>
+			<mapping path="/myPageMain.do"/>
+			<mapping path="/interestPage.do"/>
+			<mapping path="/myBuy.do"/>
+			<mapping path="/myReview.do"/>
+			<mapping path="/mySell.do"/>
+			<mapping path="/rbInsertForm.do"/>
+			<mapping path="/reviewUpdateForm.do"/>
+			<exclude-mapping path="/WEB-INF/views/member/*"/>
+			<beans:ref bean="sc"></beans:ref>
+		</interceptor>
+		<interceptor>
+			<mapping path="/adminMain.do"/>
+			<beans:ref bean="asc"></beans:ref>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

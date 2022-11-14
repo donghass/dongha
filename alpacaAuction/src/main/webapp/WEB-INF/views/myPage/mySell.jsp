@@ -30,7 +30,7 @@
 			<c:if test="${auction.id == id }">
 				<tr><td>${auction.auction_no }</td>
 					<td><a href="auctionDetail.do?auction_no=${auction.auction_no }&result=-1&pageNum=${pb.currentPage}" class="btn btn-primary">${auction.auction_no }</a></td>
-					<td><img alt="" src="${path}/resources/upload/${auction.item_img }" width="100" id="a1"></td>
+					<td><img alt="" src="${path}/resources/auction_images/${auction.item_img }" width="100" id="a1"></td>
 						<td>${auction.item_name }</td>
 						<td>${auction.bid_price }</td>
 						<c:if test="${auction.bidName != null}">
