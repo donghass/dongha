@@ -1,14 +1,21 @@
 package com.alpaca.alpacaAuction.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alpaca.alpacaAuction.model.Auction;
 import com.alpaca.alpacaAuction.model.Member;
 import com.alpaca.alpacaAuction.model.ReviewBoard;
+import com.alpaca.alpacaAuction.service.AuctionService;
+import com.alpaca.alpacaAuction.service.BidService;
 import com.alpaca.alpacaAuction.service.MemberService;
 import com.alpaca.alpacaAuction.service.PagingBean;
 import com.alpaca.alpacaAuction.service.ReviewBoardService;
@@ -20,6 +27,10 @@ public class AdminController {
 	private MemberService ms;
 	@Autowired
 	private ReviewBoardService rbs;
+	@Autowired
+	private AuctionService as;
+	@Autowired
+	private BidService bs;
 	@RequestMapping("adminMain")
 	public String adminMain() {
 		return "admin/adminMain";
@@ -100,4 +111,50 @@ public class AdminController {
 		model.addAttribute("pageNum",pageNum);
 		return "admin/adminBdRollback";
 	}
+	 @RequestMapping("adminAuction")
+	 public String adminAuction(String pageNum, Model model,Auction auction){
+		 	int rowPerPage = 10;	// 한 화면에 보여주는 페이지 수
+			if(pageNum == null || pageNum.equals(""))pageNum="1";
+			int currentPage = Integer.parseInt(pageNum);
+			int total = as.adminTotal();
+			int startRow = (currentPage - 1) * rowPerPage +1;
+			int endRow = startRow + rowPerPage -1;
+			int num = total - startRow + 1;
+			auction.setStartRow(startRow);
+			auction.setEndRow(endRow);
+			List<Auction> list = as.adminList(auction);
+			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+			Timestamp today=new Timestamp(System.currentTimeMillis());
+			for(Auction a : list) {
+				if(bs.selectMax(a.getAuction_no())==0) {
+					a.setBid_price(a.getStart_price());
+				}else {
+					a.setBid_price(bs.selectMax(a.getAuction_no()));
+				}
+				a.setBidName(bs.selectMaxId(a.getBid_price(),a.getAuction_no()));
+				a.setYes_or_no(String.valueOf(a.getEnd_date().before(today)));
+			}
+			model.addAttribute("auction",auction);
+			model.addAttribute("num",num);
+			model.addAttribute("list",list);
+			model.addAttribute("pb",pb);
+		 
+		 return "admin/adminAuction";
+	 }
+	 @RequestMapping("auctionDelete")
+	 public String auctionDelete(Model model,Auction auction,String pageNum) {
+	 	int result=0;
+		result=as.delete(auction.getAuction_no());
+		model.addAttribute("result",result);
+		model.addAttribute("pageNum",pageNum);
+		return "admin/auctionDelete";
+	 }
+	 @RequestMapping("auctionPaid")
+	 public String auctionPaid(Model model,Auction auction,String pageNum) {
+		 int result=0;
+		 result=as.paid(auction.getAuction_no());
+		 model.addAttribute("result",result);
+		 model.addAttribute("pageNum",pageNum);
+		 return "admin/auctionPaid";
+	 }
 }
