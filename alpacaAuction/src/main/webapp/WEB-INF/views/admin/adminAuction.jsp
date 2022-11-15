@@ -31,14 +31,19 @@
 						</c:if>
 							<td>${auction.end_date }</td>
 						<c:if test="${auction.yes_or_no == 'true'}">
-							<c:if test="${auction.pay == 'n' }">
-								<td><a href="auctionPaid.do?auction_no=${auction.auction_no}&pageNum=${pageNum }">
-											<span class="btn btn-success">낙찰 확정</span></a>
-								<a href="adminEmail.do?id=${auction.bidName }&pageNum=${pageNum }">
-											<span class="btn btn-success">낙찰 메일전송</span></a></td>
+							<c:if test="${auction.bidName == null }">
+								<td>입찰에 참여한 사람이없습니다</td>
 							</c:if>
-							<c:if test="${auction.pay == 'y' }">
-								<td><span class="btn btn-secondary">낙찰 확정(입금완료)</span></td>
+							<c:if test="${auction.bidName != null }">
+								<c:if test="${auction.pay == 'n' }">
+									<td><a href="auctionPaid.do?auction_no=${auction.auction_no}&pageNum=${pageNum }">
+												<span class="btn btn-success">낙찰 확정</span></a>
+									<a href="adminEmail.do?id=${auction.bidName }&pageNum=${pageNum }">
+												<span class="btn btn-success">낙찰 메일전송</span></a></td>
+								</c:if>
+								<c:if test="${auction.pay == 'y' }">
+									<td><span class="btn btn-secondary">낙찰 확정(입금완료)</span></td>
+								</c:if>
 							</c:if>
 						</c:if>
 						<c:if test="${auction.yes_or_no == 'false'}">
