@@ -109,8 +109,6 @@ public class MyPageController {
 		auction.setStartRow(startRow);
 		auction.setEndRow(endRow);
 		List<Auction> bList = as.bList(auction);
-		System.out.println("size = "+bList.size());
-		System.out.println("total = "+total);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		Timestamp today=new Timestamp(System.currentTimeMillis());
 		for(Auction a : bList) {

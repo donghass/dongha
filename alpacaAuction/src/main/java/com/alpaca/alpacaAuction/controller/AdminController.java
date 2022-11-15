@@ -3,15 +3,18 @@ package com.alpaca.alpacaAuction.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alpaca.alpacaAuction.model.Auction;
+import com.alpaca.alpacaAuction.model.Email;
 import com.alpaca.alpacaAuction.model.Member;
 import com.alpaca.alpacaAuction.model.ReviewBoard;
 import com.alpaca.alpacaAuction.service.AuctionService;
@@ -23,6 +26,8 @@ import com.alpaca.alpacaAuction.service.ReviewBoardService;
 
 @Controller
 public class AdminController {
+	@Autowired
+	private JavaMailSender jms;
 	@Autowired
 	private MemberService ms;
 	@Autowired
@@ -157,4 +162,26 @@ public class AdminController {
 		 model.addAttribute("pageNum",pageNum);
 		 return "admin/auctionPaid";
 	 }
+	 @RequestMapping("adminEmail")
+		public String email(String id, Model model) {
+		 	Email email = new Email();
+		 	Member member = ms.select(id);
+		 	email.setEmail(member.getEmail());
+		 	email.setTitle(member.getName()+"님 낙찰 축하드립니다");
+		 	email.setContent("사이트에서 낙찰품목 확인후 입금부탁드립니다");
+			MimeMessage mm = jms.createMimeMessage();
+			try {
+				MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+				mmh.setSubject(email.getTitle());
+				mmh.setText(email.getContent());
+				mmh.setTo(email.getEmail());
+				mmh.setFrom("ksh98520@naver.com"); 
+				jms.send(mm);
+				model.addAttribute("msg", "메일 보내기 성공");
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				model.addAttribute("msg", "메일 보내기 실패");
+			}
+			return "admin/adminEmail";
+		}
 }
