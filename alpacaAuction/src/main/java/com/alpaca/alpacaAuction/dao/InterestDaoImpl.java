@@ -28,7 +28,6 @@ public class InterestDaoImpl implements InterestDao{
 
 	@Override
 	public int getTotal(Interest interest) {
-		System.out.println("id = "+interest.getId());
 		return sst.selectOne("interestns.getTotal",interest);
 	}
 
