@@ -16,6 +16,7 @@
 	
 </style>
 <script type="text/javascript">
+
 	$(function () {
 		$("#emailChk1").hide();
 		$("#emailChk1_success").hide();

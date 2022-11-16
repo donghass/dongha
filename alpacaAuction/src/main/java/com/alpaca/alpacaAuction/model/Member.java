@@ -11,7 +11,6 @@ public class Member {
 	private String id;
 	private String password;
 	private String name;
-	//private String fileName;
 	private String call;
 	private String email;
 	private String address;
@@ -21,7 +20,7 @@ public class Member {
 	private String del;
 	private String authority;
 	
-	// paging용
+		// paging용
     private int startRow;
     private int endRow;
 	

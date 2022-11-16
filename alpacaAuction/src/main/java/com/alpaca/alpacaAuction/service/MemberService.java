@@ -3,7 +3,6 @@ package com.alpaca.alpacaAuction.service;
 import java.util.List;
 
 import com.alpaca.alpacaAuction.model.Member;
-import com.alpaca.alpacaAuction.model.MemberPhoto;
 
 public interface MemberService {
 	Member select(String id);
