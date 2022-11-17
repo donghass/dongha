@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rvBoardns">
+	<insert id="insert" parameterType="review_board">
+	<selectKey keyProperty="review_no" order="BEFORE" resultType="integer">
+		select nvl(max(review_no),0)+1 review_no from review_board
+	</selectKey>
+		insert into review_board values(#{review_no}, #{title},#{contents},#{review_img},
+		 0, 'n', sysdate, #{rating}, #{id},#{auction_no})
+	</insert>
+	<select id="getTotal" parameterType="review_board" resultType="integer">
+		select count(*) from review_board
+		<where>
+			<!-- keyword에 값이 있으면 검색 / 값이 있을 경우에 where가 필요하다 -->
+			<if test="keyword != null and keyword != '' ">
+				<if test="search == 'subcon'">
+				<!-- #은 값 $는 변수를 의미한다 / #은 작은따옴표 사용 -->
+					title like '%'||#{keyword}||'%' or
+					contents like '%'||#{keyword}||'%'
+				</if>
+				<if test="search != 'subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+		order by review_no desc
+	</select>
+	<select id="list" parameterType="review_board" resultType="review_board">
+		select * from(select a.*,rowNum rn from(select r.*,item_name from review_board r,auction_item ai
+		<where>
+			r.auction_no=ai.auction_no
+			<!-- keyword에 값이 있으면 검색 / 값이 있을 경우에 where가 필요하다 -->
+			<if test="keyword != null and keyword != '' ">
+				<if test="search == 'subcon'">
+				<!-- #은 값 $는 변수를 의미한다 / #은 작은따옴표 사용 -->
+					and (title like '%'||#{keyword}||'%' or
+					contents like '%'||#{keyword}||'%')
+				</if>
+				<if test="search != 'subcon'">
+					and ${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+			order by review_no desc)a)where rn between #{startRow} and #{endRow}
+	</select>
+	<update id="updateReadcount" parameterType="integer">
+		update review_board set read_cnt = read_cnt + 1 where review_no=#{review_no}
+	</update>
+	<select id="select" parameterType="integer" resultType="review_board">
+		select r.*,item_name from review_board r,auction_item ai where r.auction_no=ai.auction_no and review_no=#{review_no}
+	</select>
+	<update id="update" parameterType="review_board">
+		update review_board set title=#{title},contents=#{contents},rating=#{rating} where review_no=#{review_no}
+	</update>
+	<update id="delete" parameterType="integer">
+		update review_board set del = 'y' where review_no=#{review_no}
+	</update>
+	<update id="BdRollback" parameterType="integer">
+		update review_board set del = 'n' where review_no=#{review_no}
+	</update>
+</mapper> 

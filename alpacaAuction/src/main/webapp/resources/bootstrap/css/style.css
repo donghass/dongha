@@ -1,0 +1,65 @@
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+/* ul, ol, li {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+} */
+
+.myMenu {
+	text-align: center;
+	z-index: 2;
+} 
+
+.myMenu>li {
+	display : inline-block;
+	position: relative; 
+	width: 135px;
+	padding: 5px 10px;
+/* 	height: 30px; */
+	line-height: 30px;
+	font-family: 'S-CoreDream-3Light';
+	text-align: center;
+	}
+	
+.myMenu>li a{
+	color: #000000;
+}
+.myMenu>li:hover a:hover{
+	color: #3243A8;
+	font-weight: bolder;
+	
+}
+
+.myMenu>li ul.submenu {
+	display:none; 
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	z-index: 2;
+}
+
+.myMenu>li ul.submenu>li {
+	display: inline-block;
+	width: 135px;
+	padding: 5px 10px;
+	background: #ffffff;
+	background: rgba( 255, 255, 255, 0.7 );
+	text-align: center;
+	z-index: 2;
+}
+
+.myMenu>li:hover ul.submenu {
+	display: block;
+}
+
+.myMenu>li ul.submenu>li a:hover {
+	color: #3243A8;
+	font-weight: bolder;
+	text-decoration: underline;
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auctionns">
+	<insert id="insert" parameterType="auction">
+		insert into auction_item values(#{auction_no},#{item_name},#{item_contents},
+		#{item_img},#{start_date},#{end_date},#{start_price},#{min_bid},0,'n',
+		sysdate,'n',#{id},#{tag_no})
+	</insert>
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(auction_no), 0) + 1 from auction_item
+	</select>
+	<select id="getTotal" parameterType="auction" resultType="integer">
+		select count(*) from auction_item
+		<where>
+			sysdate between start_date and end_Date
+			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
+				<if test="keyword!=null and keyword!=''">  
+				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
+					and	${search} like '%'||#{keyword}||'%'
+				</if>
+				<if test="tag_no!=null and tag_no!=0">  
+					and	tag_no=#{tag_no}
+				</if>
+				<if test="tagValue!=null and tagValue!=0">  
+					and	tag_no between #{tagValue} and #{tagValue}+10
+				</if>
+		</where>
+	</select>
+	<select id="buyTotal" parameterType="auction" resultType="integer">
+		select count(*) from auction_item
+			where auction_no in (select auction_no from bidding where id =#{id})
+	</select>
+	<select id="sellTotal" parameterType="auction" resultType="integer">
+		select count(*) from auction_item
+			where auction_no in (select auction_no from auction_item where id =#{id})
+	</select>
+	<select id="list" parameterType="auction"  resultType="auction">
+		<!-- select * from auction_item order by auction_no desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from auction_item 
+			<where>
+				sysdate between start_date and end_Date
+			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
+				<if test="keyword!=null and keyword!=''">  
+				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
+					and	${search} like '%'||#{keyword}||'%'
+				</if>
+				<if test="tag_no!=null and tag_no!=0">  
+					and	tag_no=#{tag_no}
+				</if>
+				<if test="tagValue!=null and tagValue!=0">  
+					and	tag_no between #{tagValue} and #{tagValue}+10
+				</if>
+			</where>
+			order by 
+			<if test="filter==null or filter==''">  
+				auction_no desc
+			</if>
+			<if test="filter!=null and filter!=''">  
+					<if test='filter.equals("a")'>
+						view_cnt desc	
+					</if>
+					<!-- <if test='filter.equals("a")'>
+						bid_cnt desc	
+					</if> -->
+					<if test='filter.equals("c")'>
+						end_date desc	
+					</if>
+			</if>
+			)a) where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="select" parameterType="integer" resultType="auction">
+		select * from auction_item where auction_no=#{auction_no}
+	</select>
+	<update id="increaseViewCount" parameterType="integer">
+		update auction_item set view_cnt=view_cnt+1 where auction_no=#{auction_no}
+	</update>
+	<select id="bList" parameterType="auction" resultType="auction">
+		select * from(select a.*,rowNum rn from(
+			select * from auction_item where auction_no in (select auction_no from bidding where id =#{id}) 
+				order by auction_no desc)a)where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="sList" parameterType="auction" resultType="auction">
+		select * from(select a.*,rowNum rn from(
+			select * from auction_item where id =#{id} 
+				order by auction_no desc)a)where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="adminTotal" resultType="integer">
+		select count(*) from auction_item
+	</select>
+	<select id="adminList" parameterType="auction"  resultType="auction">
+		<!-- select * from auction_item order by auction_no desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from auction_item order by 
+				auction_no desc)a) where rn between #{startRow} and #{endRow}
+	</select>
+	<update id="delete" parameterType="integer">
+		update auction_item set del='y' where auction_no=#{auction_no}
+	</update>
+	<update id="paid" parameterType="integer">
+		update auction_item set pay='y' where auction_no=#{auction_no}
+	</update>
+</mapper> 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interestns">
+	<select id="select" parameterType="interest" resultType="interest">
+		select * from interest where id=#{id} and auction_no=#{auction_no}
+	</select>
+	<insert id="insert" parameterType="interest">
+		<selectKey keyProperty="interest_no" order="BEFORE"
+			resultType="integer">
+			select nvl(max(interest_no), 0) + 1 interest_no from interest
+		</selectKey>
+		insert into interest values (#{interest_no},#{id},#{auction_no})
+	</insert>
+	<select id="getTotal" parameterType="interest" resultType="integer">
+		select count(*) from interest order by interest_no desc
+	</select>
+	<select id="list" parameterType="interest" resultType="interest">
+		select * from(select a.*,rowNum rn from(
+			select i.interest_no,ai.* from interest i,auction_item ai
+			where i.auction_no=ai.auction_no and i.id=#{id} order by i.interest_no desc)a)where rn between #{startRow} and #{endRow}
+	</select>
+	<delete id="delete" parameterType="integer" >
+		delete from interest where interest_no=#{interest_no}
+	</delete>
+</mapper> 
