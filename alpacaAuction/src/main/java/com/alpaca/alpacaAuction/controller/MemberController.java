@@ -1,5 +1,7 @@
 package com.alpaca.alpacaAuction.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -37,14 +39,7 @@ public class MemberController {
 		// member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크
 		Member member2 = ms.select(member.getId());
 		if (member2 == null) {
-			//String fileName = member.getFile().getOriginalFilename();
-			// 파일명을 변경하고 싶으면 UUID 또는 long으로 날자 데이터
-		//	member.setFileName("h");
-			//String real = session.getServletContext().getRealPath("/resources/upload");
-			//FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-			/*
-			 * fos.write(member.getFile().getBytes()); fos.close();
-			 */
+			String real = session.getServletContext().getRealPath("/resources/upload");
 			String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 			member.setPassword(encPass);
 			result = ms.insert(member);
@@ -52,28 +47,7 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "member/join";
 	}
-		
 	
-
-	/*
-	 * @RequestMapping("join2") public String join2(Member member, Model model,
-	 * HttpSession session, MultipartHttpServletRequest mhr) throws IOException {
-	 * int result = 0; // member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크 Member
-	 * member2 = ms.select(member.getId()); if (member2 == null) { // 한번에 여러개의 파일이
-	 * 들어온다 List<MultipartFile> list = mhr.getFiles("file"); List<MemberPhoto>
-	 * photos = new ArrayList<MemberPhoto>(); String real =
-	 * session.getServletContext().getRealPath("/resources/upload"); // list의 사진을
-	 * 하나씩 뽑아서 photos에 저장 for(MultipartFile mf : list) { MemberPhoto mp = new
-	 * MemberPhoto(); String fileName = mf.getOriginalFilename();
-	 * mp.setFileName(fileName); mp.setId(member.getId()); photos.add(mp); //
-	 * memberphotos의 갯수는 사진갯수 만큼 // 그림파일 저장 FileOutputStream fos = new
-	 * FileOutputStream(new File(real+"/"+fileName)); fos.write(mf.getBytes());
-	 * fos.close(); member.setFileName(fileName); } String encPass =
-	 * bpe.encode(member.getPassword()); // 비밀번호 암호화 member.setPassword(encPass);
-	 * result = ms.insert(member); if (result > 0) ms.insertPhoto(photos); } else
-	 * result = -1; // 이미 있으니 입력하지마 model.addAttribute("result", result); return
-	 * "join"; }
-	 */
 	@RequestMapping("loginForm")
 	public String loginForm() {
 		return "member/loginForm";
@@ -94,13 +68,6 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	/*
-	 * @RequestMapping("view2") public String view2(Model model, HttpSession
-	 * session) { String id = (String)session.getAttribute("id"); Member member =
-	 * ms.select(id); List<MemberPhoto> list = ms.listPhoto(id);
-	 * model.addAttribute("member", member); model.addAttribute("list", list);
-	 * return "view2"; }
-	 */
 	@RequestMapping("view")
 	public String view(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");		
@@ -119,13 +86,6 @@ public class MemberController {
 	public String update(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
 		// 사진을 수정할 수도 안할 수도 있다(안하면 fileName이 null 또는 공란)
-		/*
-		 * String fileName = member.getFile().getOriginalFilename(); if (fileName !=
-		 * null && !fileName.equals("")) { member.setFileName(fileName); String real =
-		 * session.getServletContext().getRealPath("/resources/upload");
-		 * FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-		 * fos.write(member.getFile().getBytes()); fos.close(); }
-		 */
 		String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 		member.setPassword(encPass);
 		result = ms.update(member);
@@ -164,27 +124,6 @@ public class MemberController {
 		return msg;
 	}
 	
-	/*
-	 * // 이메일 인증
-	 * 
-	 * @RequestMapping(value = "mailResult", produces = "text/html;charset=utf-8")
-	 * 
-	 * @ResponseBody public String mailResult(String email, Model model) { String
-	 * msg = ""; // 코드를 담아 보낼 메세지 String code=""; // 코드 생성
-	 * 
-	 * // 난수 생성 Random random = new Random(); for(int i=0; i<3; i++) { int index =
-	 * random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성 code += (char)index; } int numIndex
-	 * = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성 code += numIndex; msg =
-	 * (String)code; //메시지 내용 함수입력
-	 * 
-	 * MimeMessage mm = jMailSender.createMimeMessage(); try { MimeMessageHelper mmh
-	 * = new MimeMessageHelper(mm, true, "utf-8"); mmh.setSubject("이메일 인증번호 입니다.");
-	 * mmh.setText("인증번호 : " + msg); System.out.println("msg"+msg);
-	 * mmh.setTo(email); mmh.setFrom("inhowha9195@naver.com"); jMailSender.send(mm);
-	 * model.addAttribute("msg", msg); } catch (Exception e) {
-	 * model.addAttribute("msg", e.getMessage()); } return msg; }
-	 */
-		
 		// 아이디 찾기
 		@RequestMapping("findIdResult")
 		public String findIdResult(Member member, Model model) {
@@ -239,14 +178,14 @@ public class MemberController {
 				MimeMessage mm = jMailSender.createMimeMessage();
 				try {
 					MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
-					mmh.setSubject("타이거 임시비밀번호 입니다.");
+					mmh.setSubject("알파카옥션 임시비밀번호 입니다.");
 					mmh.setText("임시비밀번호 : " + msg);
-					mmh.setTo(member.getId());
+					mmh.setTo(member.getEmail());
 					mmh.setFrom("inhowha9195@naver.com");
 					jMailSender.send(mm);
 					
 					// 이메일이 성공적으로 보내졌으면 멤버 비밀번호를 변경
-					member.setPassword(msg);
+					member.setPassword(bpe.encode(msg));
 					int resultUpdatePw = ms.updatePw(member);
 					model.addAttribute("resultUpdatePw", resultUpdatePw);
 					

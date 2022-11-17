@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
+
 	<!-- 관리자 회원 목록 -->
 	<select id="mbList" parameterType="member" resultType="member">
 		select * from (select a.*, rowNum rn from (select * from member
 			order by created_date desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>
+
 	<select id="getMbTotal" parameterType="member" resultType="integer">
 		select count(*) from member	<!-- member 행 갯수 -->
 	</select>
@@ -31,39 +33,19 @@
 		select * from member where id=#{id} and email=#{email}
 	</select>
 	
-<!-- 	<select id="listPhoto" parameterType="string" resultType="memberphoto">
-		select * from memberPhoto where id=#{id}
-	</select>
-
-	<insert id="insertPhoto" parameterType="java.util.List">
-		insert all
-		foreach list에서 하니씩 데이터를 뽑아서 item넣어서 반복처리
-		<foreach collection="list" item="item">
-			into memberphoto values 
-				(get_seq,#{item.id},#{item.fileName})
-		</foreach>
-		select * from dual
-	</insert> -->
-	
-	
-<!-- 	<insert id="insertPh" parameterType="memberphoto">
-		insert into memberphoto values(memberphoto_seq.nextval, #{id}, #{fileName})
-	</insert> -->
-	
-	
 	<update id="update" parameterType="member">
 		update member set email=#{email}, password=#{password},name=#{name}
-		<!-- 파일이 있으면 변경하고 없으면 기존 파일명을 그대로 사용 -->
-		<!-- <if test="fileName != null">
-			,fileName=#{fileName}
-		</if> -->
 		where id=#{id}
 	</update>
 	
+	<update id="updatePw" parameterType="member">
+		update member set password=#{password} where id=#{id}
+	</update>
 	
 	<update id="delete" parameterType="string">
 		update member set del='y' where id=#{id}
 	</update>
+	
 	<update id="MbRollback" parameterType="string">
 		update member set del='n' where id=#{id}
 	</update>

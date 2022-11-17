@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alpaca.alpacaAuction.dao.MemberDao;
 import com.alpaca.alpacaAuction.model.Member;
-import com.alpaca.alpacaAuction.model.MemberPhoto;
 
 @Service
 public class MemberServiceImpl implements MemberService{

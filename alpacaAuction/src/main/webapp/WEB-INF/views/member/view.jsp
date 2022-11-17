@@ -13,7 +13,7 @@
 	<%-- <tr><th>사진</th><td>
 		<img alt="" src="resources/upload/${member.fileName}" width="200"></td></tr> --%>
 </table>
-<a href="main.do" class="btn btn-default">메인</a>
+<a href="auctionList.do" class="btn btn-default">메인</a>
 </div>
 </body>
 </html>

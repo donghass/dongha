@@ -12,6 +12,8 @@
 	#drop { border: 1px solid black; width: 300px; height: 200px; padding: 3px; }
 </style>
 <script type="text/javascript">
+
+
 function check_pw(){
 	 
     var pw = document.getElementById('pw').value;
@@ -39,6 +41,7 @@ function check_pw(){
         else{
             document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
             document.getElementById('check').style.color='red';
+            return false;
         }
     }
 }
@@ -51,13 +54,6 @@ function check_pw(){
 	onsubmit="return check_pw()">
 	<input type="hidden" name="id" value="${member.id }">
 <table class="table table-bordered">
-	<tr><th>프로필 사진 <span class="glyphicon glyphicon-picture"></span></th>
-		<td><input type="file" name="file" required="required"></td></tr>
-	
-	<!-- drag & drop -->
-	<tr><th>프로필 사진  <span class="glyphicon glyphicon-picture"></span></th> 
-		<td><div id="drop"><div id="thumbnails">그림을 올려 놓으세요</div></div></td></tr>
-
 
 	<tr><th>아이디 <span class="glyphicon glyphicon-user"></span></th>
 		<td>${member.id }</td></tr>
@@ -65,7 +61,7 @@ function check_pw(){
             <td><input type="password" name="password" id="pw" onchange="check_pw()" required="required"></td>
         </tr>
           
-        <tr><th>비밀번호 확인</th>
+        <tr><th>비밀번호 확인</th> 
             <td><input type="password" name="password2" id="pw2" onchange="check_pw()" required="required">&nbsp;<span id="check"></span></td>
         </tr>
 	<tr><th>이름 <span class="glyphicon glyphicon-user"></span></th>

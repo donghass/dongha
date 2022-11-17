@@ -5,7 +5,7 @@
 <title>Insert title here</title></head><body>
 <div class="container" align="center">
 	<h2 class="text-primary">로그인</h2>
-<form action="login.do">
+<form action="login.do" method="post">
 <table class="table table-hover">
 	<tr><th>아이디 <span class="glyphicon glyphicon-user"></span></th>
 		<td><input type="text" name="id" required="required" autofocus="autofocus"
