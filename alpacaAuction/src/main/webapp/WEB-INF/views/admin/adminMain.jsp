@@ -35,7 +35,7 @@
 <div class="container" align="center">
 	<div class="row" align="center">
 		<div class="col-xs-6 col-sm-4 thum">
-		<a href="">
+		<a href="adminAuction.do">
 			<img alt="" src="/alpacaAuction/resources/auction_images/auction.png">
 			<span>경매 관리</span>
 		</a>	

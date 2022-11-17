@@ -86,4 +86,19 @@
 			select * from auction_item where id =#{id} 
 				order by auction_no desc)a)where rn between #{startRow} and #{endRow}
 	</select>
+	<select id="adminTotal" resultType="integer">
+		select count(*) from auction_item
+	</select>
+	<select id="adminList" parameterType="auction"  resultType="auction">
+		<!-- select * from auction_item order by auction_no desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from auction_item order by 
+				auction_no desc)a) where rn between #{startRow} and #{endRow}
+	</select>
+	<update id="delete" parameterType="integer">
+		update auction_item set del='y' where auction_no=#{auction_no}
+	</update>
+	<update id="paid" parameterType="integer">
+		update auction_item set pay='y' where auction_no=#{auction_no}
+	</update>
 </mapper> 

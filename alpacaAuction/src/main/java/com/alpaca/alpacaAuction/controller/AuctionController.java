@@ -51,7 +51,6 @@ public class AuctionController {
 		int auction_no = as.getMaxNum();
 		//datetime-local을 받기위해 날짜 시간포맷하기
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(auction.getSDate());
 		Timestamp start_date = new Timestamp(transFormat.parse(auction.getSDate().replace("T", " ")+":00").getTime());
 		Timestamp end_date = new Timestamp(transFormat.parse(auction.getEDate().replace("T", " ")+":00").getTime());
 		String fileName = auction.getFile().getOriginalFilename();
@@ -116,11 +115,9 @@ public class AuctionController {
 	@RequestMapping("auctionDetail")
 	public String auctionDetail(int auction_no,String pageNum,Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
-		System.out.println("auction_no = "+auction_no);
 		as.increaseViewCount(auction_no);
 		Auction auction = as.select(auction_no);
 		//			최고입찰가 추가
-		System.out.println("aution = "+auction);
 		if(bs.selectMax(auction.getAuction_no())==0) {
 			auction.setBid_price(auction.getStart_price());
 		}else {

@@ -63,4 +63,28 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int sellTotal(Auction auction) {
 		return sst.selectOne("auctionns.sellTotal",auction);
 	}
+
+	@Override
+	public int adminTotal() {
+		// TODO Auto-generated method stub
+		return sst.selectOne("auctionns.adminTotal");
+	}
+
+	@Override
+	public List<Auction> adminList(Auction auction) {
+		// TODO Auto-generated method stub
+		return sst.selectList("auctionns.adminList",auction);
+	}
+
+	@Override
+	public int delete(int auction_no) {
+		// TODO Auto-generated method stub
+		return sst.update("auctionns.delete",auction_no);
+	}
+
+	@Override
+	public int paid(int auction_no) {
+		// TODO Auto-generated method stub
+		return sst.update("auctionns.paid",auction_no);
+	}
 }

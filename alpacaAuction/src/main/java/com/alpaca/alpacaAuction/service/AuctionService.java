@@ -26,4 +26,12 @@ public interface AuctionService {
 
 	int sellTotal(Auction auction);
 
+	int adminTotal();
+
+	List<Auction> adminList(Auction auction);
+
+	int delete(int auction_no);
+
+	int paid(int auction_no);
+
 }
