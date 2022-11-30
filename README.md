@@ -49,20 +49,36 @@ AlpacaAuction 프로젝트는 많은 사람들이 여러가지 카테고리를 �
 ----
 ### LayOut Design
 
-##### 메인 화면
-![스크린샷(9)](https://user-images.githubusercontent.com/112607627/204701140-fc1a0f93-5cf3-4e60-8164-626d37a11cb6.png)
+ 
+ <div align="center">1.메인 화면
+ 
+<img src="https://user-images.githubusercontent.com/112607627/204716709-26eaae2b-332d-40f5-a1c5-0b6846c62e98.png" />
 
-##### 회원가입, 로그인, 아이디 찾기
+
+2.회원가입, 로그인, 아이디 찾기
 
 <img src="https://user-images.githubusercontent.com/112607627/204701263-cc88239d-5fc7-4a87-b382-241671f891e7.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204701265-04db7161-8748-463c-a2db-200d3c9b16e3.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204701266-1f7d1349-7b65-4df7-b08a-df5bd83b3130.png" width="250" height="250"/>
 
-##### 마이페이지,정보수정
 
-<img src="https://user-images.githubusercontent.com/112607627/204702467-d001f20c-c4f6-4da4-ae41-7fcb687fc67d.png" width="300" height="300"/><img src="https://user-images.githubusercontent.com/112607627/204702634-3d789864-98ff-48ad-a862-2d4a8ea8e6c1.png" width="300" height="300"/>
+3.마이페이지,정보수정
 
-##### 상품등록,상품 상세정보,입찰 페이지
-<img src="https://user-images.githubusercontent.com/112607627/204703024-e91e257c-e198-4ed4-827f-8d06f50e638e.png" width="300" height="300"/><img src="https://user-images.githubusercontent.com/112607627/204702861-53e13d5f-4975-4c25-b871-f295f35d4cc7.png" width="300" height="300"/><img src="https://user-images.githubusercontent.com/112607627/204702868-cebb6da3-4f64-4857-93eb-c792bee177a2.png" width="300" height="300"/>
-
-<img src="이미지주소.png" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/112607627/204702467-d001f20c-c4f6-4da4-ae41-7fcb687fc67d.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204702634-3d789864-98ff-48ad-a862-2d4a8ea8e6c1.png" width="250" height="250"/>
 
 
+4.상품등록,상품 상세정보,입찰 페이지
+
+<img src="https://user-images.githubusercontent.com/112607627/204703024-e91e257c-e198-4ed4-827f-8d06f50e638e.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204702861-53e13d5f-4975-4c25-b871-f295f35d4cc7.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204702868-cebb6da3-4f64-4857-93eb-c792bee177a2.png" width="250" height="250"/>
+
+
+5.관심물품, 내가 쓴 리뷰, 구매현황, 판매현황
+ 
+<img src="https://user-images.githubusercontent.com/112607627/204715430-882b7293-1722-4be4-9077-2420d604b760.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204715433-a9fd2321-9d20-40f8-bc4c-3d1178c70ee6.png" width="250" height="250"/>
+
+<img src="https://user-images.githubusercontent.com/112607627/204715435-204197d1-12ea-44a9-98a1-7b10e91442cc.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204715437-981d8f30-dff1-466a-99ae-65b0c20c301c.png" width="250" height="250"/>
+
+
+6.리뷰 작성, 리뷰 게시판, 리뷰 상세보기, 리뷰 댓글 
+
+<img src="https://user-images.githubusercontent.com/112607627/204716031-b62c9fa6-051e-4b82-915a-a285c88684a1.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204716023-fcaa49a6-769b-49dd-a642-b4bc39de2ed8.png" width="250" height="250"/>
+
+<img src="https://user-images.githubusercontent.com/112607627/204716025-a3fb21fb-a74d-467b-b3db-942181f61915.png" width="250" height="250"/><img src="https://user-images.githubusercontent.com/112607627/204716028-f82750da-35b7-4014-bf7c-d68c21814f96.png" width="250" height="250"/>
